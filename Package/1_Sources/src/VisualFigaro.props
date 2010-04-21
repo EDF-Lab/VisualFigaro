@@ -1,0 +1,65 @@
+# Properties file for VisualFigaro plugin
+# VisualFigaro.props,v 1.02 2008/10/20
+
+# jEdit only needs to load the plugin the first time the user accesses it
+# the presence of this property also tells jEdit the plugin is using the new API
+plugin.jEditInterface.VisualFigaroPlugin.activate=defer
+
+# These two properties are required for all plugins
+plugin.jEditInterface.VisualFigaroPlugin.name=VisualFigaro
+plugin.jEditInterface.VisualFigaroPlugin.author=Guillaume Torrente & Marc Bouissou
+
+# version number == jEdit version number
+plugin.jEditInterface.VisualFigaroPlugin.version=1.8
+
+# online help
+plugin.jEditInterface.VisualFigaroPlugin.docs=index.html
+
+# we only have one dependency, jEdit 4.2, since we use the new plugin API
+plugin.jEditInterface.VisualFigaroPlugin.depend.0=jedit 04.02.01.00
+
+# plugin menu
+plugin.jEditInterface.VisualFigaroPlugin.menu=visualfigaro
+#	- \
+#	visualfigaro.choose-file \
+#	visualfigaro.save-file \
+#	visualfigaro.copy-to-buffer
+
+# action labels for actions supplied by dockables.xml
+visualfigaro.label=Figaro
+
+# action labels for actions supplied by actions.xml
+# visualfigaro.choose-file.label=Choose a Knowledge Base
+# visualfigaro.save-file.label=Save Knowledge Base
+# visualfigaro.copy-to-buffer.label=Copy notepad to buffer
+
+# plugin option pane
+plugin.jEditInterface.VisualFigaroPlugin.option-pane=visualfigaro
+
+# Option pane activation BeanShell snippet
+options.visualfigaro.code=new jEditInterface.VisualFigaroOptionPane();
+
+# Option pane labels
+options.visualfigaro.label=VisualFigaro
+# options.visualfigaro.file=File:
+# options.visualfigaro.choose-file=Choose
+# options.visualfigaro.choose-file.title=Choose a notepad file
+# options.visualfigaro.choose-font=Font:
+# options.visualfigaro.show-filepath.title=Display notepad file path
+
+# window title
+visualfigaro.title=Visual Figaro
+
+# window toolbar buttons
+# visualfigaro.choose-file.icon=Open.png
+# visualfigaro.save-file.icon=Save.png
+# visualfigaro.copy-to-buffer.icon=CopyToBuffer.png
+
+# default settings
+options.visualfigaro.show-filepath=true
+options.visualfigaro.font=Monospaced
+options.visualfigaro.fontstyle=0
+options.visualfigaro.fontsize=14
+
+# Setting not defined but supplied for completeness
+options.visualfigaro.filepath=

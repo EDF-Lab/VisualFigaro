@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!-- Dockable component definition file for VisualFigaro plugin -->
+<!-- $Id: dockables.xml,v 1.2 2003/02/09 20:37:14 spestov Exp $
+-->
+
+<!DOCTYPE DOCKABLES SYSTEM "dockables.dtd">
+
+<!-- VisualFigaro dockable windows -->
+
+<DOCKABLES>
+	<DOCKABLE NAME="visualfigaro">
+		new jEditInterface.VisualFigaro(view, position);
+	</DOCKABLE>
+</DOCKABLES>

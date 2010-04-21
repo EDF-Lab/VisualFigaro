@@ -1,0 +1,17 @@
+<copiedFiles>
+	<configuration>
+		<language>Français</language>
+		<initializationText>(* -------------------------------------------------------------------------------------------*)
+TYPE composant;</initializationText>
+		<schemaFile>bdcfr.xsd</schemaFile>
+		<file>Aide sur la bdc.doc</file>
+        <folder>icons</folder>
+	</configuration>
+	<configuration>
+		<language>English</language>
+		<initializationText>CLASS class;</initializationText>
+		<schemaFile>bdceng.xsd</schemaFile>
+		<file>Help on the KB.doc</file>
+        <folder>icons</folder>
+	</configuration>
+</copiedFiles>

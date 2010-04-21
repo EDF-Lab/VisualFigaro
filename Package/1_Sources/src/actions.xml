@@ -1,0 +1,27 @@
+<!-- Action definition file for VisualFigaro plugin -->
+<!-- $Id: actions.xml,v 1.6 2002/04/11 08:45:52 spestov Exp $
+-->
+
+<!DOCTYPE ACTIONS SYSTEM "actions.dtd">
+
+<ACTIONS>
+<!--
+	<ACTION NAME="visualfigaro.choose-file">
+		<CODE>
+			view.getDockableWindowManager().getDockable(VisualFigaroPlugin.NAME).chooseFile();
+		</CODE>
+	</ACTION>
+
+	<ACTION NAME="visualfigaro.save-file">
+		<CODE>
+			view.getDockableWindowManager().getDockable(VisualFigaroPlugin.NAME).saveFile();
+		</CODE>
+	</ACTION>
+
+	<ACTION NAME="visualfigaro.copy-to-buffer">
+		<CODE>
+			view.getDockableWindowManager().getDockable(VisualFigaroPlugin.NAME).copyToBuffer();
+		</CODE>
+	</ACTION>
+-->
+</ACTIONS>
