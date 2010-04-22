@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=VisualFigaro
-AppVerName=VisualFigaro v1.8 : plugin for jEdit
+AppVerName=VisualFigaro v1.9 : plugin for jEdit
 AppPublisher=EDF R&D MRI
 AppPublisherURL=http://www.edf.fr
 ;AppSupportURL=http://rdsoft.edf.fr
@@ -18,7 +18,7 @@ InfoAfterFile=..\..\2_Exe\EnglishFrancais\ReadMe.txt
 ;WizardImageFile=..\..\..\..\Logos\logoofficielEDF.bmp
 ; Si on ne précise pas OutputDir, l'installateur est mis dans SourceDir\Output
 OutputDir=..\..\4_Packages_livrables\EnglishFrancais\Output
-OutputBaseFilename=VisualFigaro V1.8
+OutputBaseFilename=VisualFigaro V1.9
 
 SourceDir=..\..\2_Exe\EnglishFrancais\
 PrivilegesRequired=none
