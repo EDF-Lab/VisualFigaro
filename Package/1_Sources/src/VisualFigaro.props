@@ -10,7 +10,7 @@ plugin.jEditInterface.VisualFigaroPlugin.name=VisualFigaro
 plugin.jEditInterface.VisualFigaroPlugin.author=Guillaume Torrente & Marc Bouissou
 
 # version number == jEdit version number
-plugin.jEditInterface.VisualFigaroPlugin.version=1.8
+plugin.jEditInterface.VisualFigaroPlugin.version=1.9
 
 # online help
 plugin.jEditInterface.VisualFigaroPlugin.docs=index.html
