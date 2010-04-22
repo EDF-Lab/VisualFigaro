@@ -1,3 +1,13 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 22 April 2010                                  
+ * Author       : D.WEYAND/ALL4TEC                               
+ * Bug Id       : n°59                                        
+ * Modification : Remove "dummy" expressions      
+ * VF Version   : 1.9  
+ * **************************************************************/
+ 
 package Factories;
 
 //import java.awt.List;
@@ -20,9 +30,10 @@ public class GXMLElementFactory {
 		
 		//Case in which the element is null so we create a dummy element
 		if(e == null) {
-			System.out.println("Dummy element for " + xk);
+			System.err.println("Dummy element for " + xk);
 			Element element = new Element(xk);
-			element.setAttribute("dummy", "dummyElement");
+			//element.setAttribute("dummy", "dummyElement");
+			element.removeContent();
 			bufferVector.add(element);
 		} else {
 			//If the element correspond to the string then return the element itself
@@ -40,10 +51,11 @@ public class GXMLElementFactory {
 					System.out.println("We finally found an element for " + xk + " in descendants");
 					bufferVector.add(iter.next());
 				} else {
-					System.out.println("Dummy element for " + xk);
+					System.err.println("Dummy element for " + xk);
 					//If we don't find one we create a dummy element
 					Element element = new Element(xk);
-					element.setAttribute("dummy", "dummyElement");
+					//element.setAttribute("dummy", "dummyElement");
+					element.removeContent();
 					bufferVector.add(element);
 				}
 			}
