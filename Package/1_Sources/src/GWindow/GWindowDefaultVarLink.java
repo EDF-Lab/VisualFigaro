@@ -25,6 +25,12 @@
  * Modification : Fix bug on file field mismatch 
  *                + code cleanup to avoid warnings
  * VF version   : 1.7
+ * **************************************************************
+ * Date         : 22 April 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : n°58 & 63                                        
+ * Modification : Fix bug on missing <VG_LIEN> structure
+ * VF version   : 1.9
  * **************************************************************/
 
 package GWindow;
@@ -41,6 +47,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Vector;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -58,6 +65,7 @@ import GObjectInformation.GObjectInformation;
 import GWidget.GWidgetGridForm;
 import GWidget.GWidgetLoadIcon;
 import GWidget.GWidgetOKCancel;
+import GWidget.GWidgetTextField;
 
 public class GWindowDefaultVarLink extends GWindow {
 
@@ -128,6 +136,7 @@ public class GWindowDefaultVarLink extends GWindow {
 	 */
 	//private GWidgetGridForm colorPositionGridForm;
 	
+	private GWidgetTextField fileNameField;
 	/******************************\
 	\******************************/
 	
@@ -161,7 +170,7 @@ public class GWindowDefaultVarLink extends GWindow {
 		
 		this.pack();
 		this.setTitle("Default Graphic Variant");
-		this.setSize(490,280);
+		this.setSize(350,280);
 	}
 	
 	private void tabsInitialization() {
@@ -184,7 +193,6 @@ public class GWindowDefaultVarLink extends GWindow {
 		labels.add("Thickness :");
 		labels.add("Main Color :");
 		labels.add("Arrow Style :");
-		labels.add("File :");
 		
 		//Set the type of widget we want in the grid widget
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
@@ -192,11 +200,9 @@ public class GWindowDefaultVarLink extends GWindow {
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		widgetClasses.add(WidgetClasses.COMBO);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		
 		//Give the arguments to the widgets.
 		Vector<Vector<Object>> objectArgs = new Vector<Vector<Object>>();
-		objectArgs.add(null);
 		objectArgs.add(null);
 		objectArgs.add(null);
 		objectArgs.add(null);
@@ -207,12 +213,20 @@ public class GWindowDefaultVarLink extends GWindow {
 		//Finally we add the gridform to the panel
 		firstPanel.add(generalCharacteristicsGridForm, BorderLayout.NORTH);
 		
+		//Finally we create the panel for the file name
+		JPanel textPanel = new JPanel(new BorderLayout());
+		textPanel.add(new JLabel("File : "), BorderLayout.WEST);
+		fileNameField = new GWidgetTextField(this, information);
+		textPanel.add(fileNameField, BorderLayout.CENTER);
+		firstPanel.add(textPanel,BorderLayout.CENTER);
+		
 		//We create the icon widget
 		Image image = loadIcon(System.getenv("VISUAL_FIGARO") + "test.ico");
 		loadIcon = new GWidgetLoadIcon(this, information, image);
 		
 		//Then we add this panel to the first panel
 		firstPanel.add(loadIcon, BorderLayout.SOUTH);
+		
 	}
 	
 	private Image loadIcon(String path) {
@@ -281,9 +295,9 @@ public class GWindowDefaultVarLink extends GWindow {
 					copyFile(originIco, destinationIco);
 					copyFile(originSym, destinationSym);
 					
-					generalCharacteristicsGridForm.translateMessage(new GMessage(this.information, Messages.SENDTOWIDGET, new Object[]{4, new GMessage(this.information, Messages.REPLACEDEFAULTVALUES, new Object[]{nameAskerWindow.getIconName()})}));
+					fileNameField.translateMessage(new GMessage(this.information, Messages.REPLACEDEFAULTVALUES,new Object[]{nameAskerWindow.getIconName()}));
 				} else {
-					generalCharacteristicsGridForm.translateMessage(new GMessage(this.information, Messages.SENDTOWIDGET, new Object[]{4, new GMessage(this.information, Messages.REPLACEDEFAULTVALUES, new Object[]{messageIcons.getPath()})}));
+					fileNameField.translateMessage(new GMessage(this.information, Messages.REPLACEDEFAULTVALUES, new Object[]{messageIcons.getPath()}));
 				}
 				
 				//Move the icon to the knowledge base icon folder and change the textfield
@@ -326,9 +340,13 @@ public class GWindowDefaultVarLink extends GWindow {
 	public Element fillDocument() {
 		this.root = new Element(information.getLanguage().getBDCTranslation("VARIANTE_GRAPHIQUE_DEFAUT"));
 		
+		//First we save the general properties
+		Element element = new Element(information.getLanguage().getBDCTranslation("ICONE"));
+		GXMLElementFactory.saveElements(element, fileNameField.saveXML());
+		GXMLElementFactory.saveElement(root, element);
 		
 		//We save the icon properties
-		Element element = new Element(information.getLanguage().getBDCTranslation("ICONE"));
+		element = new Element(information.getLanguage().getBDCTranslation("LIEN_VG"));
 		GXMLElementFactory.saveElements(element, generalCharacteristicsGridForm.saveXML());
 		GXMLElementFactory.saveElement(root, element);
 		
@@ -348,7 +366,9 @@ public class GWindowDefaultVarLink extends GWindow {
 		iconFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("EPAISSEUR_LIEN")).get(0));
 		iconFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("COULEUR_PPLAN")).get(0));
 		iconFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("STYLE_FLECHE")).get(0));
-		iconFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("FICHIER")).get(0));
 		generalCharacteristicsGridForm.loadXML(iconFields, false);
+		
+		// Retrieve icon file name
+		fileNameField.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("FICHIER")), false);
 	}
 }
