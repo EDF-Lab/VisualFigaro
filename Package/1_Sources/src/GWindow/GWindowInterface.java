@@ -1,3 +1,13 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 22 April 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : n°62                                        
+ * Modification : Fix bug concerning wrong tag
+ * VF version   : 1.9
+ * **************************************************************/
+
 package GWindow;
 
 import global.Messages;
@@ -88,7 +98,8 @@ public class GWindowInterface extends GWindow {
 		switch(message.getMessage()) {
 			case OK:
 				if(comboBox.getItemCount()>0){
-					Element element = new Element(information.getLanguage().getBDCTranslation("REGLE_NOEUD_LIEN"));
+					//Element element = new Element(information.getLanguage().getBDCTranslation("REGLE_NOEUD_LIEN"));
+					Element element = new Element(information.getLanguage().getBDCTranslation("INTERFACE"));
 					element.setText(comboBox.getSelectedItem().toString());
 					parent.translateMessage(new GMessage(information, Messages.ADDSIMPLEELEMENT, new Object[]{-1, element}));
 				}
