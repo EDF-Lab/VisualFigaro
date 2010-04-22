@@ -72,7 +72,7 @@ public class GWindowAbout extends GWindow {
 		logoPanel.add(iconLabel, BorderLayout.WEST);
 		
 		//Then create the title
-		JLabel titleLabel = new JLabel("     Visual Figaro Version 1.8");
+		JLabel titleLabel = new JLabel("     Visual Figaro Version 1.9");
 		logoPanel.add(titleLabel, BorderLayout.CENTER);
 	}
 	
