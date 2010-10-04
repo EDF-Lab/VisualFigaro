@@ -19,6 +19,12 @@
  * Bug Id       :                                         
  * Modification : Modify file organization for BdC translation
  * VF version   : 1.71
+ * **************************************************************
+ * Date         : 24 September 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : n° 57                                      
+ * Modification : Fix Create Default File missing names
+ * VF version   : 1.10
  * **************************************************************/
 
 package jEditInterface;
@@ -51,6 +57,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.Hashtable;
 import java.util.Vector;
+import java.lang.StringBuffer;
 
 // from Swing:
 import javax.swing.*;
@@ -678,6 +685,29 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					System.err.println("Command : "+command);
 					System.err.println("Avant");
 					data = executeServerWithResultIntoFile(command);
+					
+					// Add missing names for FTA generation, Simulation and Fig0 generation
+					// since the ST server does not create these fields. Once the ST server
+					// is updated, the following string insertion can be suppressed
+					
+					String toFind = "<MODELE_GENERATION_ADD>";
+					int Index= data.indexOf(toFind);
+					int Start = Index+ toFind.length();
+					String toBeInserted = "\n\t\t<NOM>Génération AdD</NOM>";
+					data = new StringBuffer(data).insert(Start,toBeInserted).toString();
+					
+					toFind = "<MODELE_SIMULATION>";
+					Index= data.indexOf(toFind);
+					Start = Index+ toFind.length();
+					toBeInserted = "\n\t\t<NOM>Simulation</NOM>";
+					data = new StringBuffer(data).insert(Start,toBeInserted).toString();
+					
+					toFind = "<MODELE_INST_FIG0>";
+					Index= data.indexOf(toFind);
+					Start = Index+ toFind.length();
+					toBeInserted = "\n\t\t<NOM>Génération Fig0</NOM>";
+					data = new StringBuffer(data).insert(Start,toBeInserted).toString();
+					
 					System.err.println("########################## Apres : " + data);
 					
 					break;
@@ -698,10 +728,10 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					break;
 			}
 			
-			FileWriter writer = null;
-			
+			Charset charset = Charset.forName("ISO-8859-1");
+			OutputStreamWriter writer = null;
 			try {
-				writer = new FileWriter(bdcFile);
+			    writer = new OutputStreamWriter(new FileOutputStream(bdcFile),charset);
 				writer.write(data);
 			} catch (Exception e) {
 				System.err.println("VisualFigaro : VisualFigaro : BDC file cannot be created : " + e);
