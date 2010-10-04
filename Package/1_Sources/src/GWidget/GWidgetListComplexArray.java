@@ -1,4 +1,16 @@
-package GWidget;
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 24 September 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : n°23
+ * Evol Id      :                                       
+ * Modification : Restore substitution within xmlValues vector after
+ *                element moving up or down
+ * VF version   : 1.10
+ * **************************************************************/
+ 
+ package GWidget;
 
 
 import java.util.Iterator;
@@ -263,9 +275,9 @@ public boolean listReplaceElementBis(int position, Element e) {
 			return true;
 		
 		//Otherwise move the component up by removing it from its position and replacing it one place upper
-		//Element bufferElement = xmlValues.remove(selectedIndex);
+		Element bufferElement = xmlValues.remove(selectedIndex);
 		String bufferName = (String)listModel.remove(selectedIndex);
-		//xmlValues.add(selectedIndex-1, bufferElement);
+		xmlValues.add(selectedIndex-1, bufferElement);
 		listModel.add(selectedIndex-1, bufferName);
 		list.setSelectedIndex(selectedIndex-1);
 		
@@ -282,9 +294,9 @@ public boolean listReplaceElementBis(int position, Element e) {
 			return true;
 		
 		//Otherwise move the component up by removing it from its position and replacing it one place upper
-		//Element bufferElement = xmlValues.remove(selectedIndex);
+		Element bufferElement = xmlValues.remove(selectedIndex);
 		String bufferName = (String)listModel.remove(selectedIndex);
-		//xmlValues.add(selectedIndex+1, bufferElement);
+		xmlValues.add(selectedIndex+1, bufferElement);
 		listModel.add(selectedIndex+1, bufferName);
 		list.setSelectedIndex(selectedIndex+1);
 		
