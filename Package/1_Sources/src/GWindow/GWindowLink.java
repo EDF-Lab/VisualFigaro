@@ -8,10 +8,12 @@
  *                the <ABBREVIATION> tag       
  * VF Version   : 1.3         
  * **************************************************************
- * Date         :                                  
- * Author       :                                
- * Bug Id       :                                           
- * Modification :    
+ * Date         : 16 September 2010                             
+ * Author       : D.WEYAND/ALL4TEC                            
+ * Bug Id       : n°64                                         
+ * Modification : Reorder the <DESCRIPTION> and the <FAMILLE_TYPE_PALETTE>
+ *                in order to respect the .xsd sequence definition
+ * VF Version   : 1.10              
  * **************************************************************/
 
 package GWindow;
@@ -284,16 +286,15 @@ public class GWindowLink extends GWindow {
 		
 		//We retrieve the vector of the element saved in the generalCharacteristicsGridForm
 		Vector<Element> generalCharacteristicsGridFormVector = new Vector<Element>(generalCharacteristicsGridForm.saveXML());
-		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(1));
-		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(0));
-		GXMLElementFactory.saveElements(root, menuItemNamesList.saveXML());
+		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(1)); // Field <PRESENCE_PALETTE>	
+		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(0)); // Field <ABREVIATION>
+		GXMLElementFactory.saveElements(root, descriptionTextArea.saveXML());              // Field <DESCRIPTION>
+		GXMLElementFactory.saveElements(root, menuItemNamesList.saveXML());                // Field <FAMILLE_TYPE_PALETTE>
+		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(2)); // Field <VARIANTE_GRAPHIQUE_DEFAUT>
 		
-		GXMLElementFactory.saveElements(root, descriptionTextArea.saveXML());
-		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(2));
+		GXMLElementFactory.saveElements(root, variantesGraphiquesList.saveXML());          // Field <VARIANTE_GRAPHIQUE>
 		
-		GXMLElementFactory.saveElements(root, variantesGraphiquesList.saveXML());
-		
-		//The element from the variante graphique lists and the ports lists are saved under a specific element called NODE
+		//The element from the variante graphique lists and the ports lists are saved under a specific element called LINK
 		Element element = new Element(information.getLanguage().getBDCTranslation("LIEN"));
 		GXMLElementFactory.saveElements(element, variantesGraphiquesList.saveXML());
 		GXMLElementFactory.saveElements(element, portStart.saveXML());
