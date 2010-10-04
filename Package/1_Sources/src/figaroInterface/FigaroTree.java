@@ -19,6 +19,13 @@
  * Bug Id       :                                         
  * Modification : Code cleanup to avoid warnings
  * VF version   : 1.7
+ * **************************************************************
+ * Date         : 20 September 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : n°65                                        
+ * Modification : Reactivate owner test and put text focus outside
+ *                the pos and owner condition
+ * VF version   : 1.10
  * **************************************************************/
 
 package figaroInterface;
@@ -622,12 +629,10 @@ public class FigaroTree extends JPanel {
 				//On recherche la cellule qui est la source
 				//We search the cell which is the source of this event
 				int pos = gtree.getCaretPosFromCell(((GCell)ee.getPath().getLastPathComponent()).getUID());
-				//if(pos >= 0 && tree.isFocusOwner()) {
-				if(pos >= 0) {
-					view.getEditPane().getTextArea().setCaretPosition(pos+5);
-					view.getEditPane().focusOnTextArea();
-					
+				if(pos >= 0 && tree.isFocusOwner()) {
+					view.getEditPane().getTextArea().setCaretPosition(pos+5);				
 				}
+				view.getEditPane().focusOnTextArea();
 			}
 		}
 		
