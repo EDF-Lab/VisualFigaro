@@ -1,0 +1,28 @@
+VisualFigaro was developed as a plugin for the opensource text editor Jedit (in Java).
+To use VisualFigaro, you must install in this order:
+  - JAVA (version 1.6 or more)
+  - Jedit (VisualFigaro works only with the so-called "stable version" 4.2)
+  - The plugin VisualFigaro.
+
+Independently from these tools, you will have to use (for the edition and management of icons): 
+  - Designer : edition of vector icons of KB3 (files with extension .sym). Designer is systematically 
+     installed by the installer of KB3.
+  - AWIcons lite (or some other icon editor) : edition of files with extension .ico 
+  - XnView (or windows explorer of XP, 2000 ou Vista) : visualization and management of icons.
+
+And of course you will need KB3 to load and test your knowledge bases. The demo version of KB3 is functionally complete, it is only limited in size of the systems that can be modeled.
+
+
+VisualFigaro uses temporary files which are placed in the directory the name of which is in the 
+environment variable TMP.
+
+It needs the environment variable VISUAL_FIGARO (default value: C:\Program Files\jEdit\VisualFigaro\); this same directory must be in the path (these two items are automatically set up by the installer).
+
+
+CAUTION
+All the files necessary for VisualFigaro are placed in sub-directories of the installation directory of Jedit. The default directory is c:\Program files\Jedit, but if Jedit is installed in another place, the default directory proposed by the installer of VisualFigaro must be changed accordingly.
+
+First use of VisualFigaro:
+After the setup of VisualFigaro, lauch Jedit and use the "Plugins" menu to launch the VisualFigaro plugin.
+Open the VisualFigaro window (which appears minimized in the task bar) and choose the option "dock left".
+ 
