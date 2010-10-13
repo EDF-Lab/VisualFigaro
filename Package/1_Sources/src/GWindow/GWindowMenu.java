@@ -6,6 +6,12 @@
  * Bug Id       :                                        
  * Modification : code cleanup to avoid warnings
  * VF version   : 1.7
+ * **************************************************************
+ * Date         : 13 Ocotber 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : n°66                                      
+ * Modification : Add dynamic accessors to Menu items list
+ * VF version   : 1.11
  * **************************************************************/
 
 package GWindow;
@@ -13,7 +19,7 @@ package GWindow;
 import global.Messages;
 
 import java.awt.BorderLayout;
-import java.util.Iterator;
+//import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -25,6 +31,7 @@ import org.jdom.Element;
 import GMessage.GMessage;
 import GObject.GObject;
 import GObjectInformation.GObjectInformation;
+import GWidget.GWidgetControledList;
 import GWidget.GWidgetOKCancel;
 
 public class GWindowMenu extends GWindow {
@@ -51,8 +58,12 @@ public class GWindowMenu extends GWindow {
 		//Initialization of the label and the comboBox
 		JLabel label = new JLabel("Menu : ");
 		comboBox = new JComboBox();
-		for(Iterator<String> iter = xmlLoader.findMenus().iterator(); iter.hasNext();)
-			comboBox.addItem(iter.next());
+		
+		// Bug n°66 Fix: Retrieve list directly from Controlled list to insure dynamic item adding
+		GWidgetControledList myList = GWindowMain.getItemList();
+		for(int i=0;i<myList.getList().listGetNumberOfElement();i++){
+			comboBox.addItem(myList.getList().listGetString(i));
+		}
 		
 		//Then we put them into a simple panel and put this simple panel into the top panel
 		JPanel panel = new JPanel(new BorderLayout());
