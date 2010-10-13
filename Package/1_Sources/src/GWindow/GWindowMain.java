@@ -19,6 +19,12 @@
  * Bug Id       :                                         
  * Modification : Fix syntax name bug in "bdcfr.xsd" 
  * VF version   : 1.71
+ * **************************************************************
+ * Date         : 13 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                             
+ * Bug Id       : n°66                                      
+ * Modification : Add accessors for Menu Item list 
+ * VF version   : 1.11
  * **************************************************************/
 
 package GWindow;
@@ -130,7 +136,7 @@ public class GWindowMain extends GWindow {
 	 * @uml.property  name="menuItemNamesList"
 	 * @uml.associationEnd  
 	 */
-	private GWidgetControledList menuItemNamesList;
+	private static GWidgetControledList menuItemNamesList;
 	/******************************\
 	\******************************/
 	
@@ -362,7 +368,7 @@ public class GWindowMain extends GWindow {
 		firstPanel.add(generalCharacteristicsGridForm, BorderLayout.NORTH);
 	}
 	private void initializeFirstPanelBorderedWidgets() {
-		//In order to structure the panel we will use a grid panel for the three big composants
+		//In order to structure the panel we will use a grid panel for the three big components
 		JPanel bufferPanel = new JPanel(new GridLayout(3,1,5,5));
 		
 		//Then we create the widget and add it to the first panel
@@ -385,7 +391,7 @@ public class GWindowMain extends GWindow {
 		//First we initialize the panel
 		secondPanel = new JPanel(new BorderLayout());
 		
-		//And then we create and add the controled list to the panel
+		//And then we create and add the controlled list to the panel
 		typeList = new GWidgetControledList(this, information, "Types", figaroLoader.findTypesName(), ListTypes.COMPLEXARRAY, NameRetrieverClasses.TYPENODELINKRETRIEVER, ControlTypes.NODELINKNEITHERUPDOWNEDIT, null, null);
 		secondPanel.add(typeList, BorderLayout.CENTER);
 	}
@@ -396,7 +402,7 @@ public class GWindowMain extends GWindow {
 		//First we initialize the panel
 		thirdPanel = new JPanel(new GridLayout(4,1,5,5));
 		
-		//And then we create and add the controled lists to the panel
+		//And then we create and add the controlled lists to the panel
 		faultTreeGenerationModelsList = new GWidgetControledList(this, information, "Fault Trees Generation Models", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.NAMERETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.FAULTTREEGENERATIONMODEL, null);
 		thirdPanel.add(faultTreeGenerationModelsList);
 		simulationModelsList = new GWidgetControledList(this, information, "Simulation Models", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.NAMERETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.SIMULATIONMODEL, null);
@@ -411,7 +417,7 @@ public class GWindowMain extends GWindow {
 		//First we initialize the panel
 		fourthPanel = new JPanel(new BorderLayout());
 		
-		//And then we create and add the controled list to the panel
+		//And then we create and add the controlled list to the panel
 		algoList = new GWidgetControledList(this, information, "Algorithms", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.ALGORETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.ALGO, null);
 		fourthPanel.add(algoList, BorderLayout.CENTER);
 	}
@@ -428,6 +434,15 @@ public class GWindowMain extends GWindow {
 			case CANCEL:
 				dispose();
 				break;
+				
+			case NOTIFYCHANGE:
+				if(message.getArguments().get(0) == "ADD"){
+				  //fillDocument();
+					//System.err.println("VisualFigaro : GWindowMain :" + message.getMessage().toString() + " message received");
+					//System.err.println("VisualFigaro : GWindowMain :" + message.getArguments().get(0) + " argument received");
+					//System.err.println("VisualFigaro : GWindowMain :" + message.getArguments().get(1) + " argument received");
+				}
+				 break;
 				
 			default:
 				System.out.println("VisualFigaro : GWindowDepart : Unknown message received");
@@ -528,6 +543,11 @@ public class GWindowMain extends GWindow {
 		
 		//Takes care of initializing the lists on the fourth tab
 		algoList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("LISTE_ALGO")), true);
+	}
+	
+	public static GWidgetControledList getItemList()
+	{
+		return menuItemNamesList;
 	}
 	
 	public void loadXml(String fileName) {
