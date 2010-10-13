@@ -7,6 +7,13 @@
  * Modification : Update element type (NODE or LINK replaces 
  *                NEITHER default type)
  * VF Version   : 1.4
+ * **************************************************************
+ * Date         :13 October 2010                              
+ * Author       : D.WEYAND/ALL4TEC                               
+ * Bug Id       : n° 66                                     
+ * Modification : Add accessors (getList and setList) to allow dynamic
+ *                 access to the list elements 
+ * VF Version   : 1.11
  * **************************************************************/
 
 package GWidget;
@@ -125,14 +132,14 @@ public class GWidgetControledList extends GWidget {
 		switch(listType) {
 			case COMPLEXARRAY:
 				System.out.println("Name retriever : " + nameRetriever.toString());
-				list = new GWidgetListComplexArray(this, info, null, GNameRetrieverFactory.createNameRetriever(information.getLanguage(), nameRetriever));
-				System.out.println("Nombre d'element" + list.listGetNumberOfElement());
+				setList(new GWidgetListComplexArray(this, info, null, GNameRetrieverFactory.createNameRetriever(information.getLanguage(), nameRetriever)));
+				System.out.println("Nombre d'element" + getList().listGetNumberOfElement());
 				break;
 				
 			case SIMPLEARRAY:
 				System.out.println("Name retriever : " + nameRetriever.toString());
-				list = new GWidgetListSimpleArray(this, info, null, GNameRetrieverFactory.createNameRetriever(information.getLanguage(), nameRetriever));
-				System.out.println("Nombre d'element" + list.listGetNumberOfElement());
+				setList(new GWidgetListSimpleArray(this, info, null, GNameRetrieverFactory.createNameRetriever(information.getLanguage(), nameRetriever)));
+				System.out.println("Nombre d'element" + getList().listGetNumberOfElement());
 				break;
 				
 			default:
@@ -167,7 +174,7 @@ public class GWidgetControledList extends GWidget {
 		controlPanel.add(control, BorderLayout.NORTH);
 		
 		//The control and the list are now put in the controledList window
-		add(list, BorderLayout.CENTER);
+		add(getList(), BorderLayout.CENTER);
 		add(controlPanel, BorderLayout.EAST);
 		
 		if(name != null)
@@ -185,7 +192,7 @@ public class GWidgetControledList extends GWidget {
 			//We have to change the value of the initializedWithStrings variable to indicate that we have initialized the list
 			//initializedWithStrings = true;
 			
-			list.initializeWithString(initializationList);
+			getList().initializeWithString(initializationList);
 		}
 	}
 	
@@ -209,7 +216,7 @@ public class GWidgetControledList extends GWidget {
 				break;
 				
 			case DEL:
-				list.listDeleteElement(list.listGetSelectedIndex());
+				getList().listDeleteElement(getList().listGetSelectedIndex());
 				System.out.println("DEL");
 				
 				//Notify the parent that something happened in the widget
@@ -220,12 +227,12 @@ public class GWidgetControledList extends GWidget {
 				if(isEditable) {
 					if(interactionWindow != null) {
 						if(windowArguments == null)
-							window = GWindowFactory.createWindow(interactionWindow, this, information, new Object[]{list.listGetSelectedIndex(), list.listGetElement(list.listGetSelectedIndex())});
+							window = GWindowFactory.createWindow(interactionWindow, this, information, new Object[]{getList().listGetSelectedIndex(), getList().listGetElement(getList().listGetSelectedIndex())});
 						else
-							window = GWindowFactory.createWindow(interactionWindow, this, information, new Object[]{list.listGetSelectedIndex(), list.listGetElement(list.listGetSelectedIndex()), windowArguments});
+							window = GWindowFactory.createWindow(interactionWindow, this, information, new Object[]{getList().listGetSelectedIndex(), getList().listGetElement(getList().listGetSelectedIndex()), windowArguments});
 					} else {
 						
-						String listSelectedString = list.listGetString(list.listGetSelectedIndex()); 
+						String listSelectedString = getList().listGetString(getList().listGetSelectedIndex()); 
 						int indexOfColon = listSelectedString.indexOf(" : ");
 						if(indexOfColon >= 0) {
 							
@@ -271,20 +278,20 @@ public class GWidgetControledList extends GWidget {
 				break;
 				
 			case UP:
-				list.listMoveUp();
+				getList().listMoveUp();
 				System.out.println("UP");
 				break;
 				
 			case DOWN:
-				list.listMoveDown();
+				getList().listMoveDown();
 				System.out.println("DOWN");
 				break;
 			
 			case ADDELEMENT:
 				if((Integer)message.getArguments().get(0) == -1)
-					list.listAddElement((Element)message.getArguments().get(1));
+					getList().listAddElement((Element)message.getArguments().get(1));
  				else
-					list.listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
+					getList().listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
 				
 				//We notify the parent that something happened in the widget
 				parent.translateMessage(new GMessage(information, Messages.NOTIFYCHANGE, "ADD"));
@@ -292,9 +299,9 @@ public class GWidgetControledList extends GWidget {
 				
 			case ADDSIMPLEELEMENT:
 				if((Integer)message.getArguments().get(0) == -1)
-					list.listAddElement((Element)message.getArguments().get(1));
+					getList().listAddElement((Element)message.getArguments().get(1));
  				else
-					list.listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
+					getList().listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
 				
 				//We notify the parent that something happened in the widget
 				parent.translateMessage(new GMessage(information, Messages.NOTIFYCHANGE, "ADD"));
@@ -303,10 +310,10 @@ public class GWidgetControledList extends GWidget {
 			case NODE:
 				
 				//If there is no item selected in the list just return
-				if(list.listGetSelectedIndex() < 0)
+				if(getList().listGetSelectedIndex() < 0)
 					return;
 				
-				String listSelectedString = list.listGetString(list.listGetSelectedIndex());
+				String listSelectedString = getList().listGetString(getList().listGetSelectedIndex());
 				int indexOfColon = listSelectedString.indexOf(" : ");
 				
 				if(indexOfColon >= 0)
@@ -329,33 +336,33 @@ public class GWidgetControledList extends GWidget {
 				
 				//If the user selected node we have to load xml using the GWindowNoeud
 
-				list.listGetElement(list.listGetSelectedIndex());
+				getList().listGetElement(getList().listGetSelectedIndex());
 				GObjectInformation windowNodeInformation = new GObjectInformation(information);
-				if(list.listGetString(list.listGetSelectedIndex()).indexOf(" : ") >= 0)
+				if(getList().listGetString(getList().listGetSelectedIndex()).indexOf(" : ") >= 0)
 				{
-					windowNodeInformation.setTypeConcerned(list.listGetString(list.listGetSelectedIndex()).substring(list.listGetString(list.listGetSelectedIndex()).indexOf(" : ") + 3, list.listGetString(list.listGetSelectedIndex()).length()));
+					windowNodeInformation.setTypeConcerned(getList().listGetString(getList().listGetSelectedIndex()).substring(getList().listGetString(getList().listGetSelectedIndex()).indexOf(" : ") + 3, getList().listGetString(getList().listGetSelectedIndex()).length()));
 					windowNodeInformation.setType(WindowTypes.NODE);
 				}
 				else
-					windowNodeInformation.setTypeConcerned(list.listGetString(list.listGetSelectedIndex()));
+					windowNodeInformation.setTypeConcerned(getList().listGetString(getList().listGetSelectedIndex()));
 	
 				String typeName = listSelectedString.substring(indexOfColon+3, listSelectedString.length());
-				window = GWindowFactory.createWindow(WindowClasses.NODE, this, windowNodeInformation, new Object[]{list.listGetSelectedIndex(), list.listGetElement(list.listGetElement(typeName))});
+				window = GWindowFactory.createWindow(WindowClasses.NODE, this, windowNodeInformation, new Object[]{getList().listGetSelectedIndex(), getList().listGetElement(getList().listGetElement(typeName))});
 				window.setVisible(true);
 				window.setAlwaysOnTop(true);
 				System.out.println("NODE");
 				break;
 				
 			case NODEMODIFICATION:
-				list.listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
+				getList().listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
 				break;
 				
 			case LINK:
 				//If there is no item selected in the list just return
-				if(list.listGetSelectedIndex() < 0)
+				if(getList().listGetSelectedIndex() < 0)
 					return;
 				
-				listSelectedString = list.listGetString(list.listGetSelectedIndex());
+				listSelectedString = getList().listGetString(getList().listGetSelectedIndex());
 				indexOfColon = listSelectedString.indexOf(" : ");
 				
 				if(indexOfColon >= 0)
@@ -377,29 +384,29 @@ public class GWidgetControledList extends GWidget {
 					}
 				
 				//If the user selected node we have to load xml using the GWindowNoeud
-				list.listGetElement(list.listGetSelectedIndex());
+				getList().listGetElement(getList().listGetSelectedIndex());
 				GObjectInformation windowLinkInformation = new GObjectInformation(information);
-				if(list.listGetString(list.listGetSelectedIndex()).indexOf(" : ") >= 0)
+				if(getList().listGetString(getList().listGetSelectedIndex()).indexOf(" : ") >= 0)
 				{
-					windowLinkInformation.setTypeConcerned(list.listGetString(list.listGetSelectedIndex()).substring(list.listGetString(list.listGetSelectedIndex()).indexOf(" : ") + 3, list.listGetString(list.listGetSelectedIndex()).length()));
+					windowLinkInformation.setTypeConcerned(getList().listGetString(getList().listGetSelectedIndex()).substring(getList().listGetString(getList().listGetSelectedIndex()).indexOf(" : ") + 3, getList().listGetString(getList().listGetSelectedIndex()).length()));
 					windowLinkInformation.setType(WindowTypes.LINK);
 				}
 				else
-					windowLinkInformation.setTypeConcerned(list.listGetString(list.listGetSelectedIndex()));
+					windowLinkInformation.setTypeConcerned(getList().listGetString(getList().listGetSelectedIndex()));
 				
 				typeName = listSelectedString.substring(indexOfColon+3, listSelectedString.length());
-				window = GWindowFactory.createWindow(WindowClasses.LINK, this, windowLinkInformation, new Object[]{list.listGetSelectedIndex(), list.listGetString(list.listGetSelectedIndex()), list.listGetElement(list.listGetElement(typeName))});
+				window = GWindowFactory.createWindow(WindowClasses.LINK, this, windowLinkInformation, new Object[]{getList().listGetSelectedIndex(), getList().listGetString(getList().listGetSelectedIndex()), getList().listGetElement(getList().listGetElement(typeName))});
 				window.setVisible(true);
 				window.setAlwaysOnTop(true);
 				System.out.println("LINK");
 				break;
 				
 			case LINKMODIFICATION:
-				list.listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
+				getList().listReplaceElement((Integer)message.getArguments().get(0), (Element)message.getArguments().get(1));
 				break;
 				
 			case NEITHER:
-				listSelectedString = list.listGetString(list.listGetSelectedIndex());
+				listSelectedString = getList().listGetString(getList().listGetSelectedIndex());
 				indexOfColon = listSelectedString.indexOf(" : ");
 				
 				typeName = listSelectedString.substring(indexOfColon+3, listSelectedString.length());
@@ -407,13 +414,13 @@ public class GWidgetControledList extends GWidget {
 				if(indexOfColon >= 0){
 					Element element;
 					int position;
-					for(position=0; position<(list.listGetNumberOfElement()-1); position++){
-						element= list.listGetElement(position);
+					for(position=0; position<(getList().listGetNumberOfElement()-1); position++){
+						element= getList().listGetElement(position);
 						if(element!=null)
 							if(element.getChildText("NOM").equals(typeName)){
 								element.setName(typeName);
-								list.listReplaceElementBis(list.listGetSelectedIndex(), element);
-								list.DeleteXMLvalues(typeName);
+								getList().listReplaceElementBis(getList().listGetSelectedIndex(), element);
+								getList().DeleteXMLvalues(typeName);
 								break;
 							}
 					}
@@ -446,10 +453,10 @@ public class GWidgetControledList extends GWidget {
 		//In case it is deeply rooted we extract the root and continue the process using the children
 		if(deeplyRooted) {
 			rootName = elements.get(0).getName();
-			return list.loadXML(new Vector<Element>(elements.get(0).getChildren()), false);
+			return getList().loadXML(new Vector<Element>(elements.get(0).getChildren()), false);
 		} else {
 			//Otherwise we just add the elements
-			return list.loadXML(elements, false);
+			return getList().loadXML(elements, false);
 		}
 		 
 	}
@@ -459,15 +466,23 @@ public class GWidgetControledList extends GWidget {
 		//If it is deeply rooted we add the root we have stored and put all the children recovered from the child widget under it
 		if(deeplyRooted) {
 			Vector<Element> bufferVector = new Vector<Element>();
-			bufferVector.add((new Element(rootName)).addContent(list.saveXML()));
+			bufferVector.add((new Element(rootName)).addContent(getList().saveXML()));
 			return bufferVector;
 		} else 
 			//Otherwise we just return all the elements from the child widget
-			return list.saveXML();
+			return getList().saveXML();
 	}
 	
 	public int GetNumberOfElement(){
-		return list.listGetNumberOfElement();
+		return getList().listGetNumberOfElement();
+	}
+
+	public void setList(GWidgetList list) {
+		this.list = list;
+	}
+
+	public GWidgetList getList() {
+		return list;
 	}
 	
 }
