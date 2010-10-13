@@ -1,3 +1,14 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 8 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°2                                    
+ * Modification : Add "*" on lists containing elements
+ * VF version   : 1.11
+ * **************************************************************/
+
 package GWindow;
 
 import global.ControlTypes;
@@ -110,6 +121,12 @@ public class GWindowLinkPort extends GWindow {
 	//The number of items in the lists
 	private int numberOfItems;
 	
+	// Global access for the following variables due to evolution n°2
+	private Vector<Object> interfaces = new Vector<Object>();
+	private Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
+	private Vector<String> labels = new Vector<String>();
+	private Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
+	
 	@Deprecated
 	public GWindowLinkPort(GObject p, GObjectInformation info) {
 		super(p, info);
@@ -148,6 +165,7 @@ public class GWindowLinkPort extends GWindow {
 			this.setTitle("End Port Window");
 		
 		this.loadXml(null);
+		this.setSize(700,300);
 	}
 	
 	public void initializeComboPanel() {
@@ -156,18 +174,18 @@ public class GWindowLinkPort extends GWindow {
 		comboPanel = new JPanel(new BorderLayout());
 		
 		//Creation of the labels
-		Vector<String> labels = new Vector<String>();
+		//Vector<String> labels = new Vector<String>();
 		labels.add("Name : ");
 		labels.add("Class : ");
 		labels.add("Interface : ");
 		
 		//Set the type of widget we want in the grid widget
-		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
+		//Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		widgetClasses.add(WidgetClasses.COMBO);
 		widgetClasses.add(WidgetClasses.COMBO);
 		
-		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
+		//Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
 		parameters.add(null);
 		Vector<Object> types = new Vector<Object>();
 		
@@ -182,7 +200,7 @@ public class GWindowLinkPort extends GWindow {
 			types.add("FIGARO");
 		
 		parameters.add(types);
-		Vector<Object> interfaces = new Vector<Object>();
+		//Vector<Object> interfaces = new Vector<Object>();
 		interfaces.add("Interfaces of the link filled by the starting node");
 		interfaces.add("Interfaces of the link filled by the ending node");
 		interfaces.add("Interfaces of the ending node filled by the link");
@@ -191,11 +209,13 @@ public class GWindowLinkPort extends GWindow {
 		interfaces.add("Interfaces of the starting node filled by the ending node");
 		parameters.add(interfaces);
 		
+		// The following part is now managed inside LoadXML module due to post_initialization problem
+		// due to evolution n°2
 		//Then we initialize the gridform
-		comboGridForm = new GWidgetGridForm(this, information, labels, 2, 3, widgetClasses, parameters);
+		//comboGridForm = new GWidgetGridForm(this, information, labels, 2, 3, widgetClasses, parameters);
 		
 		//Finally we add te gridform to the panel
-		comboPanel.add(comboGridForm, BorderLayout.NORTH);
+		//comboPanel.add(comboGridForm, BorderLayout.NORTH);
 	}
 	
 	public void initializeListPanel() {
@@ -211,16 +231,18 @@ public class GWindowLinkPort extends GWindow {
 		interfacesLinkFilledByEndingNodeControledList = new GWidgetControledList(this, listInformation, "Interfaces of the link filled by the ending node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, information.getTypeConcerned());
 		interfacesEndingNodeFilledByLinkControledList = new GWidgetControledList(this, listInformation, "Interfaces of the ending node filled by the link", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, xmlLoader.findNodes().get(0));
 		interfacesEndingNodeFilledByStartingNodeControledList = new GWidgetControledList(this, listInformation, "Interfaces of the ending node filled by the starting node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, xmlLoader.findNodes().get(0));
-		interfacesStartingNodeFilledByLinkControledList = new GWidgetControledList(this, listInformation, "Interfaces of the ending node filled by the starting node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, xmlLoader.findNodes().get(0));
+		interfacesStartingNodeFilledByLinkControledList = new GWidgetControledList(this, listInformation, "Interfaces of the starting node filled by the link", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, xmlLoader.findNodes().get(0));
 		interfacesStartingNodeFilledByEndingNodeControledList = new GWidgetControledList(this, listInformation, "Interfaces of the starting node filled by the ending node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.INTERFACE, xmlLoader.findNodes().get(0));
 		
+		// The following part is now managed inside LoadXML module due to post_initialization problem
+		// due to evolution n°2
 		//Then we add them to the cardPanel
-		cardPanel.add(interfacesLinkFilledByStartingNodeControledList, "Interfaces of the link filled by the starting node");
-		cardPanel.add(interfacesLinkFilledByEndingNodeControledList, "Interfaces of the link filled by the ending node");
-		cardPanel.add(interfacesEndingNodeFilledByLinkControledList, "Interfaces of the ending node filled by the link");
-		cardPanel.add(interfacesEndingNodeFilledByStartingNodeControledList, "Interfaces of the ending node filled by the starting node");
-		cardPanel.add(interfacesStartingNodeFilledByLinkControledList, "Interfaces of the starting node filled by the link");
-		cardPanel.add(interfacesStartingNodeFilledByEndingNodeControledList, "Interfaces of the starting node filled by the ending node");
+		//cardPanel.add(interfacesLinkFilledByStartingNodeControledList, "Interfaces of the link filled by the starting node");
+		//cardPanel.add(interfacesLinkFilledByEndingNodeControledList, "Interfaces of the link filled by the ending node");
+		//cardPanel.add(interfacesEndingNodeFilledByLinkControledList, "Interfaces of the ending node filled by the link");
+		//cardPanel.add(interfacesEndingNodeFilledByStartingNodeControledList, "Interfaces of the ending node filled by the starting node");
+		//cardPanel.add(interfacesStartingNodeFilledByLinkControledList, "Interfaces of the starting node filled by the link");
+		//cardPanel.add(interfacesStartingNodeFilledByEndingNodeControledList, "Interfaces of the starting node filled by the ending node");
 	}
 	
 	public void translateMessage(GMessage message) {
@@ -246,7 +268,7 @@ public class GWindowLinkPort extends GWindow {
 						
 						System.out.println("NOTIFYCHANGE : " + emiter + " : " + selectedItem);
 						
-						//We create a message to update the controled list with the new list of interfaces
+						//We create a message to update the controlled list with the new list of interfaces
 						message = new GMessage(information, Messages.SETWINDOWARGUMENTS, selectedItem);
 						
 						//Then we update them
@@ -323,18 +345,64 @@ public class GWindowLinkPort extends GWindow {
 		fieldsLoad.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")).get(0));
 		fieldsLoad.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("TYPE_POINT_CONNEXION")).get(0));
 		fieldsLoad.add(null);
-		comboGridForm.loadXML(fieldsLoad, false);
+		//comboGridForm.loadXML(fieldsLoad, false);
 		
 		//We load the xml into the lists
 		Vector<Element> bufferVect = new Vector<Element>();
 		bufferVect.add(e);
 		interfacesLinkFilledByStartingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_LIEN_DEPART")), true);
-System.err.println("NB ELEMENT 1 : "+interfacesLinkFilledByStartingNodeControledList.GetNumberOfElement());
+        System.err.println("NB ELEMENT 1 : "+interfacesLinkFilledByStartingNodeControledList.GetNumberOfElement());
+        
 		interfacesLinkFilledByEndingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_LIEN_ARRIVEE")), true);
-System.err.println("NB ELEMENT 2 : "+interfacesLinkFilledByEndingNodeControledList.GetNumberOfElement());
+        System.err.println("NB ELEMENT 2 : "+interfacesLinkFilledByEndingNodeControledList.GetNumberOfElement());
+        
 		interfacesEndingNodeFilledByLinkControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_ARRIVEE_LIEN")), true);
+        System.err.println("NB ELEMENT 3 : "+interfacesEndingNodeFilledByLinkControledList.GetNumberOfElement());
+ 
 		interfacesEndingNodeFilledByStartingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_ARRIVEE_DEPART")), true);
+        System.err.println("NB ELEMENT 4 : "+interfacesEndingNodeFilledByStartingNodeControledList.GetNumberOfElement());	
+        
 		interfacesStartingNodeFilledByLinkControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_DEPART_LIEN")), true);
+        System.err.println("NB ELEMENT 5 : "+interfacesStartingNodeFilledByLinkControledList.GetNumberOfElement());
+        
 		interfacesStartingNodeFilledByEndingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_DEPART_ARRIVEE")), true);
+        System.err.println("NB ELEMENT 6 : "+interfacesStartingNodeFilledByEndingNodeControledList.GetNumberOfElement());
+        
+        Vector<String> StrBuffer = new Vector<String>();
+        Vector<GWidgetControledList> itemList = new Vector<GWidgetControledList>();
+        itemList.add(interfacesLinkFilledByStartingNodeControledList);
+        itemList.add(interfacesLinkFilledByEndingNodeControledList);
+        itemList.add(interfacesEndingNodeFilledByLinkControledList);
+        itemList.add(interfacesEndingNodeFilledByStartingNodeControledList);
+        itemList.add(interfacesStartingNodeFilledByLinkControledList);
+        itemList.add(interfacesStartingNodeFilledByEndingNodeControledList);
+        
+        for (int i=0; i<6 ; i++)
+        {
+        	StrBuffer.add(parameters.elementAt(2).elementAt(i).toString());
+            if (itemList.get(i).GetNumberOfElement() != 0)
+            {
+                StrBuffer.set(i, StrBuffer.get(i)+"*");
+                parameters.elementAt(2).set(i,StrBuffer.get(i));
+            }
+        }
+
+        
+		//Then we initialize the gridform
+		comboGridForm = new GWidgetGridForm(this, information, labels, 2, 3, widgetClasses, parameters);
+		
+		comboGridForm.loadXML(fieldsLoad, false);
+		
+		//Finally we add te gridform to the panel
+		comboPanel.add(comboGridForm, BorderLayout.NORTH);
+		
+		
+		cardPanel.add(interfacesLinkFilledByStartingNodeControledList, StrBuffer.get(0));
+		cardPanel.add(interfacesLinkFilledByEndingNodeControledList, StrBuffer.get(1));
+		cardPanel.add(interfacesEndingNodeFilledByLinkControledList, StrBuffer.get(2));
+		cardPanel.add(interfacesEndingNodeFilledByStartingNodeControledList, StrBuffer.get(3));
+		cardPanel.add(interfacesStartingNodeFilledByLinkControledList, StrBuffer.get(4));
+		cardPanel.add(interfacesStartingNodeFilledByEndingNodeControledList, StrBuffer.get(5));
+
 	}
 }
