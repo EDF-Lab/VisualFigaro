@@ -25,6 +25,14 @@
  * Bug Id       : n° 57                                      
  * Modification : Fix Create Default File missing names
  * VF version   : 1.10
+ * **************************************************************
+ * Date         : 12 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : 
+ * Evol Id      : n°4 and n°12                                   
+ * Modification : Modify temp file destination folder (in user space)(evol n°4)
+ *                Accept multiple .fi and .bdc in the same folder (evol n°12)
+ * VF version   : 1.11
  * **************************************************************/
 
 package jEditInterface;
@@ -369,7 +377,8 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				} else {
 					comboTree.setSelectedItem(currentFile);
 				
-					String path = System.getenv("VISUAL_FIGARO") + "test1_fi.xml";
+					//String path = System.getenv("VISUAL_FIGARO") + "test1_fi.xml";
+					String path = System.getenv("TMP_VF") + "test1_fi.xml";
 					
 					if( precompileXML() ) {
 						//System.err.println("Test : " + view.getEditPane().getTextArea().getText());
@@ -402,7 +411,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	private void openKB() {
 		
 		//First we open a classical open dialogbox
-		JFileChooser fileChooser = new JFileChooser();
+		/*JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		int choice = fileChooser.showOpenDialog(this);
 		
@@ -412,7 +421,38 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		//Then we retrieve the name of the directory selected
 		File directory = fileChooser.getSelectedFile();
 		
-		openKB(directory);
+		openKB(directory);*/
+		
+		class MyFilter extends javax.swing.filechooser.FileFilter {
+		    public boolean accept(File file) {
+			    if(file.isDirectory()) {
+				   return true;
+				}	
+		        String filename = file.getName();
+		        return filename.endsWith(".fi");
+		    }
+		    public String getDescription() {
+		        return "*.fi";
+		    }
+		}
+		JFileChooser chooser = new JFileChooser();
+	    chooser.addChoosableFileFilter(new MyFilter());
+		int returnValue = chooser.showOpenDialog(null);
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = chooser.getSelectedFile();
+				System.out.println(selectedFile.getPath());
+				File f = null;
+				File directory = null;
+			try {
+				f = new File(selectedFile.getCanonicalPath());
+				directory = new File(selectedFile.getParent());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			chooser.setSelectedFile(f);
+			openKB(directory, f);
+		} 
 	}
 	
 	public void openKB(File directory) {
@@ -469,7 +509,67 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				//setLanguageInMenuBar(languageName);
 				
 				figTree.newGTree();
-				figTree.loadTreeFromXML(System.getenv("VISUAL_FIGARO") + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				//figTree.loadTreeFromXML(System.getenv("VISUAL_FIGARO") + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				figTree.loadTreeFromXML(System.getenv("TMP_VF") + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				
+				GKnowledgeBase knowledgeBase = new GKnowledgeBase(figaroFileName, language, figTree.getGTree().clone());
+				knowledgedBasesVector.add(knowledgeBase);
+				
+				comboTree.addItem(figaroFileName);
+				comboTree.setSelectedItem(figaroFileName);
+				
+				setIconsUpToDate();
+			} else {
+				System.err.println("Precompile Failed");
+			}
+			
+		}
+	}
+	
+	public void openKB(File directory, File file) {
+		
+		
+		//We have to check if all the files are consistant
+		boolean integrityCheckResult = checkIntegrity(directory.getAbsolutePath());
+		
+		//If the integrity check is passed successfully then we open the kb else we show an error
+		if(integrityCheckResult) {
+			
+			
+			//The filename will be the concatenation of the directory path and the Figaro filename
+			String figaroFileName = file.getAbsolutePath();
+			
+			//We have to check that the database is not already opened
+			if(findKnowledgeBaseFromName(figaroFileName) != null) {
+				JOptionPane.showMessageDialog(this, "The Knowledge Base is already opened.");
+				return;
+			}
+		
+			 //We just have to open the file in jEdit. The isOpening value are shared by all the program and indicate that messages concerning the opening of the file returned by jEdit should not be considerated.
+			System.err.println("Open Before : File : " + view.getBuffer().getDirectory() + view.getBuffer().getName());
+			
+			isOpening = true;
+			jEdit.openFile(view, figaroFileName);
+			isOpening = false;
+			currentFile = figaroFileName;
+			
+			//System.err.println("Open After : File : " + view.getBuffer().getDirectory() + view.getBuffer().getName());
+			
+			//System.err.println("Voici la taille : " + view.getEditPane().getTextArea().getText());
+			
+			//We translate the file in the XML format using precompileXML and we update all the variables
+			if( precompileXML() ) {
+				
+				System.err.println("Precompile OK");
+				
+				languageName = findKnowledgeBaseLanguage(directory.getAbsolutePath()); 
+				GLanguage language = new GLanguage();
+				language.setLanguage(languageName);
+				//setLanguageInMenuBar(languageName);
+				
+				figTree.newGTree();
+				//figTree.loadTreeFromXML(System.getenv("VISUAL_FIGARO") + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				figTree.loadTreeFromXML(System.getenv("TMP_VF") + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
 				
 				GKnowledgeBase knowledgeBase = new GKnowledgeBase(figaroFileName, language, figTree.getGTree().clone());
 				knowledgedBasesVector.add(knowledgeBase);
@@ -830,10 +930,11 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					return false;
 			}
 		});
-		if(figaroFilesName.length <= 0 || figaroFilesName.length > 1) {
+		// We accept multiple .fi files in the same folder (evolution n°12)
+		/*if(figaroFilesName.length <= 0 || figaroFilesName.length > 1) {
 			errorMessage += "There is no or more than one Figaro file in the Knowledge Base.\n";
 			errorOccured = true;
-		}
+		}*/
 		
 		//Same test but with bdc file
 		String[] bdcFilesName = directory.list(new FilenameFilter() {
@@ -844,12 +945,13 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					return false;
 			}
 		});
-		if(bdcFilesName.length > 1) {
+		// We accept multiple .bdc files in the same folder (evolution n°12)
+		/*if(bdcFilesName.length > 1) {
 			errorMessage += "There is more than one BDC file in the Knowledge Base.\n";
 			errorOccured = true;
-		}
+		}*/
 		
-		//The two bdc and figaro file must have the same nam
+		//The two bdc and figaro file must have the same name
 		if(bdcFilesName.length > 0)
 			if(!bdcFilesName[0].substring(0, bdcFilesName[0].indexOf(".bdc")).equals(figaroFilesName[0].substring(0, figaroFilesName[0].indexOf(".fi")))) {
 				errorMessage += "The Figaro file and the BDC file don't have the same name.\n";
@@ -1193,7 +1295,8 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	private boolean precompileXML() {
 		
 		//We will use the Visual Figaro directory to store the temporary file
-		String pathToTempFile = System.getenv("VISUAL_FIGARO") + "test1.fi";
+		//String pathToTempFile = System.getenv("VISUAL_FIGARO") + "test1.fi";
+		String pathToTempFile = System.getenv("TMP_VF") + "test1.fi";
 		File tempFile = new File(pathToTempFile);
 		
 		if(tempFile.exists())
@@ -1274,7 +1377,8 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		//OLD
 		
 		//Then we launch the processing trough the "serveur de traitement"
-		String command = "\"" + System.getenv("VISUAL_FIGARO") + "st.exe\" \"" + System.getenv("VISUAL_FIGARO") + "test1.fi\" -wXe3 \"" + System.getenv("VISUAL_FIGARO") + "test1_fi.xml\"";
+		//String command = "\"" + System.getenv("VISUAL_FIGARO") + "st.exe\" \"" + System.getenv("VISUAL_FIGARO") + "test1.fi\" -wXe3 \"" + System.getenv("VISUAL_FIGARO") + "test1_fi.xml\"";
+		String command = "\"" + System.getenv("VISUAL_FIGARO") + "st.exe\" \"" + System.getenv("TMP_VF") + "test1.fi\" -wXe3 \"" + System.getenv("TMP_VF") + "test1_fi.xml\"";
 		executeServerWithResultIntoFile(command);
 		return true;//executeServerWithResultIntoFile(command).length() > 0;
 	}
