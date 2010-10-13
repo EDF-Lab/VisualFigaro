@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=VisualFigaro
-AppVerName=VisualFigaro v1.10 : plugin for jEdit
+AppVerName=VisualFigaro v1.11 : plugin for jEdit
 AppPublisher=EDF R&D MRI
 AppPublisherURL=http://www.edf.fr
 ;AppSupportURL=http://rdsoft.edf.fr
@@ -18,7 +18,7 @@ InfoAfterFile=..\..\2_Exe\EnglishFrancais\ReadMe.txt
 ;WizardImageFile=..\..\..\..\Logos\logoofficielEDF.bmp
 ; Si on ne précise pas OutputDir, l'installateur est mis dans SourceDir\Output
 OutputDir=..\..\4_Packages_livrables\EnglishFrancais\Output
-OutputBaseFilename=VisualFigaro V1.10
+OutputBaseFilename=VisualFigaro V1.11
 
 SourceDir=..\..\2_Exe\EnglishFrancais\
 PrivilegesRequired=none
@@ -54,9 +54,19 @@ Source: Jedit.VisualFigaro\*.xsd; DestDir: {app}\VisualFigaro\TradBdC; Flags: ig
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
+[Dirs]
+; La répertoire Temp_VF sert à la création des fichiers temporaires. Cette création doit pouvoir être
+; réalisée sans avoir les droits administrateur
+Name: {userdocs}\Temp_VF
+
 [Registry]
+; La variable d'environnement TMP_VF sert à la création des fichiers temporaires. Cette création doit pouvoir être
+; réalisée sans avoir les droits administrateur
+Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: string; ValueName: TMP_VF; ValueData: {userdocs}\Temp_VF\
+
 ; La variable d'environnement VISUAL_FIGARO sert aux programmes pour trouver le sous-répertoire VisualFigaro
 ; du répertoire d'installation de Jedit.
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: string; ValueName: VISUAL_FIGARO; ValueData: {app}\VisualFigaro\
+
 ; Attention : cpp_st DOIT être dans le path, d'où l'instruction ci-dessous
 Root: HKLM; Subkey: SYSTEM\CurrentControlSet\Control\Session Manager\Environment; ValueType: string; ValueName: Path; ValueData: "{reg:HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment,Path|Y:};{app}\VisualFigaro\"
