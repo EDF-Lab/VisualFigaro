@@ -25,6 +25,13 @@
  * Bug Id       : n°66                                      
  * Modification : Add accessors for Menu Item list 
  * VF version   : 1.11
+ * **************************************************************
+ * Date         : 18 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                             
+ * Bug Id       :
+ * Evol Id      : n°7                                      
+ * Modification : Add current date after .bdc file saving
+ * VF version   : 1.12
  * **************************************************************/
 
 package GWindow;
@@ -36,8 +43,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.Date;
 
 //import javax.swing.JButton;
 import javax.swing.JMenu;
@@ -434,16 +443,7 @@ public class GWindowMain extends GWindow {
 			case CANCEL:
 				dispose();
 				break;
-				
-			case NOTIFYCHANGE:
-				if(message.getArguments().get(0) == "ADD"){
-				  //fillDocument();
-					//System.err.println("VisualFigaro : GWindowMain :" + message.getMessage().toString() + " message received");
-					//System.err.println("VisualFigaro : GWindowMain :" + message.getArguments().get(0) + " argument received");
-					//System.err.println("VisualFigaro : GWindowMain :" + message.getArguments().get(1) + " argument received");
-				}
-				 break;
-				
+							
 			default:
 				System.out.println("VisualFigaro : GWindowDepart : Unknown message received");
 		}
@@ -473,6 +473,12 @@ public class GWindowMain extends GWindow {
 		
 		//Save date
 		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(2));
+		
+		Date currentDate = new Date();
+		SimpleDateFormat  simpleFormat = new SimpleDateFormat("yyyy-MM-dd");
+        generalCharacteristicsGridFormVector.get(3).removeContent(0);
+        generalCharacteristicsGridFormVector.get(3).addContent(simpleFormat.format(currentDate));
+
 		GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(3));
 	
 		//GXMLElementFactory.saveElement(root, generalCharacteristicsGridFormVector.get(1));
@@ -483,7 +489,7 @@ public class GWindowMain extends GWindow {
 		//Save the elements from the simulation models list
 		GXMLElementFactory.saveElements(root, simulationModelsList.saveXML());
 		
-		//Save the elements from the Figaro 0 instanciation models list
+		//Save the elements from the Figaro 0 instantiation models list
 		GXMLElementFactory.saveElements(root, figaro0SinstanciationModelsList.saveXML());
 		
 		//Save the elements from the external treatments models list
@@ -495,7 +501,7 @@ public class GWindowMain extends GWindow {
 		//Save the elements from the typeOD list
 		GXMLElementFactory.saveElements(root, visualizationNamesList.saveXML());
 		
-		//Save the elements from the systemNames list dix mina
+		//Save the elements from the systemNames list 
 		GXMLElementFactory.saveElements(root, menuItemNamesList.saveXML());
 		
 		//Save the elements from the types list
@@ -521,7 +527,7 @@ public class GWindowMain extends GWindow {
 		fieldsLoad.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("ETAPE_EI")).get(0));
 		generalCharacteristicsGridForm.loadXML(fieldsLoad, false);
 		
-		//Initialize the description textarea
+		//Initialize the description text area
 		descriptionTextArea.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("DESCRIPTION")), false);
 		
 		//Takes care of initializing the lists on the first tab
