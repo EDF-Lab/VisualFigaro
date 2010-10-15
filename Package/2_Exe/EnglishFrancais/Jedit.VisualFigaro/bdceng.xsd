@@ -92,19 +92,24 @@ ________________________________________________________________________________
 				</xs:element>
 				<xs:element ref="DESCRIPTION" minOccurs="0"/>
 				<xs:element ref="HELP" minOccurs="0"/>
-				<xs:element name="CODES" minOccurs="0">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="ALL" type="tkb3_bool"/>
-							<xs:element name="CODE_NAME" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="FT" type="tkb3_bool" minOccurs="0"/>
-				<xs:element name="FIG0" type="tkb3_bool" minOccurs="0"/>
+				<xs:element ref="CODES" minOccurs="0"/>
+				<xs:element ref="FT" minOccurs="0"/>
+				<xs:element ref="FIG0" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="CODES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALL"/>
+				<xs:element ref="CODE_NAME" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FT" type="tkb3_bool"/>
+	<xs:element name="FIG0" type="tkb3_bool"/>
+	<xs:element name="ALL" type="tkb3_bool"/>
+	<xs:element name="CODE_NAME" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_COMP" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_DOWNSTREAM" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_UPSTREAM" type="xs:string"/>
@@ -793,4 +798,5 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 -->
 </xs:schema>
+
 

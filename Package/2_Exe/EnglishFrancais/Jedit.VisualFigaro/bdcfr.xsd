@@ -92,19 +92,24 @@ ________________________________________________________________________________
 				</xs:element>
 				<xs:element ref="DESCRIPTION" minOccurs="0"/>
 				<xs:element ref="AIDE" minOccurs="0"/>
-				<xs:element name="CODES" minOccurs="0">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="TOUS" type="tkb3_bool"/>
-							<xs:element name="NOM_CODE" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="ADD" type="tkb3_bool" minOccurs="0"/>
-				<xs:element name="FIG0" type="tkb3_bool" minOccurs="0"/>
+				<xs:element ref="CODES" minOccurs="0"/>
+				<xs:element ref="ADD" minOccurs="0"/>
+				<xs:element ref="FIG0" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="CODES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TOUS"/>
+				<xs:element ref="NOM_CODE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ADD" type="tkb3_bool"/>
+	<xs:element name="FIG0" type="tkb3_bool"/>
+	<xs:element name="TOUS" type="tkb3_bool"/>
+	<xs:element name="NOM_CODE" type="xs:string"/>
 	<xs:element name="BO_INTERFACE_COMP" type="xs:string"/>
 	<xs:element name="BO_INTERFACE_AVAL" type="xs:string"/>
 	<xs:element name="BO_INTERFACE_AMONT" type="xs:string"/>
