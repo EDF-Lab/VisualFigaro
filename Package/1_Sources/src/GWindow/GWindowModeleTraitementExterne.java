@@ -1,3 +1,16 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 15 Ocotber 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°11                                   
+ * Modification : External Treatments Models implementation 
+ *                Warning : needs new version of .xsd files
+ *                and new class "GWidgetCheckboxGridForm"
+ * VF version   : 1.12
+ * **************************************************************/
+
 package GWindow;
 
 import global.Messages;
@@ -8,6 +21,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Vector;
 
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,7 +32,7 @@ import Factories.GXMLElementFactory;
 import GMessage.GMessage;
 import GObject.GObject;
 import GObjectInformation.GObjectInformation;
-import GWidget.GWidgetModifiableGridForm;
+import GWidget.GWidgetCheckboxGridForm;
 import GWidget.GWidgetOKCancel;
 
 public class GWindowModeleTraitementExterne extends GWindow {
@@ -38,19 +52,21 @@ public class GWindowModeleTraitementExterne extends GWindow {
 	 * @uml.property  name="modifiableGridForm"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
-	private GWidgetModifiableGridForm modifiableGridForm;
+	private GWidgetCheckboxGridForm modifiableGridForm;
 	
 	//The two checkboxes used in this window to not create another complicated panel
 	/**
 	 * @uml.property  name="addTextField"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
-	private JTextField addTextField;
+	//private JTextField addTextField;
+	private JCheckBox addCheckBox ;
 	/**
 	 * @uml.property  name="figaro0TextField"
 	 * @uml.associationEnd  multiplicity="(1 1)"
 	 */
-	private JTextField figaro0TextField;
+	//private JTextField figaro0TextField;
+	private JCheckBox Fig0CheckBox ;
 	
 	//Keep a trace from the parent window adn other parameter from parent window
 	/**
@@ -104,7 +120,7 @@ public class GWindowModeleTraitementExterne extends GWindow {
 		//First we create a vector for the label
 		Vector<Vector<String>> args = new Vector<Vector<String>>();
 		Vector<String> labels = new Vector<String>();
-		labels.add("Treatment Rules Groups : ");
+		labels.add("Code Names: ");
 		labels.add("");
 		args.add(labels);
 		//Then the vector for the widget type
@@ -114,25 +130,29 @@ public class GWindowModeleTraitementExterne extends GWindow {
 		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
 		parameters.add(null);
 		//Now we can create the gridform
-		modifiableGridForm = new GWidgetModifiableGridForm(this, information, args, widgetClasses, parameters);
+		modifiableGridForm = new GWidgetCheckboxGridForm(this, information, args, widgetClasses, parameters);
 		fakeModifiableGridForm.add(modifiableGridForm, constraints);
 		
 		//We update the constraints and create the add checkboxpanel
 		constraints.gridy = 3;
 		constraints.gridwidth = 1;
 		constraints.gridheight = 1;
-		fakeModifiableGridForm.add(new JLabel("Add : "), constraints);
+		fakeModifiableGridForm.add(new JLabel("Fault Tree    : "), constraints);
 		constraints.gridx = 1;
-		addTextField = new JTextField();
-		fakeModifiableGridForm.add(addTextField, constraints);
+		//addTextField = new JTextField();
+		addCheckBox = new JCheckBox();
+		addCheckBox.setEnabled(true);
+		fakeModifiableGridForm.add(addCheckBox, constraints);
 		
 		//We update the constraints and create the figaro 0 checkboxpanel
 		constraints.gridx = 0;
 		constraints.gridy = 4;
-		fakeModifiableGridForm.add(new JLabel("Figaro 0 : "), constraints);
+		fakeModifiableGridForm.add(new JLabel("Figaro 0       : "), constraints);
 		constraints.gridx = 1;
-		figaro0TextField = new JTextField();
-		fakeModifiableGridForm.add(figaro0TextField, constraints);
+		//figaro0TextField = new JTextField();
+		Fig0CheckBox = new JCheckBox();
+		Fig0CheckBox.setEnabled(true);
+		fakeModifiableGridForm.add(Fig0CheckBox, constraints);
 		
 		//Then we add the fake panel to the top panel
 		this.framePanel.add(fakeModifiableGridForm, BorderLayout.CENTER);
@@ -181,14 +201,20 @@ public class GWindowModeleTraitementExterne extends GWindow {
 		//Then we have to save the gridForm
 		GXMLElementFactory.saveElements(root, modifiableGridForm.saveXML());
 		
-		//Take care of the add combo
+		//Take care of the "Add" check box
 		elem = new Element(information.getLanguage().getBDCTranslation("ADD"));
-		elem.setText(addTextField.getText());
+		if (addCheckBox.isSelected())
+			elem.setText(information.getLanguage().getBDCTranslation("VRAI"));
+		else
+			elem.setText(information.getLanguage().getBDCTranslation("FAUX"));
 		GXMLElementFactory.saveElement(root, elem);
 		
-		//Take care of the figaro 0 combo
+		//Take care of the "Figaro 0" check box
 		elem = new Element(information.getLanguage().getBDCTranslation("FIG0"));
-		elem.setText(figaro0TextField.getText());
+		if (Fig0CheckBox.isSelected())
+			elem.setText(information.getLanguage().getBDCTranslation("VRAI"));
+		else
+			elem.setText(information.getLanguage().getBDCTranslation("FAUX"));
 		GXMLElementFactory.saveElement(root, elem);
 		
 		return root;
@@ -203,10 +229,22 @@ public class GWindowModeleTraitementExterne extends GWindow {
 		fieldsLoad.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("CODES")).get(0));
 		modifiableGridForm.loadXML(fieldsLoad, false);
 		
-		if(e.getChild(information.getLanguage().getBDCTranslation("ADD")) != null)
-			addTextField.setText(e.getChildText(information.getLanguage().getBDCTranslation("ADD")));
+		if(e.getChild(information.getLanguage().getBDCTranslation("ADD")) != null){
+			//addTextField.setText(e.getChildText(information.getLanguage().getBDCTranslation("ADD")));
+			if (e.getChildText(information.getLanguage().getBDCTranslation("ADD")).equals(information.getLanguage().getBDCTranslation("VRAI"))) 
+				addCheckBox.setSelected(true);
+			else
+				addCheckBox.setSelected(false);
+				
+		}
 		
-		if(e.getChild(information.getLanguage().getBDCTranslation("FIG0")) != null)
-			figaro0TextField.setText(e.getChildText(information.getLanguage().getBDCTranslation("FIG0")));
+		if(e.getChild(information.getLanguage().getBDCTranslation("FIG0")) != null){
+			//figaro0TextField.setText(e.getChildText(information.getLanguage().getBDCTranslation("FIG0")));
+			if (e.getChildText(information.getLanguage().getBDCTranslation("FIG0")).equals(information.getLanguage().getBDCTranslation("VRAI"))) 
+				Fig0CheckBox.setSelected(true);
+			else
+				Fig0CheckBox.setSelected(false);
+					
+		}
 	}
 }
