@@ -7,5 +7,6 @@
 <!-- <MODE NAME="foo" FILE="foo.xml" FILE_NAME_GLOB="*.foo" /> -->
 
 <MODE NAME="figaro"  FILE="figaro.xml" FILE_NAME_GLOB="*.fi"/>
+<MODE NAME="skool"  FILE="SKOOL.xml" FILE_NAME_GLOB="*.skool"/>
 
 </MODES>
