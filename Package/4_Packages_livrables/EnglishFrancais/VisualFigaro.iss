@@ -33,7 +33,8 @@ Source: cpp_st.exe; DestDir: {app}\VisualFigaro; Flags: ignoreversion
 
 ; Les colorations de mots-clés
 Source: figaro.xml; DestDir: {userdesktop}\..\.jedit\modes; Flags: ignoreversion
-; Ajout de la déclaration du mode FIGARO pour Jedit
+Source: SKOOL.xml; DestDir: {userdesktop}\..\.jedit\modes; Flags: ignoreversion
+; Ajout de la déclaration des modes FIGARO et SKOOL pour Jedit
 Source: catalog; DestDir: {userdesktop}\..\.jedit\modes; Flags: ignoreversion
 
 Source: ReadMe.txt; DestDir: {app}\VisualFigaro; Flags: ignoreversion
