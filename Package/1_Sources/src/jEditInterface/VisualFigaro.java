@@ -41,6 +41,13 @@
  * Modification : use TMP environment variable for temp file saving (evol n°4 correction)
  *                memorize last KB file access through VisualFigaro.ini file (evol n°8)
  * VF version   : 1.12
+ * **************************************************************
+ * Date         : 20 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : 
+ * Evol Id      : n°8                                  
+ * Modification : Add direct access to prev KB directory in openKB dialog
+ * VF version   : 1.12a
  * **************************************************************/
 
 package jEditInterface;
@@ -456,7 +463,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		        return "*.fi";
 		    }
 		}
-		JFileChooser chooser = new JFileChooser();
+		JFileChooser chooser = new JFileChooser(getPrevKBFile());
 	    chooser.addChoosableFileFilter(new MyFilter());
 		int returnValue = chooser.showOpenDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
