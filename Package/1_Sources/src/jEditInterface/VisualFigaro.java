@@ -48,6 +48,13 @@
  * Evol Id      : n°8                                  
  * Modification : Add direct access to prev KB directory in openKB dialog
  * VF version   : 1.12a
+  * **************************************************************
+ * Date         : 21 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : 
+ * Evol Id      : n°8                                  
+ * Modification : If folder and .ini file don't exist : create them
+ * VF version   : 1.12b
  * **************************************************************/
 
 package jEditInterface;
@@ -346,7 +353,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		comboTree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//First we check if the combobox has a valid item selected. If it is not the case we have to delete the tree in the current window.
+				//First we check if the combo box has a valid item selected. If it is not the case we have to delete the tree in the current window.
 				if(comboTree.getSelectedIndex() < 0) {
 
 					//We load a null tree
@@ -385,7 +392,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		translateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Sauvegarde le buffer actuel
+				//Save the current buffer
 				view.getBuffer().save(view, currentFile);
 
 				try {
@@ -463,6 +470,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		        return "*.fi";
 		    }
 		}
+		
 		JFileChooser chooser = new JFileChooser(getPrevKBFile());
 	    chooser.addChoosableFileFilter(new MyFilter());
 		int returnValue = chooser.showOpenDialog(null);
@@ -640,7 +648,25 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		String ligne="";
 		String result = null;
 		
+		
 		File inputFile = new File(VFIniFilePath);
+		if (!inputFile.getParentFile().exists()){
+			if (!inputFile.getParentFile().mkdir()) {
+				// Not possible to create the directory, probably due to user rights
+				// Degraded mode, the previous KB feature is not available
+				return result;
+			}
+		}
+		
+		if (!inputFile.exists()) {
+			try {
+				inputFile.createNewFile();
+				saveToIniFile("");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(inputFile));
