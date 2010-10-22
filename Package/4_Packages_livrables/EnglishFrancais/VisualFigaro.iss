@@ -42,7 +42,8 @@ Source: ReadMe.txt; DestDir: {app}\VisualFigaro; Flags: ignoreversion
 ; Le fichier d'aide syntaxique avec les expressions types en FIGARO français et anglais
 ;   + les fichiers de schémas et modèles permettant de démarrer une nouvelle bdc
 Source: Jedit.VisualFigaro\*.*; DestDir: {app}\VisualFigaro; Flags: ignoreversion
-Source: Jedit.VisualFigaro\*.ini; DestDir: {userdesktop}\..\Application Data\EDF MRI TOOLS; Flags: ignoreversion
+;Source: Jedit.VisualFigaro\*.ini; DestDir: {userdesktop}\..\Application Data\EDF MRI TOOLS; Flags: ignoreversion
+Source: Jedit.VisualFigaro\*.ini; DestDir: {userappdata}\EDF MRI TOOLS; Flags: ignoreversion
 
 ; Les icônes standard
 Source: Jedit.VisualFigaro\icons\*.*; DestDir: {app}\VisualFigaro\icons; Flags: ignoreversion
