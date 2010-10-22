@@ -51,9 +51,10 @@
   * **************************************************************
  * Date         : 21 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
- * Bug Id       : 
+ * Bug Id       : n°61
  * Evol Id      : n°8                                  
- * Modification : If folder and .ini file don't exist : create them
+ * Modification : If folder and .ini file don't exist : create them (Evol n°8)
+ *                Update TradBdc.ini file upon buffer switching (Bug n°61)
  * VF version   : 1.12b
  * **************************************************************/
 
@@ -727,10 +728,25 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	
 	private void translateKB() throws IOException {
 		
-        // This method manages the needed files and directories before
+		String BdCPath = "C:\\Program Files\\jEdit\\VisualFigaro\\TradBdC\\"; 
+		updateTradBdcIniFile(BdCPath);
+        		
+		// Launch the KB3 translator
+		String cmd = BdCPath + "\\TradBDC.exe";                
+		try {
+			Runtime r = Runtime.getRuntime();
+		    Process p = r.exec(cmd);
+		    p.waitFor();  // The application shall wait end of translator process
+			}catch(Exception e) {
+			  System.out.println("erreur d'execution " + cmd + e.toString());
+		    }
+	}
+	
+	private void updateTradBdcIniFile(String tradBdCPath) throws IOException {
+		
+		// This method manages the needed files and directories before
 		// KB3 translator tool launching
 		
-		String tradBdCPath = "C:\\Program Files\\jEdit\\VisualFigaro\\TradBdC\\"; 
 		String TradBdCFileName = tradBdCPath + "TradBdC.ini";
 		File inputFile = new File(TradBdCFileName);
 		
@@ -831,16 +847,6 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			inputFile.delete();
 			outputFile.renameTo(new File(TradBdCFileName));
 		}
-		
-		// Launch the KB3 translator
-		String cmd = tradBdCPath + "\\TradBDC.exe";                
-		try {
-			Runtime r = Runtime.getRuntime();
-		    Process p = r.exec(cmd);
-		    p.waitFor();  // The application shall wait end of translator process
-			}catch(Exception e) {
-			  System.out.println("erreur d'execution " + cmd + e.toString());
-		    }
 	}
 	
 	/*private void setLanguageInMenuBar(String newLanguage) {
@@ -1829,7 +1835,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				
 				//In this particular case we record that the current buffer has changed in order to modify only the tree concerned
 				currentFile = ((EditPane)message.getSource()).getBuffer().getPath();
-				
+				String directory = ((EditPane)message.getSource()).getBuffer().getDirectory();
 				System.err.println("buffer changed : " + currentFile);
 				
 				//First we find the knowledgeBase
@@ -1840,6 +1846,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					comboTree.setSelectedItem(currentFile);
 				else
 					comboTree.setSelectedIndex(-1);
+				
+				//Update language
+				languageName = findKnowledgeBaseLanguage(directory); 
+				GLanguage language = new GLanguage();
+				language.setLanguage(languageName);
+				
+				// Update the TradBdC.ini file
+				String BdCPath = "C:\\Program Files\\jEdit\\VisualFigaro\\TradBdC\\"; 
+				try {
+					updateTradBdcIniFile(BdCPath);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			} else {
 				
