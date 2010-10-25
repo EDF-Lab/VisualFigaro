@@ -1,3 +1,15 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 25 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°11                                   
+ * Modification : External Treatments Models implementation 
+ *                Use simple name acquisition scheme for code names
+ * VF version   : 1.12c
+ * **************************************************************/
+
 package Factories;
 
 import java.util.Vector;
@@ -76,7 +88,11 @@ public class GWidgetFactory {
 			case CONTROLEDLISTADDDEL:
 				System.out.println("CONTEROLED");
 				return new GWidgetControledList(p, info, null, null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.GROUPEREGLES, null);
-				
+			
+			case CONTROLEDLISTADDDEL2:
+				System.out.println("CONTEROLED2");
+				return new GWidgetControledList(p, info, null, null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.NAMESIMPLE, null);	
+			
 			case COMBO:
 				if(args == null) {
 					return new GWidgetComboBox(p, info, null);
