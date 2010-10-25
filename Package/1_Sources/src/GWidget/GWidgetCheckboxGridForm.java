@@ -9,6 +9,14 @@
  *                Warning : needs new version of .xsd files
  *                and new class "GWidgetCheckboxGridForm"
  * VF version   : 1.12
+ * **************************************************************
+ * Date         : 25 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°11                                   
+ * Modification : External Treatments Models implementation 
+ *                Use simple name acquisition scheme for code names
+ * VF version   : 1.12c
  * **************************************************************/
 
 package GWidget;
@@ -110,7 +118,7 @@ public class GWidgetCheckboxGridForm extends GWidget {
 			//
 			constraints.gridx = 0;
 			constraints.gridy += positionIncrementY;
-			if(wc.get(i).equals(WidgetClasses.CONTROLEDLISTADDDEL)) {
+			if(wc.get(i).equals(WidgetClasses.CONTROLEDLISTADDDEL2)) {
 				constraints.gridheight = 3;
 				positionIncrementY = 3;
 			} else {
