@@ -9,6 +9,14 @@
  *                Warning : needs new version of .xsd files
  *                and new class "GWidgetCheckboxGridForm"
  * VF version   : 1.12
+ * **************************************************************
+ * Date         : 25 October 2010                            
+ * Author       : D.WEYAND/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°11                                   
+ * Modification : External Treatments Models implementation 
+ *                Use simple name acquisition scheme for code names
+ * VF version   : 1.12c
  * **************************************************************/
 
 package GWindow;
@@ -125,7 +133,8 @@ public class GWindowModeleTraitementExterne extends GWindow {
 		args.add(labels);
 		//Then the vector for the widget type
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
-		widgetClasses.add(WidgetClasses.CONTROLEDLISTADDDEL);
+		//widgetClasses.add(WidgetClasses.CONTROLEDLISTADDDEL);
+		widgetClasses.add(WidgetClasses.CONTROLEDLISTADDDEL2);
 		//And the vector for the parameters of each widget
 		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
 		parameters.add(null);
