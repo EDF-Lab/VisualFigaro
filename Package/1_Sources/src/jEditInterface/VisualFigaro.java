@@ -48,7 +48,7 @@
  * Evol Id      : n°8                                  
  * Modification : Add direct access to prev KB directory in openKB dialog
  * VF version   : 1.12a
-  * **************************************************************
+ * **************************************************************
  * Date         : 21 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : n°61
@@ -56,6 +56,13 @@
  * Modification : If folder and .ini file don't exist : create them (Evol n°8)
  *                Update TradBdc.ini file upon buffer switching (Bug n°61)
  * VF version   : 1.12b
+ * **************************************************************
+ * Date         : 2 November 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : 
+ * Evol Id      : n°4                                 
+ * Modification : Modify working directory (user space) for st.exe launching
+ * VF version   : 1.14
  * **************************************************************/
 
 package jEditInterface;
@@ -1520,9 +1527,9 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		//We run the program and take care if some errors happen
 		try {
-			
-			Process process = r.exec(command);
-			
+			File appData = new File(System.getenv("APPDATA"));
+			Process process = r.exec(command,null,appData);
+
 			//Now we retrieve both the possible error and the output
 			try {
 
