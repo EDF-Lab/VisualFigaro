@@ -63,6 +63,13 @@
  * Evol Id      : n°4                                 
  * Modification : Modify working directory (user space) for st.exe launching
  * VF version   : 1.14
+ * **************************************************************
+ * Date         : 8 November 2010                            
+ * Author       : D.WEYAND/ALL4TEC                          
+ * Bug Id       : n°61
+ * Evol Id      :                                
+ * Modification : Fix TradBdc files update bug (upon null file manipulation)
+ * VF version   : 1.14
  * **************************************************************/
 
 package jEditInterface;
@@ -1859,13 +1866,15 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				GLanguage language = new GLanguage();
 				language.setLanguage(languageName);
 				
-				// Update the TradBdC.ini file
-				String BdCPath = "C:\\Program Files\\jEdit\\VisualFigaro\\TradBdC\\"; 
-				try {
-					updateTradBdcIniFile(BdCPath);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(knowledgeBase != null){
+				  // Update the TradBdC.ini file
+				  String BdCPath = "C:\\Program Files\\jEdit\\VisualFigaro\\TradBdC\\"; 
+				  try {
+			  		  updateTradBdcIniFile(BdCPath);
+				  } catch (IOException e) {
+				  	  // TODO Auto-generated catch block
+					  e.printStackTrace();
+			  	  }
 				}
 				
 			} else {
