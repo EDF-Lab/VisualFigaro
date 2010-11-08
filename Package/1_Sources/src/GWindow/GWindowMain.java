@@ -32,6 +32,13 @@
  * Evol Id      : n°7                                      
  * Modification : Add current date after .bdc file saving
  * VF version   : 1.12
+ * **************************************************************
+ * Date         : 8 November 2010                            
+ * Author       : D.WEYAND/ALL4TEC                             
+ * Bug Id       :
+ * Evol Id      :                                      
+ * Modification : Inhibit "Algorithms" tab display
+ * VF version   : 1.14
  * **************************************************************/
 
 package GWindow;
@@ -283,8 +290,8 @@ public class GWindowMain extends GWindow {
 		tabs.add("Models", thirdPanel);
 		
 		//And the initialization of the last, the fourth tab
-		this.initializeFourthPanel();
-		tabs.add("Algorithms", fourthPanel);
+		//this.initializeFourthPanel();
+		//tabs.add("Algorithms", fourthPanel);
 		
 		//Finally we add the tabs panel to the frame panel
 		this.framePanel.add(tabs, BorderLayout.CENTER);
@@ -508,7 +515,7 @@ public class GWindowMain extends GWindow {
 		GXMLElementFactory.saveElements(root, typeList.saveXML());
 		
 		//Save the algorithms list
-		GXMLElementFactory.saveElements(root, algoList.saveXML());
+		//GXMLElementFactory.saveElements(root, algoList.saveXML());
 		
 		return root;
 	}
@@ -548,7 +555,7 @@ public class GWindowMain extends GWindow {
 		externalTreatmentsModelsList.loadXML(GXMLElementFactory.refactorElements(listLoad, information.getLanguage().getBDCTranslation("MODELE_TRAITEMENT_EXTERNE")), false);
 		
 		//Takes care of initializing the lists on the fourth tab
-		algoList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("LISTE_ALGO")), true);
+		//algoList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("LISTE_ALGO")), true);
 	}
 	
 	public static GWidgetControledList getItemList()
