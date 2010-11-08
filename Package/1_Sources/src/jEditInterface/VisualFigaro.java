@@ -68,7 +68,9 @@
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : n°61
  * Evol Id      :                                
- * Modification : Fix TradBdc files update bug (upon null file manipulation)
+ * Modification : 1. Fix TradBdc files update bug (upon null file manipulation)
+ *                2. Modify TradBdc.ini strings construction method to insure
+ *                   correct file naming
  * VF version   : 1.14
  * **************************************************************/
 
@@ -779,7 +781,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			BufferedReader br = new BufferedReader(new FileReader(inputFile));
 			String ligne="";
 			String transType = "\"Français -> Anglais\" ";
-			String destDir = "..\\English\\";
+			String destDir = "English\\";
 			String outLine;
 			String currentFilePath = "";
 			String destFilePath = "";
@@ -788,14 +790,22 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			
 			if (languageName.equals("English")){
 				transType = "\"Anglais -> Français\" ";
-				destDir = "..\\Francais\\";
+				destDir = "Francais\\";
 				xsdFileName = "bdcfr.xsd";
 			}
 			
 			// Construct destination translation directory and file
 			int index = currentFile.lastIndexOf("\\");
-			currentFilePath = currentFile.substring(0, index+1);
-			TransFileName = "..\\Translation_" + currentFile.substring(index+1,currentFile.length()-3) + ".xml"; 
+			currentFilePath = currentFile.substring(0, index-1);
+			String currentFileName = currentFile.substring(index+1);
+			index = currentFileName.lastIndexOf(".");
+			//TransFileName = "..\\Translation_" + currentFile.substring(index+1,currentFile.length()-3) + ".xml"; 
+			TransFileName = "Translation_" + currentFileName.substring(0,index) + ".xml";
+			
+			// apply second time to reach main project directory
+			index = currentFilePath.lastIndexOf("\\");
+			currentFilePath = currentFilePath.substring(0, index+1);
+
 			destFilePath = currentFilePath + destDir;
 			File destFile   = new File(destFilePath);
 			File xmlFile    = new File(currentFilePath + TransFileName);
@@ -829,6 +839,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			outLine += transType;
 			outLine += ">";
 			outLine += destFilePath;
+			index = currentFile.lastIndexOf("\\");
 			outLine += currentFile.substring(index+1,currentFile.length());
 			outLine += "</BDC_OUT>";
 				
