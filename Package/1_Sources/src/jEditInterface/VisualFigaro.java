@@ -71,6 +71,7 @@
  * Modification : 1. Fix TradBdc files update bug (upon null file manipulation)
  *                2. Modify TradBdc.ini strings construction method to insure
  *                   correct file naming
+ *                3. Current file update upon KB buffer closing (case of multiple buffers)
  * VF version   : 1.14
  * **************************************************************/
 
@@ -739,7 +740,9 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			comboTree.setSelectedIndex(-1);
 			jEdit.closeAllBuffers(view);
 		}
-		currentFile = null;
+		//currentFile = null;
+		//switch to other buffer if exists
+		currentFile = view.getBuffer().getPath();
 	}
 	
 	private void translateKB() throws IOException {
