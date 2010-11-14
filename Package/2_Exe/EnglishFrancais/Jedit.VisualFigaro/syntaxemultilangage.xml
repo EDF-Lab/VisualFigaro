@@ -23,24 +23,28 @@
         <lg>
           <menuName>Déclarer un type</menuName>
           <code>TYPE nom ;</code>
+          <code>TYPE nom GR_NOEUD ;</code>
+          <code>TYPE nom GR_LIEN ;</code>
           <code>TYPE nom SORTE_DE pere1 pere2 ;</code>
         </lg>
 		<lg>
           <menuName>Declare a class</menuName>
           <code>CLASS name ;</code>
-          <code>CLASS name SORT_OF father1 father2 ;</code>
+          <code>CLASS name GR_NODE ;</code>
+          <code>CLASS name GR_LINK ;</code>          
+          <code>CLASS name KIND_OF father1 father2 ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Déclarer l'ordre des étapes des règles d'interaction</menuName>
           <code>ORDRE_DES_ETAPES  e1;  e2;</code>
-          <code>ORDRE_DES_ETAPES  e1 CONDITION Condition ;  e2;</code>
+          <code>ORDRE_DES_ETAPES  e1 &#13;CONDITION Condition ; &#13;e2;</code>
         </lg>
 		<lg>
           <menuName>Declare the order of steps of interaction rules</menuName>
           <code>STEPS_ORDER  s1;  s2;</code>
-          <code>STEPS_ORDER  s1 CONDITION Condition ;  s2;</code>
+          <code>STEPS_ORDER  s1 &#13;CONDITION Condition ; &#13;s2;</code>
         </lg>
       </son>
       <son>
@@ -91,137 +95,145 @@
       <son>
         <lg>
           <menuName>Déclarer une interface (ensemble d'objets potentiellement liés à l'objet courant)</menuName>
-          <code>INTERFACE nom GENRE nom_de_type ;</code>
-          <code>INTERFACE nom GENRE nom_de_type CARDINAL 1 ;</code>
-          <code>INTERFACE nom GENRE nom_de_type CARDINAL 2 JUSQUA INFINI ;</code>
-          <code>INTERFACE nom GENRE nom_de_type CARDINAL 2 JUSQUA INFINI LIBELLE "libellé" ;</code>
+          <code>INTERFACE &#13;nom &#13;GENRE nom_de_type ;</code>
+          <code>INTERFACE &#13;nom &#13;GENRE nom_de_type &#13;CARDINAL 1 ;</code>
+          <code>INTERFACE &#13;nom &#13;GENRE nom_de_type &#13;CARDINAL 2 JUSQUA INFINI ;</code>
+          <code>INTERFACE &#13;nom &#13;GENRE nom_de_type &#13;CARDINAL 2 JUSQUA INFINI &#13;LIBELLE "libellé" ;</code>
         </lg>
 		<lg>
           <menuName>Declare an interface (set of objects potentially linked to the current object)</menuName>
-          <code>INTERFACE name KIND class_name ;</code>
-          <code>INTERFACE name KIND class_name CARDINAL 1 ;</code>
-          <code>INTERFACE name KIND class_name CARDINAL 2 TO INFINITY ;</code>
-          <code>INTERFACE name KIND class_name CARDINAL 2 TO INFINITY LABEL "label" ;</code>
+          <code>INTERFACE &#13;name &#13;KIND class_name ;</code>
+          <code>INTERFACE &#13;name &#13;KIND class_name &#13;CARDINAL 1 ;</code>
+          <code>INTERFACE &#13;name &#13;KIND class_name &#13;CARDINAL 2 TO INFINITY ;</code>
+          <code>INTERFACE &#13;name &#13;KIND class_name &#13;CARDINAL 2 TO INFINITY &#13;LABEL "label" ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Déclarer une constante (la valeur par défaut est optionnelle)</menuName>
-          <code>CONSTANTE nom DOMAINE BOOLEEN PAR_DEFAUT VRAI;</code>
-          <code>CONSTANTE nom DOMAINE 'val1' 'val2' PAR_DEFAUT 'val1';</code>
-          <code>CONSTANTE nom DOMAINE ENTIER PAR_DEFAUT 0 ;</code>
-          <code>CONSTANTE nom DOMAINE REEL PAR_DEFAUT 0.0;</code>
+          <code>CONSTANTE &#13;nom &#13;DOMAINE BOOLEEN &#13;PAR_DEFAUT VRAI;</code>
+          <code>CONSTANTE &#13;nom &#13;DOMAINE 'val1' 'val2' &#13;PAR_DEFAUT 'val1';</code>
+          <code>CONSTANTE &#13;nom &#13;DOMAINE ENTIER &#13;PAR_DEFAUT 0 ;</code>
+          <code>CONSTANTE &#13;nom &#13;DOMAINE REEL &#13;PAR_DEFAUT 0.0;</code>
         </lg>
 		<lg>
           <menuName>Declare a constant (the default value is optional)</menuName>
-          <code>CONSTANT name DOMAIN BOOLEAN DEFAULT TRUE;</code>
-          <code>CONSTANT name DOMAIN 'val1' 'val2' DEFAULT 'val1';</code>
-          <code>CONSTANT name DOMAIN INTEGER DEFAULT 0 ;</code>
-          <code>CONSTANT name DOMAIN REAL DEFAULT 0.0;</code>
+          <code>CONSTANT name &#13;DOMAIN BOOLEAN &#13;DEFAULT TRUE;</code>
+          <code>CONSTANT name &#13;DOMAIN 'val1' 'val2' &#13;DEFAULT 'val1';</code>
+          <code>CONSTANT name &#13;DOMAIN INTEGER &#13;DEFAULT 0 ;</code>
+          <code>CONSTANT name &#13;DOMAIN REAL &#13;DEFAULT 0.0;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Déclarer un attribut (la valeur par défaut est optionnelle)</menuName>
-          <code>ATTRIBUT nom DOMAINE BOOLEEN PAR_DEFAUT VRAI;</code>
-          <code>ATTRIBUT nom DOMAINE 'val1' 'val2' PAR_DEFAUT 'val1';</code>
-          <code>ATTRIBUT nom DOMAINE ENTIER PAR_DEFAUT 0 ;</code>
-          <code>ATTRIBUT nom DOMAINE REEL PAR_DEFAUT 0.0;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE BOOLEEN &#13;PAR_DEFAUT VRAI;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE BOOLEEN &#13;REINITIALISATION VRAI;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE 'val1' 'val2' &#13;PAR_DEFAUT 'val1';</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE 'val1' 'val2' &#13;REINITIALISATION 'val1';</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE ENTIER &#13;PAR_DEFAUT 0 ;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE ENTIER &#13;REINITIALISATION 0 ;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE REEL &#13;PAR_DEFAUT 0.0;</code>
+          <code>ATTRIBUT &#13;nom &#13;DOMAINE REEL &#13;REINITIALISATION 0.0;</code>
         </lg>
 		<lg>
           <menuName>Declare an attribute (the default value is optional)</menuName>
-          <code>ATTRIBUTE name DOMAIN BOOLEAN DEFAULT TRUE;</code>
-          <code>ATTRIBUTE name DOMAIN 'val1' 'val2' DEFAULT 'val1';</code>
-          <code>ATTRIBUTE name DOMAIN INTEGER DEFAULT 0 ;</code>
-          <code>ATTRIBUTE name DOMAIN REAL DEFAULT 0.0;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN BOOLEAN &#13;DEFAULT TRUE;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN BOOLEAN &#13;REINITIALISATION TRUE;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN 'val1' 'val2' &#13;DEFAULT 'val1';</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN 'val1' 'val2' &#13;REINITIALISATION 'val1';</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN INTEGER &#13;DEFAULT 0 ;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN INTEGER &#13;REINITIALISATION 0 ;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN REAL &#13;DEFAULT 0.0;</code>
+          <code>ATTRIBUTE &#13;name &#13;DOMAIN REAL &#13;REINITIALISATION 0.0;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Déclarer un effet (attribut booléen réinitialisé à FAUX)</menuName>
-          <code>EFFET nom ;</code>
-          <code>EFFET nom LIBELLE "effet nom sur l'objet %OBJET";</code>
-          <code>EFFET nom LIBELLE "effet nom sur l'objet %OBJET" EDITION NON VISIBLE;</code>
+          <code>EFFET &#13;nom ;</code>
+          <code>EFFET &#13;nom &#13;LIBELLE "effet nom sur l'objet %OBJET";</code>
+          <code>EFFET &#13;nom &#13;LIBELLE "effet nom sur l'objet %OBJET" EDITION NON VISIBLE;</code>
         </lg>
 		<lg>
           <menuName>Declare an effect (Boolean attribute reinitialized to FALSE)</menuName>
-          <code>EFFECT name ;</code>
-          <code>EFFECT name LABEL "effect name on object %OBJECT";</code>
-          <code>EFFECT name LABEL "effect name on object %OBJECT" EDITION NOT VISIBLE;</code>
+          <code>EFFECT &#13;name ;</code>
+          <code>EFFECT &#13;name &#13;LABEL "effect name on object %OBJECT";</code>
+          <code>EFFECT &#13;name &#13;LABEL "effect name on object %OBJECT" EDITION NOT VISIBLE;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Déclarer une panne (booléen, éventuellement associé à un modèle de processus élémentaire)</menuName>
-          <code>PANNE nom ;</code>
-          <code>PANNE nom LIBELLE "panne nom sur l'objet %OBJET" ;</code>
-          <code>PANNE nom ModeleProcessus ;</code>
+          <code>PANNE &#13;nom ;</code>
+          <code>PANNE &#13;nom &#13;LIBELLE "panne nom sur l'objet %OBJET" ;</code>
+          <code>PANNE &#13;nom &#13;ModeleProcessus ;</code>
         </lg>
 		<lg>
-          <menuName>Declare a failure (booléen, éventuellement associé à un modèle de processus élémentaire)</menuName>
-          <code>FAILURE name ;</code>
-          <code>FAILURE name LABEL "failure name on object %OBJECT" ;</code>
-          <code>FAILURE name ProcessModel ;</code>
+          <menuName>Declare a failure (Boolean, may be associated to a model of elementary stochastic process)</menuName>
+          <code>FAILURE &#13;name ;</code>
+          <code>FAILURE &#13;name &#13;LABEL "failure name on object %OBJECT" ;</code>
+          <code>FAILURE &#13;name &#13;ProcessModel ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Règle d'interaction simple</menuName>
-          <code>INTERACTION SI Condition ALORS ListeActions ;</code>
-          <code>INTERACTION nom_regle ETAPE nom_etape SI Condition ALORS ListeActions ;</code>
-          <code>INTERACTION SI Condition ALORS ListeActions SINON AutreListeActions ;</code>
+          <code>INTERACTION &#13;SI Condition &#13;ALORS ListeActions ;</code>
+          <code>INTERACTION &#13;nom_regle &#13;ETAPE nom_etape &#13;SI Condition &#13;ALORS ListeActions ;</code>
+          <code>INTERACTION &#13;SI Condition &#13;ALORS ListeActions &#13;SINON AutreListeActions ;</code>
         </lg>
 		<lg>
           <menuName>Simple interaction rule</menuName>
-          <code>INTERACTION IF Condition THEN ActionsList ;</code>
-          <code>INTERACTION rule_name STEP step_name IF Condition THEN ActionsList ;</code>
-          <code>INTERACTION IF Condition THEN ActionsList ELSE OtherActionsList ;</code>
+          <code>INTERACTION &#13;IF Condition &#13;THEN ActionsList ;</code>
+          <code>INTERACTION &#13;rule_name &#13;STEP step_name &#13;IF Condition &#13;THEN ActionsList ;</code>
+          <code>INTERACTION &#13;IF Condition &#13;THEN ActionsList &#13;ELSE OtherActionsList ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Règle d'interaction avec toutes ses facettes</menuName>
-          <code>INTERACTION nom_regle ETAPE e GROUPE g1 g2 SOIT x UN Ensemble ET y UN Ensemble VERIFIANT Condition1 SI Condition2(x,y) ALORS ListeActions(x,y) ;</code>
+          <code>INTERACTION &#13;nom_regle &#13;ETAPE e &#13;GROUPE g1 g2 &#13;SOIT x UN Ensemble ET y UN Ensemble VERIFIANT Condition1 &#13;SI Condition2(x,y) &#13;ALORS ListeActions(x,y) ;</code>
         </lg>
 		<lg>
           <menuName>Interaction rule with all its slots</menuName>
-          <code>INTERACTION rule_name STEP s GROUP g1 g2 GIVEN x A Set AND y A Set VERIFYING Condition1 IF Condition2(x,y) THEN ActionsList(x,y) ;</code>
+          <code>INTERACTION &#13;rule_name &#13;STEP s &#13;GROUP g1 g2 &#13;GIVEN x A Set AND y A Set VERIFYING Condition1 &#13;IF Condition2(x,y) &#13;THEN ActionsList(x,y) ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Règle d'occurrence avec événement temporisé</menuName>
-          <code>OCCURRENCE nom_regle SI Condition IL_PEUT_SE_PRODUIRE TRANSITION nom_trans LOI EXP(Expression) PROVOQUE ListeActions ;</code>
-          <code>OCCURRENCE nom_regle IL_PEUT_SE_PRODUIRE DEFAILLANCE nom_panne LOI EXP(Expression) ;</code>
-          <code>OCCURRENCE nom_regle IL_PEUT_SE_PRODUIRE REPARATION nom_rep REPARE nom_panne LOI EXP(Expression) ;</code>
-          <code>OCCURRENCE nom_regle GROUPE g1 g2 SI Condition IL_PEUT_SE_PRODUIRE TRANSITION nom_trans LOI EXP(Expression) PROVOQUE ListeActions ;</code>
+          <code>OCCURRENCE &#13;nom_regle &#13;SI Condition &#13;IL_PEUT_SE_PRODUIRE &#13;TRANSITION nom_trans &#13;LOI EXP(Expression) &#13;PROVOQUE ListeActions ;</code>
+          <code>OCCURRENCE &#13;nom_regle &#13;IL_PEUT_SE_PRODUIRE &#13;DEFAILLANCE nom_panne &#13;LOI EXP(Expression) ;</code>
+          <code>OCCURRENCE &#13;nom_regle &#13;IL_PEUT_SE_PRODUIRE &#13;REPARATION nom_rep &#13;REPARE nom_panne &#13;LOI EXP(Expression) ;</code>
+          <code>OCCURRENCE &#13;nom_regle &#13;GROUPE g1 g2 &#13;SI Condition &#13;IL_PEUT_SE_PRODUIRE &#13;TRANSITION nom_trans &#13;LOI EXP(Expression) &#13;PROVOQUE ListeActions ;</code>
         </lg>
 		 <lg>
           <menuName>Occurrence rule with delayed event</menuName>
-          <code>OCCURRENCE rule_name IF Condition MAY_OCCUR TRANSITION trans_name DIST EXP(Expression) INDUCING ActionsList ;</code>
-          <code>OCCURRENCE rule_name MAY_OCCUR FAILURE failure_name DIST EXP(Expression) ;</code>
-          <code>OCCURRENCE rule_name MAY_OCCUR REPAIR repair_name REPAIRS failure_name DIST EXP(Expression) ;</code>
-          <code>OCCURRENCE rule_name GROUPE g1 g2 IF Condition MAY_OCCUR TRANSITION trans_name DIST EXP(Expression) INDUCING ActionsList ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;IF Condition &#13;MAY_OCCUR &#13;TRANSITION trans_name &#13;DIST EXP(Expression) &#13;INDUCING ActionsList ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;MAY_OCCUR &#13;FAILURE failure_name &#13;DIST EXP(Expression) ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;MAY_OCCUR &#13;REPAIR repair_name &#13;REPAIRS failure_name &#13;DIST EXP(Expression) ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;GROUPE g1 g2 &#13;IF Condition &#13;MAY_OCCUR &#13;TRANSITION trans_name &#13;DIST EXP(Expression) &#13;INDUCING ActionsList ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Règle d'occurrence exprimant un choix instantané</menuName>
-          <code>OCCURRENCE nom_regle SI Condition IL_PEUT_SE_PRODUIRE TRANSITION t1 LOI INS(Expression) PROVOQUE ListeActions1 OU_BIEN TRANSITION t2 PROVOQUE ListeActions2  ;</code>
+          <code>OCCURRENCE &#13;nom_regle &#13;SI Condition &#13;IL_PEUT_SE_PRODUIRE &#13;TRANSITION t1 &#13;LOI INS(Expression) &#13;PROVOQUE ListeActions1 &#13;OU_BIEN &#13;TRANSITION t2 &#13;PROVOQUE ListeActions2  ;</code>
         </lg>
 		<lg>
           <menuName>Occurrence rule expressing an instantaneous choice</menuName>
-          <code>OCCURRENCE rule_name IF Condition MAY_OCCUR TRANSITION t1 DIST INS(Expression) INDUCING ActionsList1 OR_ELSE TRANSITION t2 INDUCING ActionsList2  ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;IF Condition &#13;MAY_OCCUR &#13;TRANSITION t1 &#13;DIST INS(Expression) &#13;INDUCING ActionsList1 &#13;OR_ELSE &#13;TRANSITION t2 &#13;INDUCING ActionsList2  ;</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Equation</menuName>
-          <code>EQUATION nom_equation SYSTEME_EQUATIONS nom_systeme SI Condition FORMULE Expression1 = Expression2 ;</code>
+          <code>EQUATION &#13;nom_equation &#13;SYSTEME_EQUATIONS nom_systeme &#13;SI Condition &#13;FORMULE Expression1 = Expression2 ;</code>
         </lg>
 		<lg>
           <menuName>Equation</menuName>
-          <code>EQUATION equation_name EQUATION_SYSTEM system_name IF Condition FORMULA Expression1 = Expression2 ;</code>
+          <code>EQUATION &#13;equation_name &#13;EQUATION_SYSTEM system_name &#13;IF Condition &#13;FORMULA Expression1 = Expression2 ;</code>
         </lg>
       </son>
     </tag>
@@ -235,10 +247,10 @@
           <code>EDITION OBLIGATOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter une contrainte d'édition/visibilité (par défaut : VISIBLE, MODIFIABLE, NON OBLIGATOIRE)</menuName>
-          <code>EDITION NON VISIBLE</code>
-          <code>EDITION NON MODIFIABLE</code>
-          <code>EDITION OBLIGATOIRE</code>
+          <menuName>Add an edition/visibility constraint (default : VISIBLE, MODIFIABLE, NOT MANDATORY)</menuName>
+          <code>EDITION NOT VISIBLE</code>
+          <code>EDITION NOT MODIFIABLE</code>
+          <code>EDITION MANDATORY</code>
         </lg>
       </son>
       <son>
@@ -247,8 +259,8 @@
           <code>LIBELLE "Ensemble d'objets liés à %OBJET"</code>
         </lg>
         <lg>
-          <menuName>Ajouter un libellé</menuName>
-          <code>LIBELLE "Ensemble d'objets liés à %OBJET"</code>
+          <menuName>Add a label</menuName>
+          <code>LABEL "Set of objects linked to %OBJECT"</code>
         </lg>
       </son>
     </tag>
@@ -262,10 +274,10 @@
           <code>EDITION OBLIGATOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter une contrainte d'édition/visibilité (par défaut : VISIBLE, MODIFIABLE, NON OBLIGATOIRE)</menuName>
-          <code>EDITION NON VISIBLE</code>
-          <code>EDITION NON MODIFIABLE</code>
-          <code>EDITION OBLIGATOIRE</code>
+          <menuName>Add an edition/visibility constraint (default : VISIBLE, MODIFIABLE, NOT MANDATORY)</menuName>
+          <code>EDITION NOT VISIBLE</code>
+          <code>EDITION NOT MODIFIABLE</code>
+          <code>EDITION MANDATORY</code>
         </lg>
       </son>
       <son>
@@ -274,8 +286,8 @@
           <code>LIBELLE "Constante de %OBJET"</code>
         </lg>
         <lg>
-          <menuName>Ajouter un libellé</menuName>
-          <code>LIBELLE "Constante de %OBJET"</code>
+          <menuName>Add a label</menuName>
+          <code>LABEL "Constant of %OBJECT"</code>
         </lg>
       </son>
       <son>
@@ -285,9 +297,9 @@
           <code>ROLE PROVISOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter un rôle (CONCEPTION = non modifiable par variante ni algo objets déduits)</menuName>
-          <code>ROLE CONCEPTION</code>
-          <code>ROLE PROVISOIRE</code>
+          <menuName>Add a role (DESIGN = not modifiable by a variant nor by an algorithm deducing objects)</menuName>
+          <code>ROLE DESIGN</code>
+          <code>ROLE TEMPORARY</code>
         </lg>
       </son>
     </tag>
@@ -301,10 +313,10 @@
           <code>EDITION OBLIGATOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter une contrainte d'édition/visibilité (par défaut : VISIBLE, MODIFIABLE, NON OBLIGATOIRE)</menuName>
-          <code>EDITION NON VISIBLE</code>
-          <code>EDITION NON MODIFIABLE</code>
-          <code>EDITION OBLIGATOIRE</code>
+          <menuName>Add an edition/visibility constraint (default : VISIBLE, MODIFIABLE, NOT MANDATORY)</menuName>
+          <code>EDITION NOT VISIBLE</code>
+          <code>EDITION NOT MODIFIABLE</code>
+          <code>EDITION MANDATORY</code>
         </lg>
       </son>
       <son>
@@ -313,8 +325,8 @@
           <code>LIBELLE "Variable d'état de %OBJET"</code>
         </lg>
         <lg>
-          <menuName>Ajouter un libellé</menuName>
-          <code>LIBELLE "Variable d'état de %OBJET"</code>
+          <menuName>Add a label</menuName>
+          <code>LABEL "State variable of %OBJECT"</code>
         </lg>
       </son>
     </tag>
@@ -328,10 +340,10 @@
           <code>EDITION OBLIGATOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter une contrainte d'édition/visibilité (par défaut : VISIBLE, MODIFIABLE, NON OBLIGATOIRE)</menuName>
-          <code>EDITION NON VISIBLE</code>
-          <code>EDITION NON MODIFIABLE</code>
-          <code>EDITION OBLIGATOIRE</code>
+          <menuName>Add an edition/visibility constraint (default : VISIBLE, MODIFIABLE, NOT MANDATORY)</menuName>
+          <code>EDITION NOT VISIBLE</code>
+          <code>EDITION NOT MODIFIABLE</code>
+          <code>EDITION MANDATORY</code>
         </lg>
       </son>
     </tag>
@@ -345,34 +357,34 @@
           <code>EDITION OBLIGATOIRE</code>
         </lg>
         <lg>
-          <menuName>Ajouter une contrainte d'édition/visibilité (par défaut : VISIBLE, MODIFIABLE, NON OBLIGATOIRE)</menuName>
-          <code>EDITION NON VISIBLE</code>
-          <code>EDITION NON MODIFIABLE</code>
-          <code>EDITION OBLIGATOIRE</code>
+          <menuName>Add an edition/visibility constraint (default : VISIBLE, MODIFIABLE, NOT MANDATORY)</menuName>
+          <code>EDITION NOT VISIBLE</code>
+          <code>EDITION NOT MODIFIABLE</code>
+          <code>EDITION MANDATORY</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Ajouter un modèle de processus élémentaire</menuName>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_GLM GAMMA Exp1 LAMBDA Exp2 MU Exp3</code>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_G GAMMA Exp1</code>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_WB ALPHA Exp1 BETA Exp2 T0 Exp3</code>
+          <code>DONNEES_FIABILISTES &#13;GROUPE g1 &#13;SI Expression &#13;MODELE_GLM &#13;GAMMA Exp1&#13;  LAMBDA Exp2 &#13;MU Exp3</code>
+          <code>DONNEES_FIABILISTES &#13;GROUPE g1 &#13;SI Expression &#13;MODELE_G &#13;GAMMA Exp1</code>
+          <code>DONNEES_FIABILISTES &#13;GROUPE g1 &#13;SI Expression &#13;MODELE_WB &#13;ALPHA Exp1&#13;BETA Exp2 &#13;T0 Exp3</code>
         </lg>
         <lg>
-          <menuName>Ajouter un modèle de processus élémentaire</menuName>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_GLM GAMMA Exp1 LAMBDA Exp2 MU Exp3</code>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_G GAMMA Exp1</code>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_WB ALPHA Exp1 BETA Exp2 T0 Exp3</code>
+          <menuName>Add a model of elementary stochastic process</menuName>
+          <code>RELIABILITY_DATA &#13;GROUP g1 &#13;IF Expression &#13;MODEL_GLM &#13;GAMMA Exp1&#13;  LAMBDA Exp2 &#13;MU Exp3</code>
+          <code>RELIABILITY_DATA &#13;GROUP g1 &#13;IF Expression &#13;MODEL_G &#13;GAMMA Exp1</code>
+          <code>RELIABILITY_DATA &#13;GROUP g1 &#13;IF Expression &#13;MODEL_WB &#13;ALPHA Exp1&#13;  BETA Exp2 &#13;T0 Exp3</code>
         </lg>
       </son>
       <son>
         <lg>
           <menuName>Ajouter une liste de processus élémentaires</menuName>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_PAR_DEFAUT nom_modele ListeModeles</code>
+          <code>DONNEES_FIABILISTES &#13;GROUPE g1 &#13;SI Expression &#13;MODELE_PAR_DEFAUT nom_modele ListeModeles</code>
         </lg>
         <lg>
-          <menuName>Ajouter une liste de processus élémentaires</menuName>
-          <code>DONNEES_FIABILISTES GROUPE g1 SI Expression MODELE_PAR_DEFAUT nom_modele ListeModeles</code>
+          <menuName>Add a list of elementary stochastic processes</menuName>
+          <code>RELIABILITY_DATA &#13;GROUP g1 IF Expression DEFAULT_MODEL model_name ModelsList</code>
         </lg>
       </son>
     </tag>
@@ -390,14 +402,14 @@
           <code>PANNE [DE Objet]</code>
         </lg>
         <lg>
-          <menuName>Ecrire une expression booléenne (combinaison par ET, OU, NON, () )</menuName>
-          <code>nom_attribut_booleen</code>
-          <code>QQSOIT x EltDunEnsemble ON_A Expression(x)</code>
-          <code>IL_EXISTE x EltDunEnsemble TEL_QUE Expression(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x INCLUS_DANS Ensemble [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x DE_TYPE nom_type [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>MARCHE [DE Objet]</code>
-          <code>PANNE [DE Objet]</code>
+          <menuName>Write a Boolean expression (combine with AND, OR, NOT, () )</menuName>
+          <code>Boolean_attribute_name</code>
+          <code>FOR_ANY x EltOfASet WE_HAVE Expression(x)</code>
+          <code>IT_EXISTS x EltOfASet SUCH_THAT Expression(x)</code>
+          <code>IT_EXISTS AT_LEAST Expression1 x INCLUDED_IN Set [VERIFYING Expression1] SUCH_THAT Expression3(x)</code>
+          <code>IT_EXISTS AT_LEAST Expression1 x OF_CLASS class_name [VERIFYING Expression1] SUCH_THAT Expression3(x)</code>
+          <code>WORKING [OF Object]</code>
+          <code>FAILURE [OF Object]</code>
         </lg>
       </son>
       <son>
@@ -410,12 +422,12 @@
           <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
         </lg>
         <lg>
-          <menuName>Ecrire une expression de calcul (combinaison par + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
-          <code>nom_attribut_numerique</code>
-          <code>SOMME POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>PRODUIT POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MAXIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
+          <menuName>Write a numerical expression (combine with + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
+          <code>numerical_attribute_name</code>
+          <code>SUM FOR_ALL x EltOfASet OF_TERMS Expression(x)</code>
+          <code>PRODUCT FOR_ALL x EltOfASet OF_TERMS Expression(x)</code>
+          <code>MAXIMUM FOR_ALL x EltOfASet OF_TERMS Expression(x)</code>
+          <code>MINIMUM FOR_ALL x EltOfASet OF_TERMS Expression(x)</code>
         </lg>
       </son>
       <son>
@@ -425,9 +437,9 @@
           <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
         </lg>
         <lg>
-          <menuName>Ecrire un élément d'un ensemble</menuName>
-          <code>UN nom_interface [DE_TYPE nom_type] [VERIFIANT Expression]</code>
-          <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
+          <menuName>Write an element of a set</menuName>
+          <code>A interface_name [OF_CLASS class_name] [VERIFYING Expression]</code>
+          <code>AN OBJECT OF_CLASS class_name [VERIFYING Expression]</code>
         </lg>
       </son>
       <son>
@@ -437,74 +449,14 @@
           <code>nom_interface DE Objet</code>
         </lg>
         <lg>
-          <menuName>Ecrire un Ensemble</menuName>
-          <code>nom_interface</code>
-          <code>nom_interface DE Objet</code>
+          <menuName>Write a set</menuName>
+          <code>interface_name</code>
+          <code>interface_name OF Object</code>
         </lg>
       </son>
     </tag>
     <tag>
-      <parent>OCCURRENCE</parent>
-      <son>
-        <lg>
-          <menuName>Ecrire une expression booléenne (combinaison par ET, OU, NON, () )</menuName>
-          <code>nom_attribut_booleen</code>
-          <code>QQSOIT x EltDunEnsemble ON_A Expression(x)</code>
-          <code>IL_EXISTE x EltDunEnsemble TEL_QUE Expression(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x INCLUS_DANS Ensemble [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x DE_TYPE nom_type [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire une expression booléenne (combinaison par ET, OU, NON, () )</menuName>
-          <code>nom_attribut_booleen</code>
-          <code>QQSOIT x EltDunEnsemble ON_A Expression(x)</code>
-          <code>IL_EXISTE x EltDunEnsemble TEL_QUE Expression(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x INCLUS_DANS Ensemble [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x DE_TYPE nom_type [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire une expression de calcul (combinaison par + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
-          <code>nom_attribut_numerique</code>
-          <code>SOMME POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>PRODUIT POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MAXIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire une expression de calcul (combinaison par + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
-          <code>nom_attribut_numerique</code>
-          <code>SOMME POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>PRODUIT POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MAXIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire un élément d'un ensemble</menuName>
-          <code>UN nom_interface [DE_TYPE nom_type] [VERIFIANT Expression]</code>
-          <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire un élément d'un ensemble</menuName>
-          <code>UN nom_interface [DE_TYPE nom_type] [VERIFIANT Expression]</code>
-          <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire un Ensemble</menuName>
-          <code>nom_interface</code>
-          <code>nom_interface DE Objet</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire un Ensemble</menuName>
-          <code>nom_interface</code>
-          <code>nom_interface DE Objet</code>
-        </lg>
-      </son>
+      <parent>THEN</parent>
       <son>
         <lg>
           <menuName>Ecrire une liste d'actions</menuName>
@@ -513,95 +465,46 @@
           <code>( ListeActions )</code>
         </lg>
         <lg>
-          <menuName>Ecrire une liste d'actions</menuName>
-          <code>nom_attribut1 &lt;-- Expression1 , nom_attribut2 DE Objet &lt;-- Expression2  </code>
-          <code>POUR_TOUT x EltDunEnsemble FAIRE ListeActions(x)</code>
-          <code>( ListeActions )</code>
+          <menuName>Write a list of actions</menuName>
+          <code>attribute_name1 &lt;-- Expression1 , attribute_name2 OF Object &lt;-- Expression2  </code>
+          <code>FOR_ALL x EltOfASet DO ActionsList(x)</code>
+          <code>( ActionsList )</code>
         </lg>
       </son>
     </tag>
     <tag>
-      <parent>INTERACTION</parent>
-      <son>
-        <lg>
-          <menuName>Ecrire une expression booléenne (combinaison par ET, OU, NON, () )</menuName>
-          <code>nom_attribut_booleen</code>
-          <code>MARCHE [DE Objet]</code>
-          <code>PANNE [DE Objet]</code>
-          <code>QQSOIT x EltDunEnsemble ON_A Expression(x)</code>
-          <code>IL_EXISTE x EltDunEnsemble TEL_QUE Expression(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x INCLUS_DANS Ensemble [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x DE_TYPE nom_type [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire une expression booléenne (combinaison par ET, OU, NON, () )</menuName>
-          <code>nom_attribut_booleen</code>
-          <code>MARCHE [DE Objet]</code>
-          <code>PANNE [DE Objet]</code>
-          <code>QQSOIT x EltDunEnsemble ON_A Expression(x)</code>
-          <code>IL_EXISTE x EltDunEnsemble TEL_QUE Expression(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x INCLUS_DANS Ensemble [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-          <code>IL_EXISTE AU_MOINS Expression1 x DE_TYPE nom_type [VERIFIANT Expression1] TEL_QUE Expression3(x)</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire une expression de calcul (combinaison par + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
-          <code>nom_attribut_numerique</code>
-          <code>SOMME POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>PRODUIT POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MAXIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire une expression de calcul (combinaison par + * - / % ** = &gt; &lt; &gt;= &gt;= () )</menuName>
-          <code>nom_attribut_numerique</code>
-          <code>SOMME POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>PRODUIT POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MAXIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-          <code>MINIMUM POUR_TOUT x EltDunEnsemble DES_TERMES Expression(x)</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire un élément d'un ensemble</menuName>
-          <code>UN nom_interface [DE_TYPE nom_type] [VERIFIANT Expression]</code>
-          <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire un élément d'un ensemble</menuName>
-          <code>UN nom_interface [DE_TYPE nom_type] [VERIFIANT Expression]</code>
-          <code>UN OBJET DE_TYPE nom_type [VERIFIANT Expression]</code>
-        </lg>
-      </son>
-      <son>
-        <lg>
-          <menuName>Ecrire un Ensemble</menuName>
-          <code>nom_interface</code>
-          <code>nom_interface DE Objet</code>
-        </lg>
-        <lg>
-          <menuName>Ecrire un Ensemble</menuName>
-          <code>nom_interface</code>
-          <code>nom_interface DE Objet</code>
-        </lg>
-      </son>
+      <parent>ELSE</parent>
       <son>
         <lg>
           <menuName>Ecrire une liste d'actions</menuName>
           <code>nom_attribut1 &lt;-- Expression1 , nom_attribut2 DE Objet &lt;-- Expression2  </code>
           <code>POUR_TOUT x EltDunEnsemble FAIRE ListeActions(x)</code>
           <code>( ListeActions )</code>
-          <code>RESOUDRE_SYSTEME (nom_systeme)</code>
         </lg>
         <lg>
-          <menuName>Ecrire une liste d'actions</menuName>
-          <code>nom_attribut1 &lt;-- Expression1 , nom_attribut2 DE Objet &lt;-- Expression2  </code>
-          <code>POUR_TOUT x EltDunEnsemble FAIRE ListeActions(x)</code>
-          <code>( ListeActions )</code>
-          <code>RESOUDRE_SYSTEME (nom_systeme)</code>
+          <menuName>Write a list of actions</menuName>
+          <code>attribute_name1 &lt;-- Expression1 , attribute_name2 OF Object &lt;-- Expression2  </code>
+          <code>FOR_ALL x EltOfASet DO ActionsList(x)</code>
+          <code>( ActionsList )</code>
         </lg>
       </son>
     </tag>
+    <tag>
+      <parent>INDUCING</parent>
+      <son>
+        <lg>
+          <menuName>Ecrire une liste d'actions</menuName>
+          <code>nom_attribut1 &lt;-- Expression1 , nom_attribut2 DE Objet &lt;-- Expression2  </code>
+          <code>POUR_TOUT x EltDunEnsemble FAIRE ListeActions(x)</code>
+          <code>( ListeActions )</code>
+        </lg>
+        <lg>
+          <menuName>Write a list of actions</menuName>
+          <code>attribute_name1 &lt;-- Expression1 , attribute_name2 OF Object &lt;-- Expression2  </code>
+          <code>FOR_ALL x EltOfASet DO ActionsList(x)</code>
+          <code>( ActionsList )</code>
+        </lg>
+      </son>
+    </tag>    
   </completion>
 </syntax>
