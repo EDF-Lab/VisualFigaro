@@ -231,12 +231,22 @@
           <menuName>Equation</menuName>
           <code>EQUATION &#13;nom_equation &#13;SYSTEME_EQUATIONS nom_systeme &#13;SI Condition &#13;FORMULE Expression1 = Expression2 ;</code>
         </lg>
-		<lg>
+	<lg>
           <menuName>Equation</menuName>
           <code>EQUATION &#13;equation_name &#13;EQUATION_SYSTEM system_name &#13;IF Condition &#13;FORMULA Expression1 = Expression2 ;</code>
         </lg>
       </son>
-    </tag>
+      <son>
+        <lg>
+          <menuName>Délimiteurs d'un commentaire formalisé en langage SKOOL</menuName>
+          <code>(*&lt;SKOOL&gt;&#13;&lt;/SKOOL&gt;*)</code>
+        </lg>
+	<lg>
+          <menuName>Tags of a formalized comment in the SKOOL language</menuName>
+          <code>(*&lt;SKOOL&gt;&#13;&lt;/SKOOL&gt;*)</code>
+        </lg>
+      </son>
+      </tag>
     <tag>
       <parent>INTERFACE</parent>
       <son>
