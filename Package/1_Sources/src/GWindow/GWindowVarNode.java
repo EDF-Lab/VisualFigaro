@@ -444,7 +444,7 @@ public class GWindowVarNode extends GWindow {
 		secondPanel.add(generalCharacteristicsGridForm, BorderLayout.NORTH);
 		
 		//We create the icon widget
-		Image image = loadIcon(System.getenv("VISUAL_FIGARO") + "test.ico");
+		Image image = loadIcon("./VisualFigaro/" + "test.ico");
 		loadIcon = new GWidgetLoadIcon(this, information, image);
 		
 		//Then we add this panel to the first panel

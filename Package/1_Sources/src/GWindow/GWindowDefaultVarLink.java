@@ -221,7 +221,7 @@ public class GWindowDefaultVarLink extends GWindow {
 		firstPanel.add(textPanel,BorderLayout.CENTER);
 		
 		//We create the icon widget
-		Image image = loadIcon(System.getenv("VISUAL_FIGARO") + "test.ico");
+		Image image = loadIcon("./VisualFigaro/" + "test.ico");
 		loadIcon = new GWidgetLoadIcon(this, information, image);
 		
 		//Then we add this panel to the first panel

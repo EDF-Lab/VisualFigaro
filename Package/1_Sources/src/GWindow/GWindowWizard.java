@@ -139,7 +139,7 @@ public class GWindowWizard extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon(System.getenv("VISUAL_FIGARO") + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -298,7 +298,7 @@ public class GWindowWizard extends GWindow {
 			Vector<String> defaultFolders = new Vector<String>((new GXMLLoaderDefaultFiles()).getDefaultFiles(languageComboBox.getSelectedItem().toString(),"folder"));
 			for(String folderpath : defaultFolders) {
 				
-				String inputFolderPath = System.getenv("VISUAL_FIGARO") + folderpath;
+				String inputFolderPath = "./VisualFigaro/" + folderpath;
 				String outputFolderPath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + folderpath;
 				
 				File outputFolder=new File(outputFolderPath);
@@ -328,7 +328,7 @@ public class GWindowWizard extends GWindow {
 				FileChannel inputFile = null;
 				FileChannel outputFile = null;
 				
-				String inputFilePath = System.getenv("VISUAL_FIGARO") + filepath;
+				String inputFilePath = "./VisualFigaro/" + filepath;
 				String outputFilePath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + filepath;
 				String outputDirectoryPath = outputFilePath.substring(0, outputFilePath.lastIndexOf("\\")) + "\\";
 				

@@ -278,7 +278,7 @@ private static final long serialVersionUID = 1L;
 		definitionPanel.add(connectionList, BorderLayout.CENTER);
 		
 		//Finally we add the icon management widget
-		Image image = loadIcon(System.getenv("VISUAL_FIGARO") + "test.ico");
+		Image image = loadIcon("./VisualFigaro/" + "test.ico");
 		manageIcon = new GWidgetManageIcon(this, information, image);
 		definitionPanel.add(manageIcon, BorderLayout.SOUTH);
 	}

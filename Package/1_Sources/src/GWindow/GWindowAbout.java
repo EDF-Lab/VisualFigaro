@@ -98,7 +98,7 @@ public class GWindowAbout extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon(System.getenv("VISUAL_FIGARO") + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -118,7 +118,7 @@ public class GWindowAbout extends GWindow {
 		int End = propsFileContents.indexOf("#",Start);
 		String VFversion = propsFileContents.substring(Start,End);
 		
-		JLabel titleLabel = new JLabel("     Visual Figaro Version " + VFversion);
+		JLabel titleLabel = new JLabel("     Visual Figaro Version : " + VFversion);
 		logoPanel.add(titleLabel, BorderLayout.CENTER);
 	}
 	
