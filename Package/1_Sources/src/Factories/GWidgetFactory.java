@@ -92,7 +92,11 @@ public class GWidgetFactory {
 			case CONTROLEDLISTADDDEL2:
 				System.out.println("CONTEROLED2");
 				return new GWidgetControledList(p, info, null, null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.NAMESIMPLE, null);	
-			
+
+			case CONTROLEDLISTADDDEL3:
+				System.out.println("CONTEROLED3");
+				return new GWidgetControledList(p, info, null, null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDEL, WindowClasses.VISUALIZATION, null);
+				
 			case COMBO:
 				if(args == null) {
 					return new GWidgetComboBox(p, info, null);

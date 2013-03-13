@@ -35,7 +35,7 @@ public class GXMLLoaderDefaultFiles {
 	public GXMLLoaderDefaultFiles() {
 		
 		GXMLLoader xl = new GXMLLoader(null);
-		document = xl.loadXmlFileJDOM(System.getenv("VISUAL_FIGARO") + "copiedFiles.xml");
+		document = xl.loadXmlFileJDOM("./VisualFigaro/" + "copiedFiles.xml");
 		root = document.getRootElement();
 	}
 	

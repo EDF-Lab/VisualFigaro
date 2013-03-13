@@ -44,7 +44,7 @@ public class GXSDOperations {
 			return;
 		
 		//If it is available we have to retrieve the name of the xsd file
-		String xsdFileName = System.getenv("VISUAL_FIGARO") + "\\" + xlDefaultFiles.getSchemaFilenameForLanguage(language);
+		String xsdFileName = "./VisualFigaro/" + "\\" + xlDefaultFiles.getSchemaFilenameForLanguage(language);
 		
 		//SAXBuilder instance creation
 		SAXBuilder sxb = new SAXBuilder();

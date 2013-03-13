@@ -8,6 +8,12 @@
  * Modification : External Treatments Models implementation 
  *                Use simple name acquisition scheme for code names
  * VF version   : 1.12c
+ * **************************************************************
+ * Date         : 15 April 2012                            
+ * Author       : M. Bouissou                              
+ * Bug Id       : n°70                                        
+ * Modification : A new windowclass is called to let the user choose visualizations
+ * VF version   : 1.15
  * **************************************************************/
  
 package global;
@@ -22,8 +28,7 @@ public enum WidgetClasses {
 	COMBO,
 	CONTROL,
 	CONTROLEDLIST,
-	CONTROLEDLISTADDDEL,
-	CONTROLEDLISTADDDEL2,
+	CONTROLEDLISTADDDEL,CONTROLEDLISTADDDEL2,CONTROLEDLISTADDDEL3,
 	FORMATTEDTEXTFIELD,
 	GRIDFORM,
 	MODIFIABLEGRIDFORM,
@@ -34,5 +39,5 @@ public enum WidgetClasses {
 	TEXTFIELD,
 	EDITDEFAULTVAR,
 	LOADICON,
-	EXPRESSION
+	EXPRESSION, 
 };

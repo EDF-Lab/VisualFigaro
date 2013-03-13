@@ -71,7 +71,7 @@ public class GLanguage {
 		
 		//We are going to load the syntaxemultilanguage.xml file in order to get the list of the available languages
 		GXMLLoader xl = new GXMLLoader(null);
-		Element syntaxeElement = xl.loadXmlFileJDOM(System.getenv("VISUAL_FIGARO") + "syntaxemultilangage.xml").getRootElement();
+		Element syntaxeElement = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
 		for(Iterator<Element> languageIterator = syntaxeElement.getDescendants(new GFilterTagName("language")); languageIterator.hasNext();)
 			availableLanguages.add(languageIterator.next().getText());
 		
@@ -82,9 +82,9 @@ public class GLanguage {
 		language = availableLanguages.get(0);
 		languagePosition = 0;
 		
-		completionDocumentRoot = xl.loadXmlFileJDOM(System.getenv("VISUAL_FIGARO") + "syntaxemultilangage.xml").getRootElement();
-		bdcDocumentRoot = xl.loadXmlFileJDOM(System.getenv("VISUAL_FIGARO") + "keywordsTranslationBDCFile.xml").getRootElement();
-		figaroDocumentRoot = xl.loadXmlFileJDOM(System.getenv("VISUAL_FIGARO") + "keywordsTranslationBDCFile.xml").getRootElement();
+		completionDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
+		bdcDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
+		figaroDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
 	}
 	
 	/**
