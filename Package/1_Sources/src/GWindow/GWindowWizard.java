@@ -242,6 +242,11 @@ public class GWindowWizard extends GWindow {
 		switch(message.getMessage()) {
 		case OK:
 			
+			if(pathTextField.getText().isEmpty()){
+				JOptionPane.showMessageDialog(GWindowWizard.this, "Give a directory first");
+				return;
+			}
+			
 			//First we check that the path has been correctly set
 			File directory = new File(pathTextField.getText());
 			
@@ -311,7 +316,7 @@ public class GWindowWizard extends GWindow {
 				for (int i = 0; i < allFiles.length; i++) {
 					File file = allFiles[i];
 					try {
-						CopyFile.copy(file, new File(outputFolder, file.getName()));
+						CopyFile.copy(file, new File(outputFolder, file.getName()), true);
 					} catch (IOException e) {
 						System.err.println("Erreur de copie d'un dossier");
 					}

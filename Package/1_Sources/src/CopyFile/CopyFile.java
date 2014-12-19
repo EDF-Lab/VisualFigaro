@@ -19,32 +19,34 @@ public class CopyFile {
 		}
 	}
 		   
-	public static void copyDirectory(final File from, final File to) throws IOException {
+	public static void copyDirectory(final File from, final File to, final boolean overwrite) throws IOException {
 		if (! to.exists()) {
 			to.mkdir();
 		}
 		final File[] inDir = from.listFiles();
 		for (int i = 0; i < inDir.length; i++) {
 			final File file = inDir[i];
-			copy(file, new File(to, file.getName()));
+			copy(file, new File(to, file.getName()), overwrite);
 		}
 	}
 		
-	public static void copyFile(final File from, final File to) throws IOException {
-		final InputStream inStream = new FileInputStream(from);
-		final OutputStream outStream = new FileOutputStream(to);
-		if (from.length() > 0){
-		    copy(inStream, outStream, (int) Math.min(from.length(), 4*1024));
+	public static void copyFile(final File from, final File to, final boolean overwrite) throws IOException {
+		if(overwrite||!to.exists()){
+			final InputStream inStream = new FileInputStream(from);
+			final OutputStream outStream = new FileOutputStream(to);
+			if (from.length() > 0){
+				copy(inStream, outStream, (int) Math.min(from.length(), 4*1024));
+			}
+			inStream.close();
+			outStream.close();
 		}
-		inStream.close();
-		outStream.close();
 	} 
 		
-	public static void copy(final File from, final File to) throws IOException {
+	public static void copy(final File from, final File to, final boolean overwrite) throws IOException {
 		if (from.isFile()) {
-			copyFile(from, to);
+			copyFile(from, to, overwrite);
 		} else if (from.isDirectory()){
-			copyDirectory(from, to);
+			copyDirectory(from, to, overwrite);
 		} 
 	} 
 }

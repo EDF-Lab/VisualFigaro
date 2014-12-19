@@ -25,6 +25,7 @@ import GWindow.GWindowConnection;
 import GWindow.GWindowDefaultVarLink;
 import GWindow.GWindowDefaultVarNode;
 import GWindow.GWindowGroupeRegles;
+import GWindow.GWindowGroupeReglesSansNom;
 import GWindow.GWindowInterface;
 import GWindow.GWindowLink;
 import GWindow.GWindowLinkAcceptedConnections;
@@ -185,6 +186,12 @@ public class GWindowFactory {
 			case GROUPEREGLES:
 				System.out.println("Creation d'une fenetre Groupe Regles");
 				window = new GWindowGroupeRegles(p, info, "Group", -1);
+				window.loadXml(null);
+				break;
+				
+			case GROUPEREGLESSANSNOM:
+				System.out.println("Creation d'une fenetre Groupe Regles avec SANS_NOM");
+				window = new GWindowGroupeReglesSansNom(p, info, "Group", -1);
 				window.loadXml(null);
 				break;
 			

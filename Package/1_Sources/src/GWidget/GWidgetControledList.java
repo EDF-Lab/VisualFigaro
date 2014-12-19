@@ -464,13 +464,18 @@ public class GWidgetControledList extends GWidget {
 	public Vector<Element> saveXML() {
 		
 		//If it is deeply rooted we add the root we have stored and put all the children recovered from the child widget under it
-		if(deeplyRooted) {
-			Vector<Element> bufferVector = new Vector<Element>();
-			bufferVector.add((new Element(rootName)).addContent(getList().saveXML()));
-			return bufferVector;
-		} else 
-			//Otherwise we just return all the elements from the child widget
-			return getList().saveXML();
+		try {
+			if(deeplyRooted) {
+				Vector<Element> bufferVector = new Vector<Element>();
+				bufferVector.add((new Element(rootName)).addContent(getList().saveXML()));
+				return bufferVector;
+			} else 
+				//Otherwise we just return all the elements from the child widget
+				return getList().saveXML();
+		} catch (Exception e){
+			JOptionPane.showMessageDialog(this, "Exception : "+e);
+			return null;
+		}
 	}
 	
 	public int GetNumberOfElement(){
