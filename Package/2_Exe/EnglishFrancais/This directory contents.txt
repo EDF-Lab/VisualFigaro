@@ -1,0 +1,7 @@
+This directory contains all the files that must be added to (or in some cases 
+replace) files contained in a portable edition of Jedit. 
+
+Jedit.jars contains files that must be placed in Jedit\jars, where Jedit represents 
+the directory containing the executable Jedit.exe.
+
+The same principle applies to other directories: Jedit.modes, Jedit.VisualFigaro. 
