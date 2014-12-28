@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQUESTS>
+  <LOAD_BDC_FI>
+    <FILE_FI>D:\1 VisualFigaro\Sample knowledge bases for KB3\Miniplant1\Francais\Miniplant1.fi</FILE_FI>
+  </LOAD_BDC_FI>
+  <LOAD_BDF_FI>
+    <FILE>D:\1 VisualFigaro\Sample knowledge bases for KB3\Miniplant1\Modèle test Miniplant fr.fi</FILE>
+  </LOAD_BDF_FI>
+  <RUN_TREATMENT>
+    <TREATMENT>GENERER_FIG0</TREATMENT>
+    <FILE>C:\Users\bouissou\AppData\Local\Temp\fig0_temp.fi</FILE>
+    <FILE_MACRO>fiabsimu.h</FILE_MACRO>
+    <RESOLVE_CONST>VRAI</RESOLVE_CONST>
+    <RESOLVE_ATTR>VRAI</RESOLVE_ATTR>
+    <INST_RULE>VRAI</INST_RULE>
+  </RUN_TREATMENT>
+</REQUESTS>
+

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!DOCTYPE syntax[
 	<!ELEMENT syntax (languages_list, completion)>
 	<!ELEMENT languages_list (language*)>
@@ -211,7 +211,7 @@
 		 <lg>
           <menuName>Occurrence rule with delayed event</menuName>
           <code>OCCURRENCE &#13;rule_name &#13;IF Condition &#13;MAY_OCCUR &#13;TRANSITION trans_name &#13;DIST EXP(Expression) &#13;INDUCING ActionsList ;</code>
-          <code>OCCURRENCE &#13;rule_name &#13;MAY_OCCUR &#13;FAILURE failure_name &#13;DIST EXP(Expression) ;</code>
+          <code>OCCURRENCE &#13;rule_name &#13;MAY_OCCUR &#13;FAULT failure_name &#13;DIST EXP(Expression) ;</code>
           <code>OCCURRENCE &#13;rule_name &#13;MAY_OCCUR &#13;REPAIR repair_name &#13;REPAIRS failure_name &#13;DIST EXP(Expression) ;</code>
           <code>OCCURRENCE &#13;rule_name &#13;GROUPE g1 g2 &#13;IF Condition &#13;MAY_OCCUR &#13;TRANSITION trans_name &#13;DIST EXP(Expression) &#13;INDUCING ActionsList ;</code>
         </lg>
