@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Houdebine (Ariste) -->
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by NV (EDF RECHERCHE ET DEVELOPPEMENT) -->
+<!--
+######################################################################################
+#             SCHEMA VALIDATION BDC XML  POUR KB3        (VERSION 6)								 
+######################################################################################
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<!--
+_____________________________________________________________________________________
+|	TYPES DEFINITION (BEGIN)
+|
+-->
+	<!-- 
+	valeur booleene                                                                    
+	-->
+	<xs:simpleType name="tkb3_bool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="VRAI"/>
+			<xs:enumeration value="FAUX"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- 
+	keyword                                                                               
+	-->
+	<xs:simpleType name="tkb3_keyword">
+		<xs:restriction base="xs:NCName"/>
+	</xs:simpleType>
+	<!--
+|
+|	TYPES DEFINITION (END)
+_____________________________________________________________________________________
+-->
+	<!--
+_____________________________________________________________________________________
+|	ELEMENTS DEFINITION (BEGIN)
+|
+-->
+	<xs:element name="ABREVIATION" type="xs:string"/>
+	<xs:element name="AIDE" type="xs:string"/>
+	<xs:element name="LISTE_ALGO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALGORITHME_OD" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ASSURER_COHERENCE_ADD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AUTEUR" type="xs:string"/>
+	<xs:element name="BDC">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="AUTEUR" minOccurs="0"/>
+				<xs:element ref="DATE_CREATION" minOccurs="0"/>
+				<xs:element ref="DATE_MODIFICATION" minOccurs="0"/>
+				<xs:element ref="SIGNATURE" minOccurs="0"/>
+				<xs:element ref="MODELE_GENERATION_ADD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MODELE_SIMULATION" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MODELE_INST_FIG0" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="MODELE_TRAITEMENT_EXTERNE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="LISTE_FILTRES_BDC" minOccurs="0"/>
+				<xs:element ref="ETAPE_RM" minOccurs="0"/>
+				<xs:element ref="ETAPE_EI" minOccurs="0"/>
+				<xs:element ref="VISUALISATION" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FAMILLE_TYPE_PALETTE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TYPE" maxOccurs="unbounded"/>
+				<xs:element ref="LISTE_ALGO" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODELE_TRAITEMENT_EXTERNE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element name="CLASSEMENT" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="BDC" type="tkb3_bool" use="optional" default="FAUX"/>
+						<xs:attribute name="Etude" type="tkb3_bool" use="optional" default="FAUX"/>
+						<xs:attribute name="Modele" type="tkb3_bool" use="optional" default="FAUX"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="CODES" minOccurs="0"/>
+				<xs:element ref="ADD" minOccurs="0"/>
+				<xs:element ref="FIG0" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CODES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TOUS"/>
+				<xs:element ref="NOM_CODE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ADD" type="tkb3_bool"/>
+	<xs:element name="FIG0" type="tkb3_bool"/>
+	<xs:element name="TOUS" type="tkb3_bool"/>
+	<xs:element name="NOM_CODE" type="xs:string"/>
+	<xs:element name="BO_INTERFACE_COMP" type="xs:string"/>
+	<xs:element name="BO_INTERFACE_AVAL" type="xs:string"/>
+	<xs:element name="BO_INTERFACE_AMONT" type="xs:string"/>
+	<xs:element name="TYPE_COMPOSANT" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_BO" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_AVAL" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_AMONT" type="xs:string"/>
+	<xs:element name="CONDITION" type="xs:string"/>
+	<xs:element name="CONNEXION_ACCEPTEE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM" minOccurs="0"/>
+				<xs:element ref="TYPE_POINT_CONNEXION"/>
+				<xs:element ref="REGLE_NOEUD_LIEN" minOccurs="0"/>
+				<xs:element ref="REGLE_LIEN_NOEUD" minOccurs="0"/>
+				<xs:element ref="REGLE_DEPART_LIEN" minOccurs="0"/>
+				<xs:element ref="REGLE_LIEN_DEPART" minOccurs="0"/>
+				<xs:element ref="REGLE_ARRIVEE_LIEN" minOccurs="0"/>
+				<xs:element ref="REGLE_LIEN_ARRIVEE" minOccurs="0"/>
+				<xs:element ref="REGLE_ARRIVEE_DEPART" minOccurs="0"/>
+				<xs:element ref="REGLE_DEPART_ARRIVEE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="COULEUR_PPLAN">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="COULEUR_FOND">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="COULEUR_LIEN">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="COULEUR_TEXTE">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DATE_CREATION" type="xs:date"/>
+	<xs:element name="DATE_MODIFICATION" type="xs:date"/>
+	<xs:element name="DESCRIPTION" type="xs:string"/>
+	<xs:element name="EPAISSEUR">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EPAISSEUR_LIEN">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EPAISSEUR_TRAIT">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EXPRESSION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FORMAT"/>
+				<xs:element ref="PARAMETRES" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FAMILLE_TYPE_PALETTE" type="xs:string"/>
+	<xs:element name="FICHIER" type="xs:string"/>
+	<xs:element name="FILTRE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM_FILTRE"/>
+				<xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+				<xs:element ref="TYPE_ELEMENT_RECHERCHE"/>
+				<xs:element ref="MASQUE_NOM" minOccurs="0"/>
+				<xs:element ref="MASQUE_DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="NOM_TYPE_FILTRE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FORMAT" type="xs:string"/>
+	<xs:element name="GROUPES_REGLES_TRAITEMENT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="GROUPE_REGLES" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GROUPE_REGLES" type="xs:string"/>
+	<xs:element name="ICONE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="COULEUR_PPLAN" minOccurs="0"/>
+				<xs:element ref="EPAISSEUR_TRAIT" minOccurs="0"/>
+				<xs:element ref="COULEUR_FOND" minOccurs="0"/>
+				<xs:element ref="EPAISSEUR_LIEN" minOccurs="0"/>
+				<xs:element ref="STYLE_FLECHE" minOccurs="0"/>
+				<xs:element ref="STYLE_LIEN" minOccurs="0"/>
+				<xs:element ref="FICHIER" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INSTANCE_GRAPHIQUE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="INTERDITE"/>
+				<xs:enumeration value="NON_INSTANCIABLE"/>
+				<xs:enumeration value="OBLIGATOIRE"/>
+				<xs:enumeration value="FACULTATIF"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INSTANCIATION_REGLES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INTERFACE" type="xs:string"/>
+	<xs:element name="LIEN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="VARIANTE_GRAPHIQUE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="POINT_DEPART"/>
+				<xs:element ref="POINT_ARRIVEE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LIEN_VG">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="STYLE_LIEN" minOccurs="0"/>
+				<xs:element ref="EPAISSEUR_LIEN" minOccurs="0"/>
+				<xs:element ref="COULEUR_PPLAN" minOccurs="0"/>
+				<xs:element ref="STYLE_FLECHE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LISTE_FILTRES_BDC">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FILTRE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BOUCLE" type="xs:string"/>
+	<xs:element name="MASQUE_DESCRIPTION" type="xs:string"/>
+	<xs:element name="MASQUE_NOM" type="xs:string"/>
+	<xs:element name="MODELE_GENERATION_ADD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="SIMPLIFICATION_PORTES"/>
+				<xs:element ref="NB_MAX_FILS_PORTE"/>
+				<xs:element ref="SUPPRESSION_BOUCLES"/>
+				<xs:element ref="SUPPRESSION_NEGATIONS"/>
+				<xs:element ref="GROUPES_REGLES_TRAITEMENT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODELE_INST_FIG0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="RESOLUTION_CONSTANTES"/>
+				<xs:element ref="RESOLUTION_ATTRIBUTS"/>
+				<xs:element ref="INSTANCIATION_REGLES"/>
+				<xs:element ref="GROUPES_REGLES_TRAITEMENT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODELE_SIMULATION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="NB_TOURS_REGLES"/>
+				<xs:element ref="PRISE_EN_COMPTE_DEFAILLANCES"/>
+				<xs:element ref="ASSURER_COHERENCE_ADD"/>
+				<xs:element ref="GROUPES_REGLES_TRAITEMENT"/>
+				<xs:element ref="VISUALISATIONS_AUTORISEES"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODIFIABLE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="VRAI"/>
+				<xs:enumeration value="FAUX"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NOM_ALGO" type="xs:string"/>
+	<xs:element name="INTERFACE_NOMMAGE" type="xs:string"/>
+	<xs:element name="TYPE_NOMMAGE" type="xs:string"/>
+	<xs:element name="NB_MAX_FILS_PORTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_ENT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NB_TOURS_REGLES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_ENT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOEUD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INSTANCE_GRAPHIQUE"/>
+				<xs:element ref="VARIANTE_GRAPHIQUE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="POINT_CONNEXION" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NOM" type="xs:string"/>
+	<xs:element name="NOM_FILTRE" type="xs:string"/>
+	<xs:element name="NOM_TYPE_FILTRE" type="xs:string"/>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des anciens objets deduits                                                               BEGIN                               *-->
+	<!--****************************************************************************************************************************-->
+	<xs:element name="ALGORITHME_OD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM_ALGO"/>
+				<xs:element ref="BOUCLE" minOccurs="0"/>
+				<xs:element ref="TYPE_OD" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TYPE_COMPOSANT" minOccurs="0"/>
+				<xs:element ref="BO_INTERFACE_COMP" minOccurs="0"/>
+				<xs:element ref="BO_INTERFACE_AVAL" minOccurs="0"/>
+				<xs:element ref="BO_INTERFACE_AMONT" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_AVAL" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_AMONT" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_BO" minOccurs="0"/>
+				<xs:element ref="TYPE_NOMMAGE" minOccurs="0"/>
+				<xs:element ref="INTERFACE_NOMMAGE" minOccurs="0"/>
+				<xs:element name="NOM_SYSTEME" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="REGLES_TYPE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des nouveaux objets deduits                                                               BEGIN                            *-->
+	<!--****************************************************************************************************************************-->
+	<!--regle type.....................................................-->
+	<xs:element name="REGLES_TYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOM_TYPE" type="xs:string"/>
+				<xs:element name="EQUATIONS" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="EQUATION" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NOM_EQUATION" type="xs:NCName"/>
+										<xs:element name="NOM_SYSTEME" type="xs:NCName"/>
+										<xs:element name="SI" type="xs:string"/>
+										<xs:element name="FORMULE" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DEPART" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="REGLE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ENTREE" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="REGLE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SORTIE" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="REGLE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- definition d'une regle ................................................................................................................................-->
+	<xs:element name="REGLE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NOM_REGLE" type="xs:NCName" minOccurs="0"/>
+				<xs:element name="SOIT" type="xs:string" minOccurs="0"/>
+				<xs:element name="SI" type="xs:string" minOccurs="0"/>
+				<xs:element name="ALORS" type="xs:string" minOccurs="0"/>
+				<xs:element name="SINON" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des nouveaux objets deduits                                                                END                              *-->
+	<!--****************************************************************************************************************************-->
+	<xs:element name="TYPE_OD" type="xs:string"/>
+	<xs:element name="PARAMETRES" type="xs:string"/>
+	<xs:element name="POINT_ARRIVEE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CONNEXION_ACCEPTEE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POINT_CONNEXION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:choice>
+					<xs:element ref="HERITE_DU_TYPE"/>
+					<xs:sequence>
+						<xs:element ref="POSITION"/>
+						<xs:element ref="CONNEXION_ACCEPTEE" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POINT_DEPART">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CONNEXION_ACCEPTEE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POSITION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="X"/>
+				<xs:element ref="Y"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POSITION_TEXTE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="HAUT"/>
+				<xs:enumeration value="BAS"/>
+				<xs:enumeration value="GAUCHE"/>
+				<xs:enumeration value="DROITE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PRESENCE_PALETTE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="FAUX"/>
+				<xs:enumeration value="VRAI"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PRISE_EN_COMPTE_DEFAILLANCES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_ARRIVEE_DEPART">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_ARRIVEE_LIEN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_DEPART_ARRIVEE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_DEPART_LIEN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_LIEN_ARRIVEE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_LIEN_DEPART">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_LIEN_NOEUD">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="REGLE_NOEUD_LIEN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RESOLUTION_ATTRIBUTS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RESOLUTION_CONSTANTES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SIGNATURE" type="xs:string"/>
+	<xs:element name="SIMPLIFICATION_PORTES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_SIMPLIFICATION_PORTES"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ETAPE_EI" type="xs:string"/>
+	<xs:element name="ETAPE_RM" type="xs:string"/>
+	<xs:element name="STYLE_FLECHE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="LIGNE_LIGNE"/>
+				<xs:enumeration value="LIGNE_TROIS_POINTS"/>
+				<xs:enumeration value="LIGNE_QUATRE_POINTS"/>
+				<xs:enumeration value="TROIS_POINTS_LIGNE"/>
+				<xs:enumeration value="TROIS_POINTS_TROIS_POINTS"/>
+				<xs:enumeration value="TROIS_POINTS_QUATRE_POINTS"/>
+				<xs:enumeration value="QUATRE_POINTS_LIGNE"/>
+				<xs:enumeration value="QUATRE_POINTS_TROIS_POINTS"/>
+				<xs:enumeration value="QUATRE_POINTS_QUATRE_POINTS"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="STYLE_LIEN">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TIRET"/>
+				<xs:enumeration value="TIRET_DOT"/>
+				<xs:enumeration value="POINTILLE"/>
+				<xs:enumeration value="TRAIT_PLEIN"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SUPPRESSION_BOUCLES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_BOOL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SUPPRESSION_NEGATIONS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VAL_SUPPRESSION_NEGATIONS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TEXTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EXPRESSION" minOccurs="0"/>
+				<xs:element ref="COULEUR_TEXTE" minOccurs="0"/>
+				<xs:element ref="POSITION_TEXTE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TYPE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element name="INFO_CONSTANTE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="INFO_ATTRIBUT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="INFO_EFFET" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="INFO_PANNE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="INFO_INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PRESENCE_PALETTE" minOccurs="0"/>
+				<xs:element ref="ABREVIATION" minOccurs="0"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="AIDE" minOccurs="0"/>
+				<xs:element ref="FAMILLE_TYPE_PALETTE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="VARIANTE_GRAPHIQUE_DEFAUT" minOccurs="0"/>
+				<xs:choice>
+					<xs:element ref="NOEUD"/>
+					<xs:element ref="LIEN"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="c_abreviation_unique">
+			<xs:selector xpath="ABREVIATION"/>
+			<xs:field xpath="."/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="HERITE_DU_TYPE" type="xs:string"/>
+	<xs:element name="TYPE_POINT_CONNEXION" type="xs:string"/>
+	<xs:element name="VARIANTE_GRAPHIQUE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:choice>
+					<xs:element ref="HERITE_DU_TYPE"/>
+					<xs:sequence>
+						<xs:element ref="VISUALISATION" maxOccurs="unbounded"/>
+						<xs:element ref="CONDITION" minOccurs="0"/>
+						<xs:element ref="ICONE" minOccurs="0"/>
+						<xs:element ref="TEXTE" minOccurs="0"/>
+						<xs:element ref="LIEN_VG" minOccurs="0"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VARIANTE_GRAPHIQUE_DEFAUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ICONE" minOccurs="0"/>
+				<xs:element ref="TEXTE" minOccurs="0"/>
+				<xs:element ref="LIEN_VG" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VISUALISATION" type="xs:string"/>
+	<xs:element name="VISUALISATIONS_AUTORISEES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="VISUALISATION" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="X">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="-100"/>
+				<xs:maxInclusive value="100"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Y">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="-100"/>
+				<xs:maxInclusive value="100"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VAL_BOOL">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="VRAI"/>
+				<xs:enumeration value="FAUX"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VAL_ENT" type="xs:int"/>
+	<xs:element name="VAL_SIMPLIFICATION_PORTES">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TOTALE"/>
+				<xs:enumeration value="PARTIELLE"/>
+				<xs:enumeration value="AUCUNE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VAL_SUPPRESSION_NEGATIONS">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TOUTES"/>
+				<xs:enumeration value="SANS"/>
+				<xs:enumeration value="SAUF_FEUILLES"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TYPE_ELEMENT_RECHERCHE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CONSTANTE"/>
+				<xs:enumeration value="OBJET"/>
+				<xs:enumeration value="ATTRIBUT"/>
+				<xs:enumeration value="PANNE"/>
+				<xs:enumeration value="EFFET"/>
+				<xs:enumeration value="INTERFACE_INVERSE"/>
+				<xs:enumeration value="INTERFACE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INFO_CONSTANTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="AIDE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INFO_ATTRIBUT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="AIDE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INFO_EFFET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="AIDE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INFO_PANNE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="AIDE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INFO_INTERFACE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NOM"/>
+				<xs:element ref="AIDE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+|
+|	ELEMENTS DEFINITION (END)
+_____________________________________________________________________________________
+-->
+</xs:schema>
+

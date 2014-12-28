@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Houdebine (Ariste) -->
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by NV (EDF RECHERCHE ET DEVELOPPEMENT) -->
+<!--
+######################################################################################
+#             SCHEMA VALIDATION KB XML  POUR KB3  (VERSION  6)      								 
+######################################################################################
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<!--
+_____________________________________________________________________________________
+|	TYPES DEFINITION (BEGIN)
+|
+-->
+	<!-- 
+	valeur booleene                                                                    
+	-->
+	<xs:simpleType name="tkb3_bool">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TRUE"/>
+			<xs:enumeration value="FALSE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- 
+	keyword                                                                               
+	-->
+	<xs:simpleType name="tkb3_keyword">
+		<xs:restriction base="xs:NCName"/>
+	</xs:simpleType>
+	<!--
+|
+|	TYPES DEFINITION (END)
+_____________________________________________________________________________________
+-->
+	<!--
+_____________________________________________________________________________________
+|	ELEMENTS DEFINITION (BEGIN)
+|
+-->
+	<xs:element name="ABBREVIATION" type="xs:string"/>
+	<xs:element name="HELP" type="xs:string"/>
+	<xs:element name="ALGO_LIST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DO_ALGORITHM" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ENSURE_FT_CONSISTENCY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AUTHOR" type="xs:string"/>
+	<xs:element name="KB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="AUTHOR" minOccurs="0"/>
+				<xs:element ref="CREATION_DATE" minOccurs="0"/>
+				<xs:element ref="MODIFICATION_DATE" minOccurs="0"/>
+				<xs:element ref="SIGNATURE" minOccurs="0"/>
+				<xs:element ref="FT_GENERATION_MODEL" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SIMULATION_MODEL" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FIG0_INST_MODEL" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="EXTERNAL_PROCESSING_MODEL" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="KB_FILTERS_LIST" minOccurs="0"/>
+				<xs:element ref="MR_STEP" minOccurs="0"/>
+				<xs:element ref="UE_STEP" minOccurs="0"/>
+				<xs:element ref="DISPLAY_MODE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PALETTE_CLASS_FAMILY" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="CLASS" maxOccurs="unbounded"/>
+				<xs:element ref="ALGO_LIST" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EXTERNAL_PROCESSING_MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element name="CLASSIFICATION" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="KB" type="tkb3_bool" use="optional" default="FALSE"/>
+						<xs:attribute name="Study" type="tkb3_bool" use="optional" default="FALSE"/>
+						<xs:attribute name="Model" type="tkb3_bool" use="optional" default="FALSE"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="CODES" minOccurs="0"/>
+				<xs:element ref="FT" minOccurs="0"/>
+				<xs:element ref="FIG0" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CODES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALL"/>
+				<xs:element ref="CODE_NAME" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FT" type="tkb3_bool"/>
+	<xs:element name="FIG0" type="tkb3_bool"/>
+	<xs:element name="ALL" type="tkb3_bool"/>
+	<xs:element name="CODE_NAME" type="xs:string"/>
+	<xs:element name="OB_INTERFACE_COMP" type="xs:string"/>
+	<xs:element name="OB_INTERFACE_DOWNSTREAM" type="xs:string"/>
+	<xs:element name="OB_INTERFACE_UPSTREAM" type="xs:string"/>
+	<xs:element name="COMPONENT_TYPE" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_OB" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_DOWNSTREAM" type="xs:string"/>
+	<xs:element name="COMP_INTERFACE_UPSTREAM" type="xs:string"/>
+	<xs:element name="CONDITION" type="xs:string"/>
+	<xs:element name="ACCEPTED_CONNECTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME" minOccurs="0"/>
+				<xs:element ref="CLASS_CONNECTION_POINT"/>
+				<xs:element ref="RULE_NODE_LINK" minOccurs="0"/>
+				<xs:element ref="RULE_LINK_NODE" minOccurs="0"/>
+				<xs:element ref="RULE_STARTING_LINK" minOccurs="0"/>
+				<xs:element ref="RULE_LINK_STARTING" minOccurs="0"/>
+				<xs:element ref="RULE_TARGET_LINK" minOccurs="0"/>
+				<xs:element ref="RULE_LINK_TARGET" minOccurs="0"/>
+				<xs:element ref="RULE_TARGET_STARTING" minOccurs="0"/>
+				<xs:element ref="RULE_STARTING_TARGET" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FG_COLOR">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BG_COLOR">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LINK_COLOR">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TEXT_COLOR">
+		<xs:simpleType>
+			<xs:restriction base="xs:hexBinary"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CREATION_DATE" type="xs:date"/>
+	<xs:element name="MODIFICATION_DATE" type="xs:date"/>
+	<xs:element name="DESCRIPTION" type="xs:string"/>
+	<xs:element name="THICKNESS">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LINK_THICKNESS">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LINE_THICKNESS">
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EXPRESSION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FORMAT"/>
+				<xs:element ref="PARAMETERS" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PALETTE_CLASS_FAMILY" type="xs:string"/>
+	<xs:element name="FILE" type="xs:string"/>
+	<xs:element name="FILTER">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FILTER_NAME"/>
+				<xs:element name="DESCRIPTION" type="xs:string" minOccurs="0"/>
+				<xs:element ref="SEARCHED_ELEMENT_TYPE"/>
+				<xs:element ref="NAME_MASK" minOccurs="0"/>
+				<xs:element ref="DESCRIPTION_MASK" minOccurs="0"/>
+				<xs:element ref="FILTER_CLASS_NAME" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FORMAT" type="xs:string"/>
+	<xs:element name="PROCESSING_RULES_GROUPS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="RULES_GROUP" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULES_GROUP" type="xs:string"/>
+	<xs:element name="ICON">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FG_COLOR" minOccurs="0"/>
+				<xs:element ref="LINE_THICKNESS" minOccurs="0"/>
+				<xs:element ref="BG_COLOR" minOccurs="0"/>
+				<xs:element ref="LINK_THICKNESS" minOccurs="0"/>
+				<xs:element ref="ARROW_STYLE" minOccurs="0"/>
+				<xs:element ref="LINK_STYLE" minOccurs="0"/>
+				<xs:element ref="FILE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GRAPHIC_INSTANCE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="PROHIBITED"/>
+				<xs:enumeration value="NON_INSTANCIABLE"/>
+				<xs:enumeration value="REQUIRED"/>
+				<xs:enumeration value="OPTIONAL"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="RULES_INSTANTIATION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INTERFACE" type="xs:string"/>
+	<xs:element name="LINK">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GRAPHIC_VARIANT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="STARTING_POINT"/>
+				<xs:element ref="TARGET_POINT"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GV_LINK">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LINK_STYLE" minOccurs="0"/>
+				<xs:element ref="LINK_THICKNESS" minOccurs="0"/>
+				<xs:element ref="FG_COLOR" minOccurs="0"/>
+				<xs:element ref="ARROW_STYLE" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="KB_FILTERS_LIST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FILTER" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LOOP" type="xs:string"/>
+	<xs:element name="DESCRIPTION_MASK" type="xs:string"/>
+	<xs:element name="NAME_MASK" type="xs:string"/>
+	<xs:element name="FT_GENERATION_MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="GATES_SIMPLIFICATION"/>
+				<xs:element ref="MAX_SONS_PER_GATE"/>
+				<xs:element ref="LOOPS_SUPPRESSION"/>
+				<xs:element ref="NEGATIONS_SUPPRESSION"/>
+				<xs:element ref="PROCESSING_RULES_GROUPS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FIG0_INST_MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="CONSTANTS_RESOLUTION"/>
+				<xs:element ref="ATTRIBUTES_RESOLUTION"/>
+				<xs:element ref="RULES_INSTANTIATION"/>
+				<xs:element ref="PROCESSING_RULES_GROUPS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SIMULATION_MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="RULES_CYCLES_NB"/>
+				<xs:element ref="TAKE_FAULTS_INTO_ACCOUNT"/>
+				<xs:element ref="ENSURE_FT_CONSISTENCY"/>
+				<xs:element ref="PROCESSING_RULES_GROUPS"/>
+				<xs:element ref="ALLOWED_DISPLAY_MODES"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MODIFIABLE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TRUE"/>
+				<xs:enumeration value="FALSE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ALGO_NAME" type="xs:string"/>
+	<xs:element name="NAMING_INTERFACE" type="xs:string"/>
+	<xs:element name="NAMING_CLASS" type="xs:string"/>
+	<xs:element name="MAX_SONS_PER_GATE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="INT_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULES_CYCLES_NB">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="INT_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NODE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GRAPHIC_INSTANCE"/>
+				<xs:element ref="GRAPHIC_VARIANT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="CONNECTION_POINT" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NAME" type="xs:string"/>
+	<xs:element name="FILTER_NAME" type="xs:string"/>
+	<xs:element name="FILTER_CLASS_NAME" type="xs:string"/>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des anciens objets deduits                                                               BEGIN                               *-->
+	<!--****************************************************************************************************************************-->
+	<xs:element name="DO_ALGORITHM">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ALGO_NAME"/>
+				<xs:element ref="LOOP" minOccurs="0"/>
+				<xs:element ref="DO_CLASS" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="COMPONENT_TYPE" minOccurs="0"/>
+				<xs:element ref="OB_INTERFACE_COMP" minOccurs="0"/>
+				<xs:element ref="OB_INTERFACE_DOWNSTREAM" minOccurs="0"/>
+				<xs:element ref="OB_INTERFACE_UPSTREAM" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_DOWNSTREAM" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_UPSTREAM" minOccurs="0"/>
+				<xs:element ref="COMP_INTERFACE_OB" minOccurs="0"/>
+				<xs:element ref="NAMING_CLASS" minOccurs="0"/>
+				<xs:element ref="NAMING_INTERFACE" minOccurs="0"/>
+				<xs:element name="SYSTEM_NAME" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="CLASS_RULES" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des nouveaux objets deduits                                                               BEGIN                            *-->
+	<!--****************************************************************************************************************************-->
+	<!--regle type.....................................................-->
+	<xs:element name="CLASS_RULES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CLASS_NAME" type="xs:string"/>
+				<xs:element name="EQUATIONS" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="EQUATION" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="EQUATION_NAME" type="xs:NCName"/>
+										<xs:element name="SYSTEM_NAME" type="xs:NCName"/>
+										<xs:element name="IF" type="xs:string"/>
+										<xs:element name="FORMULA" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="STARTING" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="RULE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ENTRY" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="RULE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="EXIT" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="RULE" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- definition d'une regle ................................................................................................................................-->
+	<xs:element name="RULE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RULE_NAME" type="xs:NCName" minOccurs="0"/>
+				<xs:element name="GIVEN" type="xs:string" minOccurs="0"/>
+				<xs:element name="IF" type="xs:string" minOccurs="0"/>
+				<xs:element name="THEN" type="xs:string" minOccurs="0"/>
+				<xs:element name="ELSE" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--****************************************************************************************************************************-->
+	<!--*definition des nouveaux objets deduits                                                                END                              *-->
+	<!--****************************************************************************************************************************-->
+	<xs:element name="DO_CLASS" type="xs:string"/>
+	<xs:element name="PARAMETERS" type="xs:string"/>
+	<xs:element name="TARGET_POINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ACCEPTED_CONNECTION" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CONNECTION_POINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:choice>
+					<xs:element ref="INHERITS_FROM_CLASS"/>
+					<xs:sequence>
+						<xs:element ref="POSITION"/>
+						<xs:element ref="ACCEPTED_CONNECTION" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="STARTING_POINT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ACCEPTED_CONNECTION" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POSITION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="X"/>
+				<xs:element ref="Y"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TEXT_POSITION">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TOP"/>
+				<xs:enumeration value="BOTTOM"/>
+				<xs:enumeration value="LEFT"/>
+				<xs:enumeration value="RIGHT"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PALETTE_PRESENCE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="FALSE"/>
+				<xs:enumeration value="TRUE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TAKE_FAULTS_INTO_ACCOUNT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_TARGET_STARTING">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_TARGET_LINK">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_STARTING_TARGET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_STARTING_LINK">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_LINK_TARGET">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_LINK_STARTING">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_LINK_NODE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RULE_NODE_LINK">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ATTRIBUTES_RESOLUTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CONSTANTS_RESOLUTION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SIGNATURE" type="xs:string"/>
+	<xs:element name="GATES_SIMPLIFICATION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="GATES_SIMPLIFICATION_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UE_STEP" type="xs:string"/>
+	<xs:element name="MR_STEP" type="xs:string"/>
+	<xs:element name="ARROW_STYLE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="LINE_LINE"/>
+				<xs:enumeration value="LINE_THREE_POINTS"/>
+				<xs:enumeration value="LINE_FOUR_POINTS"/>
+				<xs:enumeration value="THREE_POINTS_LINE"/>
+				<xs:enumeration value="THREE_POINTS_THREE_POINTS"/>
+				<xs:enumeration value="THREE_POINTS_FOUR_POINTS"/>
+				<xs:enumeration value="FOUR_POINTS_LINE"/>
+				<xs:enumeration value="FOUR_POINTS_THREE_POINTS"/>
+				<xs:enumeration value="FOUR_POINTS_FOUR_POINTS"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LINK_STYLE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="DASH"/>
+				<xs:enumeration value="DASH_DOT"/>
+				<xs:enumeration value="SOLID"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LOOPS_SUPPRESSION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="BOOL_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NEGATIONS_SUPPRESSION">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="NEGATIONS_SUPPRESSION_VALUE"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TEXT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EXPRESSION" minOccurs="0"/>
+				<xs:element ref="TEXT_COLOR" minOccurs="0"/>
+				<xs:element ref="TEXT_POSITION" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CLASS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element name="HELP_ON_CONSTANT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="HELP_ON_ATTRIBUTE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="HELP_ON_EFFECT" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="HELP_ON_FAILURE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="HELP_ON_INTERFACE" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PALETTE_PRESENCE" minOccurs="0"/>
+				<xs:element ref="ABBREVIATION" minOccurs="0"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
+				<xs:element ref="PALETTE_CLASS_FAMILY" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DEFAULT_GRAPHIC_VARIANT" minOccurs="0"/>
+				<xs:choice>
+					<xs:element ref="NODE"/>
+					<xs:element ref="LINK"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="c_abreviation_unique">
+			<xs:selector xpath="ABBREVIATION"/>
+			<xs:field xpath="."/>
+		</xs:unique>
+	</xs:element>
+	<xs:element name="INHERITS_FROM_CLASS" type="xs:string"/>
+	<xs:element name="CLASS_CONNECTION_POINT" type="xs:string"/>
+	<xs:element name="GRAPHIC_VARIANT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:choice>
+					<xs:element ref="INHERITS_FROM_CLASS"/>
+					<xs:sequence>
+						<xs:element ref="DISPLAY_MODE" maxOccurs="unbounded"/>
+						<xs:element ref="CONDITION"/>
+						<xs:element ref="ICON" minOccurs="0"/>
+						<xs:element ref="TEXT" minOccurs="0"/>
+						<xs:element ref="GV_LINK" minOccurs="0"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DEFAULT_GRAPHIC_VARIANT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ICON" minOccurs="0"/>
+				<xs:element ref="TEXT" minOccurs="0"/>
+				<xs:element ref="GV_LINK" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DISPLAY_MODE" type="xs:string"/>
+	<xs:element name="ALLOWED_DISPLAY_MODES">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MODIFIABLE"/>
+				<xs:element ref="DISPLAY_MODE" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="X">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="-100"/>
+				<xs:maxInclusive value="100"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Y">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="-100"/>
+				<xs:maxInclusive value="100"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOOL_VALUE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TRUE"/>
+				<xs:enumeration value="FALSE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="INT_VALUE" type="xs:int"/>
+	<xs:element name="GATES_SIMPLIFICATION_VALUE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="TOTAL"/>
+				<xs:enumeration value="PARTIAL"/>
+				<xs:enumeration value="NONE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="NEGATIONS_SUPPRESSION_VALUE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="ALL"/>
+				<xs:enumeration value="WITHOUT"/>
+				<xs:enumeration value="EXCEPT_LEAVES"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SEARCHED_ELEMENT_TYPE">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CONSTANT"/>
+				<xs:enumeration value="OBJECT"/>
+				<xs:enumeration value="ATTRIBUTE"/>
+				<xs:enumeration value="EFFECT"/>
+				<xs:enumeration value="INVERSE_INTERFACE"/>
+				<xs:enumeration value="INTERFACE"/>
+				<xs:enumeration value="FAILURE"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="HELP_ON_CONSTANT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="HELP"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HELP_ON_ATTRIBUTE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="HELP"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HELP_ON_EFFECT">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="HELP"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HELP_ON_FAILURE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="HELP"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HELP_ON_INTERFACE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="HELP"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--
+|
+|	ELEMENTS DEFINITION (END)
+_____________________________________________________________________________________
+-->
+</xs:schema>
+
+
