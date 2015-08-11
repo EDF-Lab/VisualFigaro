@@ -9,6 +9,7 @@
 
 package GWindow;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
 import CopyFile.CopyFile;
@@ -151,7 +152,7 @@ public class GWindowModel extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -261,7 +262,11 @@ public class GWindowModel extends GWindow {
 			}
 			
 			//Now that we know that the directory does exist then we check that no Model of the same name already exists
-			String filename = pathTextField.getText() + "\\" + nameTextField.getText();
+			String filename;
+			if(vfParent.isOSWindows())
+				filename = pathTextField.getText() + "\\" + nameTextField.getText();
+			else
+				filename = pathTextField.getText() + "/" + nameTextField.getText();
 			
 			if (!filename.toLowerCase().endsWith(".fi")){
 				filename = filename + ".fi";

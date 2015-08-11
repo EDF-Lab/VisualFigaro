@@ -22,7 +22,7 @@
  * **************************************************************
  * Date         : 24 September 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
- * Bug Id       : n° 57                                      
+ * Bug Id       : nï¿½ 57                                      
  * Modification : Fix Create Default File missing names
  *                this change has been cancelled in version 1.15 because it 
  *                created a new bug, when dealing with an english KB.
@@ -31,44 +31,44 @@
  * Date         : 12 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : 
- * Evol Id      : n°4 and n°12                                   
- * Modification : Modify temp file destination folder (in user space)(evol n°4)
- *                Accept multiple .fi and .bdc in the same folder (evol n°12)
+ * Evol Id      : nï¿½4 and nï¿½12                                   
+ * Modification : Modify temp file destination folder (in user space)(evol nï¿½4)
+ *                Accept multiple .fi and .bdc in the same folder (evol nï¿½12)
  * VF version   : 1.11
  * **************************************************************
  * Date         : 19 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : 
- * Evol Id      : n°4 and n°8                                  
- * Modification : use TMP environment variable for temp file saving (evol n°4 correction)
- *                memorize last KB file access through VisualFigaro.ini file (evol n°8)
+ * Evol Id      : nï¿½4 and nï¿½8                                  
+ * Modification : use TMP environment variable for temp file saving (evol nï¿½4 correction)
+ *                memorize last KB file access through VisualFigaro.ini file (evol nï¿½8)
  * VF version   : 1.12
  * **************************************************************
  * Date         : 20 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : 
- * Evol Id      : n°8                                  
+ * Evol Id      : nï¿½8                                  
  * Modification : Add direct access to prev KB directory in openKB dialog
  * VF version   : 1.12a
  * **************************************************************
  * Date         : 21 October 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
- * Bug Id       : n°61
- * Evol Id      : n°8                                  
- * Modification : If folder and .ini file don't exist : create them (Evol n°8)
- *                Update TradBdc.ini file upon buffer switching (Bug n°61)
+ * Bug Id       : nï¿½61
+ * Evol Id      : nï¿½8                                  
+ * Modification : If folder and .ini file don't exist : create them (Evol nï¿½8)
+ *                Update TradBdc.ini file upon buffer switching (Bug nï¿½61)
  * VF version   : 1.12b
  * **************************************************************
  * Date         : 2 November 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
  * Bug Id       : 
- * Evol Id      : n°4                                 
+ * Evol Id      : nï¿½4                                 
  * Modification : Modify working directory (user space) for st.exe launching
  * VF version   : 1.14
  * **************************************************************
  * Date         : 8 November 2010                            
  * Author       : D.WEYAND/ALL4TEC                          
- * Bug Id       : n°61
+ * Bug Id       : nï¿½61
  * Evol Id      :                                
  * Modification : 1. Fix TradBdc files update bug (upon null file manipulation)
  *                2. Modify TradBdc.ini strings construction method to insure
@@ -79,7 +79,7 @@
  * Date         : 10 April 2012                            
  * Author       : M. Bouissou                          
  * Bug Id       : 
- * Evol Id      : n°14                               
+ * Evol Id      : nï¿½14                               
  * Modification : 1. Use of a relative path to initialize the variable BdCPath which gives 
  *                   the directory of the TradBdC.exe program. 
  * VF version   : 1.15
@@ -87,21 +87,21 @@
  * Date         : 15 April 2012                            
  * Author       : M. Bouissou                          
  * Bug Id       : 
- * Bug Id       : n°67                               
+ * Bug Id       : nï¿½67                               
  * Modification : 1. Delete the check about the existence of a .sym file without an .ico equivalent
  * VF version   : 1.15
  * ***************************************************************
  * Date         : 15 April 2012                            
  * Author       : M. Bouissou                          
  * Bug Id       : 
- * Bug Id       : n°68                               
+ * Bug Id       : nï¿½68                               
  * Modification : 1. Correction of the origin directory for the copy of the icons directory in case of translation
  * VF version   : 1.15
  * ***************************************************************
  * Date         : 15 April 2012                            
  * Author       : M. Bouissou                          
  * Bug Id       : 
- * Bug Id       : n°69                               
+ * Bug Id       : nï¿½69                               
  * Modification : 1. Delete an instruction which created the Francais directory without any action from the user
  * VF version   : 1.15
  * **************************************************************
@@ -111,7 +111,36 @@
  * Bug Id		:
  * Modification : Implements models management
  * VF version	: 1.16 
- * ***************************************************************/
+ * ***************************************************************
+ * Date			: 17 June 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		: 
+ * Bug Id		: nï¿½79
+ * Modification : Use the language of the KB to set the language of figp 
+ * VF version	: 2.0 
+ * ***************************************************************
+ * Date			: 19 June 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		: 
+ * Evol Id		: nï¿½21
+ * Modification : Macro for knowledgebase are now directly executed in VF window 
+ * VF version	: 2.0 
+ * ****************************************************************
+ * Date			: 22 June 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		: 
+ * Bug Id		: nï¿½85
+ * Modification : The limitation message with an unlicensed figp is not displayed anymore for the KB
+ * VF version	: 2.0 
+ * **************************************************************** 
+ * Date			: 02 July 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		: 
+ * Bug Id		: nï¿½87
+ * Modification : Verification that the source directory name is
+ *                correct before doing a KB translation
+ * VF version	: 2.0 
+ * ****************************************************************/
 
 package jEditInterface;
 
@@ -148,12 +177,16 @@ import java.util.List;
 
 
 
+
+
+
 // from Swing:
 import javax.swing.*;
 
 // from jEdit:
 import org.gjt.sp.jedit.*;
 import org.gjt.sp.jedit.gui.*;
+import org.gjt.sp.jedit.io.VFSManager;
 import org.gjt.sp.jedit.msg.EditPaneUpdate;
 import org.gjt.sp.jedit.msg.BufferUpdate;
 import org.jdom.Element;
@@ -259,6 +292,8 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	 */
 	private boolean isOpening = false;
 	
+	private String osname;
+	
 	private String languageName;
 	private JMenuItem menuPrevKBFileItem;
 	private JMenu menu;
@@ -278,13 +313,15 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		this.knowledgedBasesVector = new Vector<GKnowledgeBase>();
 		this.modelsVector = new Vector<GModel>();
 		
+		this.osname = System.getProperty("os.name");
+		
 		//First we create the panel which will be on the top of the window and which contains the menu bar, the folding menu and some icones
 		initializeUserInterface();
 		
 		//We add the userInterface to the current panel
 		add(userInterface, BorderLayout.NORTH);
 		
-		//Now we are going to create the printer of the tree 
+		//Now we are going to create the printer of the tree
 		figTree = new FigaroTree(this);
 		add(BorderLayout.CENTER, figTree);
 		
@@ -388,6 +425,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			public void actionPerformed(ActionEvent arg0) {
 				File f = new File(getPrevKBFile());
 				File directory = new File(f.getParent());
+				
 				openKB(directory, f);
 			}
 		});
@@ -398,6 +436,43 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				VisualFigaro.this.editXMLFile();
+			}
+		});
+		menu.add(menuItem);
+		menu.addSeparator();
+		
+		menuItem = new JMenuItem("Apply Inheritance");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualFigaro.this.applyInheritance();
+			}
+		});
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Check KB");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualFigaro.this.checkKB();
+			}
+		});
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Precompile KB");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualFigaro.this.precompileKB();
+			}
+		});
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Class Hierarchy");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualFigaro.this.classHierarchy();
+			}
+		});
+		menu.add(menuItem);
+		menuItem = new JMenuItem("XML Squeleton");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VisualFigaro.this.xmlSqueleton();
 			}
 		});
 		menu.add(menuItem);
@@ -528,6 +603,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 						if (findModelFromName(currentFile)==null){
 							//The file is not a KB either a model, we load a null tree
 							figTree.loadSpecificGTree(null);
+							//JOptionPane.showMessageDialog(VisualFigaro.this,"Coucou - Null");
 						}
 						else {
 							//Else we load the tree of the knowledgebase associate to the model
@@ -577,7 +653,12 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				if(knowledgeBase != null) {
 					comboTree.setSelectedItem(currentFile);
 				
-					String path = System.getenv("TMP") + "\\test1_fi.xml";
+					String path = "";
+					
+					if (isOSWindows())
+						path = System.getenv("TMP") + "\\test1_fi.xml";
+					else
+						path = jEdit.getJEditHome() + "/VisualFigaro/test1_fi.xml";
 					
 					if( precompileXML() ) {
 						//System.err.println("Test : " + view.getEditPane().getTextArea().getText());
@@ -593,10 +674,19 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		});
 	}
 	
+	public String getOsName(){
+		return osname;
+	}
+	
+	public boolean isOSWindows(){
+		return osname.contains("Windows");
+	}
+	
 	/**
 	 * This method is used to display and retrieve the information used to create a knowledge base from the user. The way used is to display a <code>GWindowWizard</code>. 
 	 */
 	private void createKB() {
+		
 		//In the case of a new KB we will launch the wizard
 		GWindowWizard window = new GWindowWizard(this);
 		window.setVisible(true);
@@ -665,7 +755,12 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			//We are sure than one and only one Figaro file exists because we have passed successfully the integrity check. 
 			
 			//The filename will be the concatenation of the directory path and the Figaro filename
-			String figaroFileName = directory.getAbsolutePath() + "\\" + filesName[0];
+			String figaroFileName;
+			
+			if(isOSWindows())
+				figaroFileName = directory.getAbsolutePath() + "\\" + filesName[0];
+			else
+				figaroFileName = directory.getAbsolutePath() + "/" + filesName[0];
 			
 			//We have to check that the database is not already opened
 			if(findKnowledgeBaseFromName(figaroFileName) != null) {
@@ -678,11 +773,23 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			
 			isOpening = true;
 			jEdit.openFile(view, figaroFileName);
+			
+			//Command to wait that the OpenFile command is complete
+			VFSManager.waitForRequests();
+			
 			isOpening = false;
 			currentFile = figaroFileName;
 			
 			//System.err.println("Open After : File : " + view.getBuffer().getDirectory() + view.getBuffer().getName());
 			//System.err.println("Voici la taille : " + view.getEditPane().getTextArea().getText());
+			
+			String path = "";
+			
+			if (isOSWindows())
+				path = System.getenv("TMP") + "\\test1_fi.xml";
+			else
+				path = jEdit.getJEditHome() + "/VisualFigaro/test1_fi.xml";
+				
 			
 			//We translate the file in the XML format using precompileXML and we update all the variables
 			if( precompileXML() ) {
@@ -695,13 +802,22 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				//setLanguageInMenuBar(languageName);
 				
 				figTree.newGTree();
-				figTree.loadTreeFromXML(System.getenv("TMP") + "\\test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				//figTree.loadTreeFromXML(path, getTextFromFile(new File(currentFile)), language);
+				figTree.loadTreeFromXML(path, view.getEditPane().getTextArea().getText(), language);
 				
 				GKnowledgeBase knowledgeBase = new GKnowledgeBase(figaroFileName, language, figTree.getGTree().clone());
 				knowledgedBasesVector.add(knowledgeBase);
 				
 				comboTree.addItem(figaroFileName);
 				comboTree.setSelectedItem(figaroFileName);
+				
+				/*try{
+					while (!view.getEditPane().getTextArea().isDisplayable()){Thread.sleep(250);}
+					figTree.loadTreeFromXML(path, view.getEditPane().getTextArea().getText(), language);
+					knowledgeBase.setKnowledgeBaseTree(figTree.getGTree().clone());
+				} catch(Exception e){
+					System.err.println("Error getEditPane");
+				}*/
 				
 				setIconsUpToDate();
 				
@@ -714,7 +830,6 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	}
 	
 	public void openKB(File directory, File file) {
-		
 		
 		//We have to check if all the files are consistent
 		boolean integrityCheckResult = checkIntegrity(directory.getAbsolutePath());
@@ -736,6 +851,9 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			
 			isOpening = true;
 			jEdit.openFile(view, figaroFileName);
+			
+			VFSManager.waitForRequests();
+			
 			isOpening = false;
 			currentFile = figaroFileName;
 			
@@ -744,18 +862,27 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			//System.err.println("Voici la taille : " + view.getEditPane().getTextArea().getText());
 			
 			//We translate the file in the XML format using precompileXML and we update all the variables
+			
+			String path = "";
+			
+			if (isOSWindows())
+				path = System.getenv("TMP") + "\\test1_fi.xml";
+			else
+				path = jEdit.getJEditHome() + "/VisualFigaro/test1_fi.xml";
+			
 			if( precompileXML() ) {
 				
 				System.err.println("Precompile OK");
 				
-				languageName = findKnowledgeBaseLanguage(directory.getAbsolutePath()); 
+				languageName = findKnowledgeBaseLanguage(directory.getAbsolutePath());
 				GLanguage language = new GLanguage();
 				language.setLanguage(languageName);
-				//setLanguageInMenuBar(languageName);
+				//setLanguageInMenuBar(languageName);	
 				
 				figTree.newGTree();
 				//figTree.loadTreeFromXML("./VisualFigaro/" + "test1_fi.xml", getTextFromFile(new File(currentFile)), language);
-				figTree.loadTreeFromXML(System.getenv("TMP") + "\\test1_fi.xml", getTextFromFile(new File(currentFile)), language);
+				//figTree.loadTreeFromXML(path, getTextFromFile(new File(currentFile)), language);
+				figTree.loadTreeFromXML(path, view.getEditPane().getTextArea().getText(), language);
 				
 				GKnowledgeBase knowledgeBase = new GKnowledgeBase(figaroFileName, language, figTree.getGTree().clone());
 				knowledgedBasesVector.add(knowledgeBase);
@@ -763,10 +890,37 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				comboTree.addItem(figaroFileName);
 				comboTree.setSelectedItem(figaroFileName);
 				
+				//figTree.loadTreeFromXML(path, view.getEditPane().getTextArea().getText(), language);
+				//knowledgeBase.setKnowledgeBaseTree(figTree.getGTree().clone());
+				
 				setIconsUpToDate();
 				
 				linkToModel(knowledgeBase);
+				
+				//code ï¿½ supprimer
+				/*String debugtxt = figTree.getGTree().getAllCells().toString();
+				String debugtxt2 = figTree.getGTree().getRoot().getChild(0).toString()+" "+figTree.getGTree().getRoot().getChild(0).getChildrenCount()+"\n";
+				for (int i=0;i<figTree.getGTree().getRoot().getChild(0).getChildrenCount();i++){
+					debugtxt2= debugtxt2+"|"+figTree.getGTree().getRoot().getChild(0).getChild(i).toString()+" "+figTree.getGTree().getRoot().getChild(0).getChild(i).getChildrenCount()+"\n";
+					if (figTree.getGTree().getRoot().getChild(0).getChild(i).getChildrenCount()>0){
+						for (int j=0;j<figTree.getGTree().getRoot().getChild(0).getChild(i).getChildrenCount();j++)
+							debugtxt2= debugtxt2+"||"+figTree.getGTree().getRoot().getChild(0).getChild(i).getChild(j).toString()+" "+figTree.getGTree().getRoot().getChild(0).getChild(i).getChild(j).getChildrenCount()+"\n";
+					}
+				}
+				
+				isOpening = true;
+				jEdit.newFile(view);
+				isOpening = false;
+				
+				view.getTextArea().setSelectedText(debugtxt+"\n"+debugtxt2);
+				
+				currentFile = view.getBuffer().getPath();
+				
+				comboTree.setSelectedIndex(-1);*/
+				//fin code ï¿½ supprimer
+				
 			} else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "Precompile Failed");
 				System.err.println("Precompile Failed");
 			}
 			
@@ -782,6 +936,161 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			}
 	}
 	
+	// this function replace the macro Apply Inheritance
+	private void applyInheritance() {
+		if (knowledgedBasesVector.isEmpty()) {
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Open a Knowledge Base first !");
+		} 
+		else {
+			if (findKnowledgeBaseFromName(currentFile)!=null){
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+				GKnowledgeBase knowledgeBase = findKnowledgeBaseFromName(currentFile);
+			
+				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
+			
+				//String langOption = "-lang french";
+				String langOption = "french";
+			
+				if (knowledgeBase.getKnowledgeBaseLanguage().getLanguage().equals("English"))
+					langOption = "english";
+				
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-lang", langOption, knowledgeBaseName, "-wie3"};
+				else
+					cmd = new String[] {"figp", "-lang", langOption, knowledgeBaseName, "-wie3"};
+			
+				executeCommand(cmd, "Apply Inheritance", true, true, true, false);
+			}
+			else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a knowledgebase");
+			}
+		}
+	}
+	
+	// this function replace the macro Check KB
+	private void checkKB() {
+		if (knowledgedBasesVector.isEmpty()) {
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Open a Knowledge Base first !");
+		} 
+		else {
+			if (findKnowledgeBaseFromName(currentFile)!=null){
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+				GKnowledgeBase knowledgeBase = findKnowledgeBaseFromName(currentFile);
+			
+				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
+			
+				String langOption = "french";
+			
+				if (knowledgeBase.getKnowledgeBaseLanguage().getLanguage().equals("English"))
+					langOption = "english";
+			
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-lang", langOption, knowledgeBaseName}; 
+				else
+					cmd = new String[] {"figp", "-lang", langOption, knowledgeBaseName}; 
+				
+				executeCommand(cmd, "Check KnowledgeBase", true, true, true, false);
+			}
+			else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a knowledgebase");
+			}
+		}
+	}
+	
+	// this function precompile the KB
+	private void precompileKB() {
+		if (knowledgedBasesVector.isEmpty()) {
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Open a Knowledge Base first !");
+		} 
+		else {
+			if (findKnowledgeBaseFromName(currentFile)!=null){
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/cpp_st.exe";
+				GKnowledgeBase knowledgeBase = findKnowledgeBaseFromName(currentFile);
+			
+				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
+			
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-traditional", knowledgeBaseName}; 
+				else
+					cmd = new String[] {figpPath, "-traditional", knowledgeBaseName}; 
+				
+				executeCommand(cmd, "Check KnowledgeBase", true, true, true, false);
+			}
+			else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a knowledgebase");
+			}
+		}
+	}
+	
+	// this function replace the macro Class Hierarchy
+	private void classHierarchy() {
+		if (knowledgedBasesVector.isEmpty()) {
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Open a Knowledge Base first !");
+		} 
+		else {
+			if (findKnowledgeBaseFromName(currentFile)!=null){
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+				GKnowledgeBase knowledgeBase = findKnowledgeBaseFromName(currentFile);
+			
+				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
+			
+				String langOption = "french";
+			
+				if (knowledgeBase.getKnowledgeBaseLanguage().getLanguage().equals("English"))
+					langOption = "english";
+			
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-lang", langOption, knowledgeBaseName, "-whe3"}; 
+				else
+					cmd = new String[] {"figp", "-lang", langOption, knowledgeBaseName, "-whe3"}; 
+				
+				executeCommand(cmd, "Class Hierarchy", true, true, true, false);
+			}
+			else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a knowledgebase");
+			}
+		}
+	}
+	
+	// this function replace the macro XML Squeleton
+	private void xmlSqueleton() {
+		if (knowledgedBasesVector.isEmpty()) {
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Open a Knowledge Base first !");
+		} 
+		else {
+			if (findKnowledgeBaseFromName(currentFile)!=null){
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+				GKnowledgeBase knowledgeBase = findKnowledgeBaseFromName(currentFile);
+			
+				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
+			
+				String langOption = "french";
+			
+				if (knowledgeBase.getKnowledgeBaseLanguage().getLanguage().equals("English"))
+					langOption = "english";
+				
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-lang", langOption, knowledgeBaseName, "-wse3"};
+				else
+					cmd = new String[] {"figp", "-lang", langOption, knowledgeBaseName, "-wse3"};
+				
+				executeCommand(cmd, "Xml Squeleton", true, true, true, false);
+			}
+			else {
+				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a knowledgebase");
+			}
+		}
+	}
 	
 	private void createModel() {
 		
@@ -927,7 +1236,10 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		GObjectInformation info = new GObjectInformation();
 		info.setLanguage(knowledgeBase.getKnowledgeBaseLanguage());
-		info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
+		if(isOSWindows())
+			info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
+		else
+			info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("/")));
 		
 		GXMLLoader xmlLoader = new GXMLLoader(info.getLanguage());
 		xmlLoader.loadXmlFile(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.length() - 2).concat("bdc"));
@@ -937,7 +1249,6 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		figaroLoader.setXmlFile(builder.build(figTree.getGTree().getDocument()));
 		GWindow.setFigaroLoader(figaroLoader);
 		
-		//If the current file is a model, we launch the figaro 0 generation
 		GWindowNewObject window = new GWindowNewObject(this, null, info, model);
 		window.setVisible(true);
 		window.setAlwaysOnTop(true);
@@ -950,22 +1261,27 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		JOptionPane.showMessageDialog(VisualFigaro.this, "This feature is not available for the moment");
 	}*/
 	
-	private void executeCommand(String command, String title, Boolean block, Boolean output){
-		
+	private void executeCommand(String[] command, String title, Boolean block, Boolean erroroutput, Boolean fileoutput, Boolean model_treatment){
+		 
 		//For debug purpose only
 		//JOptionPane.showMessageDialog(VisualFigaro.this, "Cmd to execute : "+command);
 		
 		//Declaration of the two buffers filled respectively by the output stream and the error stream
 		String outputBuffer = "", errorBuffer = "";
 				
-		//Boolean indicating if there is something to display. 
-		boolean bufferNotEmpty= false;
-				
 		//We create a runtime environment
 		Runtime r = Runtime.getRuntime();
 				
 		//We run the program and take care if some errors happen
 		try {
+			//Process process = r.exec(command);
+			File appData;
+			
+			if (isOSWindows())
+				appData = new File(System.getenv("APPDATA"));
+			else
+				appData = new File(jEdit.getJEditHome()+ "/VisualFigaro");
+			
 			Process process = r.exec(command);
 
 			if (block){
@@ -1000,10 +1316,16 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				           
 							System.err.print("Voici le errorBuffer : \"" + errorBuffer + "\"");
 						
-							if(outputBuffer.length() > 0 || errorBuffer.length() > 0) {
-								bufferNotEmpty = true;
-							} 
-						
+							errorBuffer = errorBuffer.replace("\tInfo    : La langue courante est modifiee avec succes"+System.getProperty("line.separator"), "");
+							errorBuffer = errorBuffer.replace("\tInfo    : Current language successfully set"+System.getProperty("line.separator"),"");
+							
+							if(!model_treatment){
+								errorBuffer = errorBuffer.replace("\tInfo    : Fichier de licence absent ou invalide => Max objets : 80, Max regles occurrence : 300.) :"+System.getProperty("line.separator"), "");
+								errorBuffer = errorBuffer.replace("\tInfo    : No valid license file => Max object:80 Max occurrence rules:300."+System.getProperty("line.separator"),"");
+							}
+							
+							outputBuffer = outputBuffer.replace("Fichier \"result.xml\" supprime avec succes"+System.getProperty("line.separator"),"");
+							
 							// Ask the process for its exitValue. If the process
 							// is not finished, an IllegalThreadStateException
 							// is thrown. If it is finished, we fall through and
@@ -1028,7 +1350,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		}
 
 		//If an error has occurred we have to show it to the user in order to detect the problem. We use a basic JFrame
-		if(bufferNotEmpty&&output) {
+		if(erroroutput && errorBuffer.length() > 0) {
 			
 			JFrame resultFrame;
 			resultFrame = new JFrame();
@@ -1079,12 +1401,26 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			JScrollPane sp = new JScrollPane(resultFrameTextArea);
 			resultFrame.add(sp);
 			
-			resultFrameTextArea.setText(outputBuffer + errorBuffer);
+			resultFrameTextArea.setText(errorBuffer);
 
 			resultFrame.setSize(1200, 400);
 			resultFrame.setLocation(300, 200);
 			resultFrame.setVisible(true);
-			resultFrame.setAlwaysOnTop(true);
+			resultFrame.setAlwaysOnTop(false);
+		}
+		
+		//write the output in a temporary file if boolean "output" is true
+		if (fileoutput && outputBuffer.length() > 0){
+
+			isOpening = true;
+			jEdit.newFile(view);
+			isOpening = false;
+			
+			view.getTextArea().setSelectedText(outputBuffer);
+			
+			currentFile = view.getBuffer().getPath();
+			
+			comboTree.setSelectedIndex(-1);
 		}
 	}
 	
@@ -1095,16 +1431,26 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			} 
 		else {
 			if (findModelFromName(currentFile)!=null){
-				String figpPath = "./VisualFigaro/figp.exe";
+				String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
 				GModel model = findModelFromName(currentFile);
 				GKnowledgeBase knowledgeBase = model.getKnowledgeBase();
 				
 				String modelName = model.getModelName();
 				String knowledgeBaseName = knowledgeBase.getKnowledgeBaseName();
 				
-				String cmd = figpPath + " \"" + knowledgeBaseName + "\" -bdf \"" + modelName + "\"";                
+				String langOption = "french";
 				
-				executeCommand(cmd, "Check Model", true, true);
+				if (model.getModelLanguage().getLanguage().equals("English"))
+					langOption = "english";
+				
+				String[] cmd;
+				
+				if (isOSWindows())
+					cmd = new String[] {figpPath, "-lang", langOption, knowledgeBaseName, "-bdf", modelName};
+				else
+					cmd = new String[] {"figp", "-lang", langOption, knowledgeBaseName, "-bdf", modelName};
+				
+				executeCommand(cmd, "Check Model", true, true, false, true);
 			}
 			else {
 				JOptionPane.showMessageDialog(VisualFigaro.this, "The current File is not a model");
@@ -1127,7 +1473,10 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				
 				GObjectInformation info = new GObjectInformation();
 				info.setLanguage(knowledgeBase.getKnowledgeBaseLanguage());
-				info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
+				if(isOSWindows())
+					info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
+				else
+					info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("/")));
 				
 				GXMLLoader xmlLoader = new GXMLLoader(info.getLanguage());
 				xmlLoader.loadXmlFile(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.length() - 2).concat("bdc"));
@@ -1149,13 +1498,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	}
 	
 	public void cmdFig0(String fig0FileName, int postTreatment) {
-		File commands = new File("./VisualFigaro/figp_commands.xml");
+		File commands = new File(jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml");
 		File fig0File = new File(fig0FileName);
 		
 		if (commands.exists()){
 			
+			String TempFile = "";
+			
+			if (isOSWindows())
+				TempFile = System.getenv("TMP") + "\\fig0_temp.fi";
+			else
+				TempFile = jEdit.getJEditHome() + "/VisualFigaro/fig0_temp.fi";
+			
 			// A temporary file is always overwritten
-			if (fig0FileName.equals(System.getenv("TMP") + "\\fig0_temp.fi"))
+			if (fig0FileName.equals(TempFile))
 				fig0File.delete();
 			
 			// If the output file already exist, we ask if the file must be overwritten
@@ -1170,13 +1526,18 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					fig0File.delete();
 			}
 			
-			String appli = "./VisualFigaro/figp.exe";
-			String commandsFile = "./VisualFigaro/figp_commands.xml";
+			String appli = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+			String commandsFile = jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml";
 			//String kBName = findModelFromName(currentFile).getKnowledgeBase().getKnowledgeBaseName();
 			
-			String cmd = appli + " -testxml " + commandsFile;
+			String[] cmd;
 			
-			executeCommand(cmd, "Generate Figaro 0", true, false);
+			if (isOSWindows())
+				cmd = new String[] {appli, "-testxml", commandsFile};
+			else
+				cmd = new String[] {"figp", "-testxml", commandsFile};
+			
+			executeCommand(cmd, "Generate Figaro 0", true, true, false, true);
 			
 			// If the figaro 0 file is successfully generated, we open the new file
 			if (fig0File.exists()){
@@ -1220,14 +1581,19 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		// If the current file seems to be a figaro 0 file and is not a model and not a knowledge base
 		if (findModelFromName(currentFile)==null && findKnowledgeBaseFromName(currentFile)==null && currentFile.endsWith(".fi")){
-			String figpPath = "./VisualFigaro/Fig0Debug.exe";
+			String figpPath = jEdit.getJEditHome() + "/VisualFigaro/Fig0Debug.exe";
 			//GModel model = findModelFromName(currentFile);
 		
 			//String modelName = model.getModelName();
-		
-			String cmd = figpPath + " \"" + currentFile + "\"";                
 			
-			executeCommand(cmd, "Run Fig0debug", false, false);
+			String[] cmd;
+			
+			if (isOSWindows())
+				cmd = new String[] {figpPath, currentFile};                
+			else
+				cmd = new String[] {"fig0debug", currentFile};
+			
+			executeCommand(cmd, "Run Fig0debug", false, false, false, true);
 		}
 		else {
 			// If the current file is a model, we can generate a new figaro 0 file
@@ -1248,10 +1614,16 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 						if(choix == 1)
 							generateFig0(1);
 						else{
-							String figpPath = "./VisualFigaro/Fig0Debug.exe";
-							String cmd = figpPath + " \"" + filename + "\"";                
+							String figpPath = jEdit.getJEditHome() + "/VisualFigaro/Fig0Debug.exe";
 							
-							executeCommand(cmd, "Run Fig0debug", false, false);
+							String[] cmd;
+							
+							if (isOSWindows())
+								cmd = new String[] {figpPath, currentFile};                
+							else
+								cmd = new String[] {"fig0debug", currentFile};
+							
+							executeCommand(cmd, "Run Fig0debug", false, false, false, true);
 						}
 					}
 				}
@@ -1287,10 +1659,14 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		// If the current file seems to be a figaro 0 file and is not a model and not a knowledge base
 		if (findModelFromName(currentFile)==null && findKnowledgeBaseFromName(currentFile)==null && currentFile.endsWith(".fi")){
-
-			String cmd = "\"" + figPath + "\" \"" + currentFile + "\"";                  
+			String[] cmd;
+			
+			if (isOSWindows())
+				cmd = new String[] {figPath, currentFile};
+			else
+				cmd = new String[] {figPath, currentFile};
 					
-			executeCommand(cmd, "Run Figseq", false, false);
+			executeCommand(cmd, "Run Figseq", false, false, false, true);
 		}
 		else {
 			
@@ -1309,9 +1685,14 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					if(choix == 1)
 						generateFig0(2);
 					else{
-						String cmd = figPath + " \"" + filename + "\"";                
+						String[] cmd;
 						
-						executeCommand(cmd, "Run Figseq", false, false);
+						if (isOSWindows())
+							cmd = new String[] {figPath, currentFile};
+						else
+							cmd = new String[] {figPath, currentFile};
+						
+						executeCommand(cmd, "Run Figseq", false, false, false, true);
 					}
 				}
 			}
@@ -1351,9 +1732,14 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		// If the current file seems to be a figaro 0 file and is not a model and not a knowledge base
 		if (findModelFromName(currentFile)==null && findKnowledgeBaseFromName(currentFile)==null && currentFile.endsWith(".fi")){
 			
-			String cmd = "\"" + figPath + "\" \"" + currentFile + "\"";                
+			String[] cmd;
+			
+			if (isOSWindows())
+				cmd = new String[] {figPath, currentFile};
+			else
+				cmd = new String[] {figPath, currentFile};
 					
-			executeCommand(cmd, "Run Yams", false, false);
+			executeCommand(cmd, "Run Yams", false, false, false, true);
 		}
 		else {
 			// If the current file is a model, we can generate a new figaro 0 file
@@ -1374,9 +1760,14 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 						if(choix == 1)
 							generateFig0(3);
 						else{
-							String cmd = figPath + " \"" + filename + "\"";                
+							String[] cmd;
 							
-							executeCommand(cmd, "Run Figseq", false, false);
+							if (isOSWindows())
+								cmd = new String[] {figPath, currentFile};
+							else
+								cmd = new String[] {figPath, currentFile};
+							
+							executeCommand(cmd, "Run Yams", false, false, false, true);
 						}
 					}
 				}
@@ -1404,33 +1795,61 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		String path1 = "";
 		File fileVisual;
 		
+		// If it is a linux system, look if their is an entry in usr/bin 
+		if (!isOSWindows()){
+			if (Appl.equals("FIGSEQ")){
+				/*path = "usr/bin/figseq-gui_p.exe";
+				fileVisual = new File(path);
+				if (fileVisual.exists())
+					return path;
+				else {
+					path = "usr/bin/figseq-gui.exe";
+					fileVisual = new File(path);
+					if (fileVisual.exists())
+						return path;
+				}*/
+				JOptionPane.showMessageDialog(VisualFigaro.this, Appl + " not found");
+				return "";
+			}
+			else if (Appl.equals("YAMS")){
+				path = "/usr/bin/yams-gui";
+				fileVisual = new File(path);
+				if (fileVisual.exists())
+					return "yams-gui";
+			}
+			
+			//If not found, exit
+			JOptionPane.showMessageDialog(VisualFigaro.this, Appl + " not found");
+			return "";
+		}
+		
 		//Try to find the application in the VisualFigaro folder
 		if (Appl.equals("FIGSEQ")){
-			path = "./VisualFigaro/FIGSEQ/figseq-gui_p.exe";
+			path = jEdit.getJEditHome() + "/VisualFigaro/FIGSEQ/figseq-gui_p.exe";
 			fileVisual = new File(path);
 			if (fileVisual.exists())
 				return path;
 			else {
-				path = "./VisualFigaro/FIGSEQ/figseq-gui.exe";
+				path = jEdit.getJEditHome() + "/VisualFigaro/FIGSEQ/figseq-gui.exe";
 				fileVisual = new File(path);
 				if (fileVisual.exists())
 					return path;
 			}
 		}
 		else if (Appl.equals("YAMS")){
-			path = "./VisualFigaro/YAMS/yams-gui.exe";
+			path = jEdit.getJEditHome() + "/VisualFigaro/YAMS/yams-gui.exe";
 			fileVisual = new File(path);
 			if (fileVisual.exists())
 				return path;
 			else {
-				path = "./VisualFigaro/YAMS/MC_IHM.exe";
+				path = jEdit.getJEditHome() + "/VisualFigaro/YAMS/MC_IHM.exe";
 				fileVisual = new File(path);
 				if (fileVisual.exists())
 					return path;
 			}
 		}
 		
-		//Else, find the path in the KB3Configuration.xml files
+		//Else (for windows system only), find the path in the KB3Configuration.xml files
 		String userpath = System.getenv("APPDATA") + "\\EDF MRI TOOLS\\KB3Configuration.xml";
 		String alluserpath = System.getenv("ALLUSERSPROFILE") + "\\EDF MRI TOOLS\\KB3Configuration.xml";
 		
@@ -1484,7 +1903,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		Element root;
 		List<Element> code;
 		
-		//On crée une instance de SAXBuilder
+		//On crï¿½e une instance de SAXBuilder
 		//SAXBuilder instance creation
 		SAXBuilder sxb = new SAXBuilder();
 		try
@@ -1525,8 +1944,11 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			
 				GObjectInformation info = new GObjectInformation();
 				info.setLanguage(knowledgeBase.getKnowledgeBaseLanguage());
-				info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
-			
+				if(isOSWindows())
+					info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("\\")));
+				else
+					info.setKnowledgeBasePath(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.lastIndexOf("/")));
+				
 				GXMLLoader xmlLoader = new GXMLLoader(info.getLanguage());
 				xmlLoader.loadXmlFile(knowledgeBaseFileName.substring(0, knowledgeBaseFileName.length() - 2).concat("bdc"));
 				GWindow.setXmlLoader(xmlLoader);
@@ -1547,13 +1969,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	}
 	
 	public void generateFT(String ftFileName) {
-		File commands = new File("./VisualFigaro/figp_commands.xml");
+		File commands = new File(jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml");
 		File ftFile = new File(ftFileName);
 		
 		if (commands.exists()){
 			
+			String TempFile = "";
+			
+			if (isOSWindows())
+				TempFile = System.getenv("TMP") + "\\faulttree_temp.xml";
+			else
+				TempFile = jEdit.getJEditHome() + "/VisualFigaro/faulttree_temp.xml";
+			
 			// A temporary file is always overwritten
-			if (ftFileName.equals(System.getenv("TMP") + "\\faulttree_temp.xml"))
+			if (ftFileName.equals(TempFile))
 				ftFile.delete();
 			
 			// If the output file already exist, we ask if the file must be overwritten
@@ -1568,12 +1997,17 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					ftFile.delete();
 			}
 			
-			String appli = "./VisualFigaro/figp.exe";
-			String commandsFile = "./VisualFigaro/figp_commands.xml";
+			String appli = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+			String commandsFile = jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml";
 			
-			String cmd = appli + " -testxml " + commandsFile;
+			String[] cmd;
 			
-			executeCommand(cmd, "Generate FT", true, false);
+			if (isOSWindows())
+				cmd = new String[] {appli, "-testxml", commandsFile};
+			else
+				cmd = new String[] {"figp", "-testxml", commandsFile};
+			
+			executeCommand(cmd, "Generate FT", true, true, false, true);
 			
 			// If the figaro 0 file is successfully generated, we open the new file
 			if (ftFile.exists())
@@ -1587,13 +2021,27 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	
 	private void saveToIniFile(String filePath, int type) throws IOException {
 		
-		String AppliDataPath = System.getenv("AppData"); 
-		String VFIniFilePath= AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+		String VFIniFilePath = "";
+		String VFTempFilePath = "";
+		String AppliDataPath = "";
+		
+		//If os is Windows
+		if (isOSWindows()){
+			AppliDataPath = System.getenv("AppData");
+			VFIniFilePath = AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+			VFTempFilePath = AppliDataPath + "\\EDF MRI TOOLS\\temp.ini";
+		}
+		//If os is Linux or other
+		else {
+			AppliDataPath = jEdit.getJEditHome();
+			VFIniFilePath = AppliDataPath + "/VisualFigaro/VisualFigaro.ini";
+			VFTempFilePath = AppliDataPath + "/VisualFigaro/temp.ini";
+		} 
 		
 		File inputFile = new File(VFIniFilePath);
 		BufferedReader br = new BufferedReader(new FileReader(inputFile));
 		
-		File outputFile = new File(AppliDataPath + "\\EDF MRI TOOLS\\temp.ini");
+		File outputFile = new File(VFTempFilePath);
 		Charset charset = Charset.forName("UTF-8");
 		Writer bw = new OutputStreamWriter(new FileOutputStream(outputFile), charset);
 		
@@ -1629,8 +2077,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	
 	private String getPrevKBFile() {
 		
-		String AppliDataPath = System.getenv("AppData");
-		String VFIniFilePath= AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+		String VFIniFilePath = "";
+		String AppliDataPath = "";
+		
+		//If os is Windows
+		if (isOSWindows()){
+			AppliDataPath = System.getenv("AppData");
+			VFIniFilePath = AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+		}
+		//If os is Linux or other
+		else {
+			AppliDataPath = jEdit.getJEditHome();
+			VFIniFilePath = AppliDataPath + "/VisualFigaro/VisualFigaro.ini";
+		}
+		
 		String ligne="";
 		String result = "";
 		
@@ -1677,8 +2137,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	
 	public String getPrevModelFile() {
 		
-		String AppliDataPath = System.getenv("AppData");
-		String VFIniFilePath= AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+		String VFIniFilePath = "";
+		String AppliDataPath = "";
+		
+		//If os is Windows
+		if (isOSWindows()){
+			AppliDataPath = System.getenv("AppData");
+			VFIniFilePath = AppliDataPath + "\\EDF MRI TOOLS\\VisualFigaro.ini";
+		}
+		//If os is Linux or other
+		else {
+			AppliDataPath = jEdit.getJEditHome();
+			VFIniFilePath = AppliDataPath + "/VisualFigaro/VisualFigaro.ini";
+		} 
+		
 		String ligne="";
 		String result = "";
 		
@@ -1781,7 +2253,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		if (findKnowledgeBaseFromName(currentFile)!=null){
 		
-			String BdCPath = "./VisualFigaro/TradBdC/"; 
+			String BdCPath = jEdit.getJEditHome() + "/VisualFigaro/TradBDC/"; 
 			//updateTradBdcIniFile(BdCPath);			
 			
 			// Test if the MotsClesBdCKB3V3.xml file is in the TradBdC directory
@@ -1792,7 +2264,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				return;
 			}
 			
-			// select UTF-8 format to generate correct "ç" in output file
+			// select UTF-8 format to generate correct "ï¿½" in output file
 			Charset charset = Charset.forName("UTF-8");
 
 			String transType = "fe";
@@ -1811,14 +2283,30 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			}
 			
 			// Construct destination translation directory and file
-			int index = currentFile.lastIndexOf("\\");
-			currentFilePath = currentFile.substring(0, index-1);
+			int index;
+			
+			if(isOSWindows())
+				index = currentFile.lastIndexOf("\\");
+			else
+				index = currentFile.lastIndexOf("/");
+			
+			currentFilePath = currentFile.substring(0, index);
 			String currentFileName = currentFile.substring(index+1);
 			index = currentFileName.lastIndexOf(".");
 			TransFileName = "Translation_" + currentFileName.substring(0,index) + ".xml";
 			
 			// apply second time to reach main project directory
-			index = currentFilePath.lastIndexOf("\\");
+			if(isOSWindows())
+				index = currentFilePath.lastIndexOf("\\");
+			else
+				index = currentFilePath.lastIndexOf("/");
+			
+			//Test if the source directory is "Francais" or "English"
+			if (!currentFilePath.substring(index+1).equals(origDir.substring(0,origDir.length()-1))){
+				JOptionPane.showMessageDialog(VisualFigaro.this, "Invalid source directory (neither '[...]\\Francais' nor '[...]\\English')");
+				return;
+			}
+			
 			currentFilePath = currentFilePath.substring(0, index+1);
 
 			destFilePath = currentFilePath + destDir;
@@ -1849,19 +2337,29 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			// Copy the schema from TradBdC directory to the target directory		
 			CopyFile.copyFile(new File(BdCPath + xsdFileName),new File(destFilePath + xsdFileName), true);
 			
-			String prg = BdCPath + "TradBDC.exe";
-			String kBFile = currentFile;
-			String options = "-lang en -tf " + transType + " -tx " + transType + " -tb " + transType;
-			String keyWordFile = "-ki "+ BdCPath + "MotsClesBdCKB3V3.xml";
-			String keyWordBdC = "-bi \"" + currentFilePath + TransFileName + "\"";
-			String destKBFile = "-o \"" + destFilePath;
-			index = currentFile.lastIndexOf("\\");
-			destKBFile += currentFile.substring(index+1,currentFile.length()) + "\"";
+			String[] cmd;
 			
+			if (isOSWindows()){
+				String prg = BdCPath + "TradBDC.exe";
+				String kBFile = currentFile;
+				String keyWordFile = BdCPath + "MotsClesBdCKB3V3.xml";
+				String keyWordBdC = currentFilePath + TransFileName;
+				String destKBFile = destFilePath;
+				index = currentFile.lastIndexOf("\\");
+				destKBFile += currentFile.substring(index+1,currentFile.length());
+				cmd = new String[] {prg, kBFile, "-lang", "en", "-tf", transType, "-tx", transType, "-tb", transType, "-ki", keyWordFile, "-bi", keyWordBdC, "-o", destKBFile};
+			} else {
+				String prg = BdCPath + "TradBDC.exe";
+				String kBFile = currentFile;
+				String keyWordFile = BdCPath + "MotsClesBdCKB3V3.xml";
+				String keyWordBdC = currentFilePath + TransFileName;
+				String destKBFile = destFilePath;
+				index = currentFile.lastIndexOf("/");
+				destKBFile += currentFile.substring(index+1,currentFile.length());
+				cmd = new String[] {prg, kBFile, "-lang", "en", "-tf", transType, "-tx", transType, "-tb", transType, "-ki", keyWordFile, "-bi", keyWordBdC, "-o", destKBFile};
+			}
 			// Launch the KB3 translator
-			String cmd = prg + " \"" + kBFile + "\" " + options + " " + keyWordFile + " " + keyWordBdC + " " + destKBFile;
-			
-			executeCommand(cmd, "Run TradBDC", false, false);
+			executeCommand(cmd, "Run TradBDC", false, false, false, true);
 		}
 		else
 			JOptionPane.showMessageDialog(VisualFigaro.this, "The selected file is not a knowledge base");
@@ -1877,7 +2375,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		String TradBdCFileName = tradBdCPath + "TradBdC.ini";
 		File inputFile = new File(TradBdCFileName);
 		
-		//JOptionPane.showMessageDialog(VisualFigaro.this, "Première étape réussie");
+		//JOptionPane.showMessageDialog(VisualFigaro.this, "Premiï¿½re ï¿½tape rï¿½ussie");
 		
 		if (currentFile == null) {
 		    // The TradBdC.ini file shall not be modified	
@@ -1885,20 +2383,20 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		} else {
 			//The TradBdC.ini file shall be updated with the current edited .fi file
 			//The filename will be the concatenation of the directory path and the TradBdC .ini filename			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Deuxième étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Deuxiï¿½me ï¿½tape rï¿½ussie");
 			
 			File outputFile = new File(tradBdCPath + "temp.ini");
 			
-			// select UTF-8 format to generate correct "ç" in output file
+			// select UTF-8 format to generate correct "ï¿½" in output file
 			Charset charset = Charset.forName("UTF-8");
 			Writer bw = new OutputStreamWriter(new FileOutputStream(outputFile), charset);
 			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Troisième étape réussie : " + inputFile.getCanonicalPath());
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Troisiï¿½me ï¿½tape rï¿½ussie : " + inputFile.getCanonicalPath());
 			
 			BufferedReader br = new BufferedReader(new FileReader(inputFile));
-			JOptionPane.showMessageDialog(VisualFigaro.this, "Etape intermédiaire réussie");
+			JOptionPane.showMessageDialog(VisualFigaro.this, "Etape intermï¿½diaire rï¿½ussie");
 			String ligne="";
-			String transType = "\"Français -> Anglais\" ";
+			String transType = "\"Franï¿½ais -> Anglais\" ";
 			String destDir = "English\\";
 			String origDir = "Francais\\";
 			String outLine;
@@ -1908,13 +2406,13 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			String xsdFileName = "bdceng.xsd";
 			
 			if (languageName.equals("English")){
-				transType = "\"Anglais -> Français\" ";
+				transType = "\"Anglais -> Franï¿½ais\" ";
 				destDir = "Francais\\";
 				origDir = "English\\";
 				xsdFileName = "bdcfr.xsd";
 			}
 			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Quatrième étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Quatriï¿½me ï¿½tape rï¿½ussie");
 			
 			// Construct destination translation directory and file
 			int index = currentFile.lastIndexOf("\\");
@@ -1931,7 +2429,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			File destFile   = new File(destFilePath);
 			File xmlFile    = new File(currentFilePath + TransFileName);
 			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Cinquième étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Cinquiï¿½me ï¿½tape rï¿½ussie");
 			
 			// If the file containing translations does not exist, create it with the main tags
 			// so that it can be loaded by the translator TradBdC.exe
@@ -1951,13 +2449,13 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				destFile.mkdir();
 			}
 			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Sixième étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Sixiï¿½me ï¿½tape rï¿½ussie");
 			
 			// Copy the directory icons (if it already exists, existing icons are replaced, or left as
 			// they are, depending on the existence or not of icons with the same name in the origin directory
 			CopyFile.copy(new File(currentFilePath + origDir + "icons"),new File(destFilePath + "icons"));
 
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "étape intermédiaire réussie : " + destFilePath + xsdFileName);
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "ï¿½tape intermï¿½diaire rï¿½ussie : " + destFilePath + xsdFileName);
 			
 			// Copy the schema from TradBdC directory to the target directory		
 			CopyFile.copyFile(new File(tradBdCPath + xsdFileName),new File(destFilePath + xsdFileName));
@@ -1975,7 +2473,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			outLine += currentFile.substring(index+1,currentFile.length());
 			outLine += "</BDC_OUT>";
 			
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Septième étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Septiï¿½me ï¿½tape rï¿½ussie");
 			
 			while ((ligne = br.readLine()) != null){
 			  if(ligne.startsWith(" <BDC_IN>")) {
@@ -2000,13 +2498,13 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			    }
 			  }
 			}
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Avant dernière étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Avant derniï¿½re ï¿½tape rï¿½ussie");
 			bw.flush();
 			bw.close();
 			br.close(); 
 			inputFile.delete();
 			outputFile.renameTo(new File(TradBdCFileName));
-			//JOptionPane.showMessageDialog(VisualFigaro.this, "Dernière étape réussie");
+			//JOptionPane.showMessageDialog(VisualFigaro.this, "Derniï¿½re ï¿½tape rï¿½ussie");
 		}
 	}*/
 	
@@ -2032,6 +2530,10 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			JOptionPane.showMessageDialog(this, "There is no opened Knowledge Base. Open or select one before editing XML.");
 			return;
 		}
+		/*if(findModelFromName(currentFile) != null) {
+			JOptionPane.showMessageDialog(this, "The open file is a model file. Please open a file which is not a model !");
+			return;
+		}*/
 		
 		//The filename of the bdc file
 		String bdcFilename = currentFile.substring(0, currentFile.length() - 2) + "bdc";
@@ -2046,7 +2548,6 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		//If it does not exists then we popup a new window to ask to the user what to do
 		if( !bdcFile.exists() ) {
 			
-			
 			String phrase = "The BDC file associated with " + view.getBuffer().getName() + " does not exist.\nDo you want to create a file containing default information?";
 			Object[] options = {"Create Default File", "Start From Scratch", "Cancel"};
 			type = JOptionPane.showOptionDialog(VisualFigaro.this.getView(), phrase, "No BDC File", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
@@ -2060,7 +2561,17 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				case 0:
 					
 					//We create the command used to create a default bdc file from a figaro file
-					String command = "\""+ "./VisualFigaro/" + "figp.exe\" \"" + currentFile + "\" -wse3";
+					String figpPath = jEdit.getJEditHome() + "/VisualFigaro/figp.exe";
+					
+					String[] command;
+					
+					if (isOSWindows())
+						//command = "\"" + figpPath + "\" " + " \"" + currentFile + "\"" + " -wse3";
+						command = new String[] {figpPath, currentFile, "-wse3"};
+					else
+						//command = "'"+ figpPath + "'" + "'" + currentFile + "' -wse3";
+						command = new String[] {"figp", currentFile, "-wse3"};
+					//String command = "\""+ "./VisualFigaro/" + "figp.exe\" \"" + currentFile + "\" -wse3";
 					//String command = "\"" + "./VisualFigaro/" + "st.exe\" \"" + "./VisualFigaro/" + "test1.fi\" -wXe3 \"" + "./VisualFigaro/" + "test1_fi.xml\"";
 					System.err.println("Command : "+command);
 					System.err.println("Avant");
@@ -2090,6 +2601,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 				writer.write(data);
 			} catch (Exception e) {
 				System.err.println("VisualFigaro : VisualFigaro : BDC file cannot be created : " + e);
+				JOptionPane.showMessageDialog(VisualFigaro.this, "VisualFigaro : VisualFigaro : BDC file cannot be created : " + e);
 			} finally {
 				if(writer != null) {
 					try {
@@ -2110,9 +2622,14 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		GObjectInformation info = new GObjectInformation();
 		info.setLanguage(findKnowledgeBaseFromName(currentFile).getKnowledgeBaseLanguage());
-		info.setKnowledgeBasePath(currentFile.substring(0, currentFile.lastIndexOf("\\")));
 		
-		System.err.println("Current File" + currentFile.substring(0, currentFile.lastIndexOf("\\")));
+		if (isOSWindows()) {
+			info.setKnowledgeBasePath(currentFile.substring(0, currentFile.lastIndexOf("\\")));
+			System.err.println("Current File" + currentFile.substring(0, currentFile.lastIndexOf("\\")));
+		} else {
+			info.setKnowledgeBasePath(currentFile.substring(0, currentFile.lastIndexOf("/")));
+			System.err.println("Current File" + currentFile.substring(0, currentFile.lastIndexOf("/")));
+		}
 		
 		GXMLLoader xmlLoader = new GXMLLoader(info.getLanguage());
 		xmlLoader.loadXmlFile(currentFile.substring(0, currentFile.length() - 2).concat("bdc"));
@@ -2189,7 +2706,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					return false;
 			}
 		});
-		// We accept multiple .fi files in the same folder (evolution n°12)
+		// We accept multiple .fi files in the same folder (evolution nï¿½12)
 		/*if(figaroFilesName.length <= 0 || figaroFilesName.length > 1) {
 			errorMessage += "There is no or more than one Figaro file in the Knowledge Base.\n";
 			errorOccured = true;
@@ -2204,7 +2721,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 					return false;
 			}
 		});
-		// We accept multiple .bdc files in the same folder (evolution n°12)
+		// We accept multiple .bdc files in the same folder (evolution nï¿½12)
 		/*if(bdcFilesName.length > 1) {
 			errorMessage += "There is more than one BDC file in the Knowledge Base.\n";
 			errorOccured = true;
@@ -2345,7 +2862,18 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	private boolean precompileXML() {
 		
 		//We will use the system TMP directory to store the temporary file
-		String pathToTempFile = System.getenv("TMP") + "\\test1.fi";
+		String pathToTempFile = "";
+		String pathToTempFileXml = "";
+		
+		if (isOSWindows()){
+			pathToTempFile = System.getenv("TMP") + "\\test1.fi";
+			pathToTempFileXml = System.getenv("TMP") + "\\test1_fi.xml";
+		}
+		else {
+			pathToTempFile = jEdit.getJEditHome() + "/VisualFigaro/test1.fi";
+			pathToTempFileXml = jEdit.getJEditHome() + "/VisualFigaro/test1_fi.xml";
+		}
+		
 		File tempFile = new File(pathToTempFile);
 		
 		if(tempFile.exists())
@@ -2430,16 +2958,26 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 			return false;
 		}
 		
+		String[] command;
+		
 		//Then we launch the processing trough the "serveur de traitement"
-		String command = "\"" + "./VisualFigaro/" + "figp.exe\" \"" + System.getenv("TMP") + "\\test1.fi\" -wXe3 \"" + System.getenv("TMP") + "\\test1_fi.xml\"";
+		if (isOSWindows())
+			command = new String[] {jEdit.getJEditHome() + "/VisualFigaro/figp.exe", pathToTempFile, "-wXe3", pathToTempFileXml};
+		else
+			command = new String[] {"figp", pathToTempFile, "-wXe3", pathToTempFileXml};
 		executeServerWithResultIntoFile(command);
 		return true;//executeServerWithResultIntoFile(command).length() > 0;
 	}
 	
-	private String executeServerWithResultIntoFile(String command) {
+	private String executeServerWithResultIntoFile(String command[]) {
+		
+		//For debug purpose only
+		//JOptionPane.showMessageDialog(VisualFigaro.this, "Cmd to execute : "+command);
 		
 		//Declaration of the two buffers filled respectively by the output stream and the error stream
 		String outputBuffer = "", errorBuffer = "";
+		
+		//JOptionPane.showMessageDialog(VisualFigaro.this, "Cmd to execute : "+command);
 		
 		//Boolean indicating if an error  occurred. 
 		boolean errorOccured= false;
@@ -2449,9 +2987,16 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		//We run the program and take care if some errors happen
 		try {
-			File appData = new File(System.getenv("APPDATA"));
-			Process process = r.exec(command,null,appData);
-
+			File appData;
+			
+			if (isOSWindows())
+				appData = new File(System.getenv("APPDATA"));
+			else
+				appData = new File(jEdit.getJEditHome()+"/VisualFigaro");
+			
+			//Process process = r.exec(command,null,appData);
+			Process process = r.exec(command);
+			
 			//Now we retrieve both the possible error and the output
 			try {
 
@@ -2481,6 +3026,8 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		                  Character c = new Character( (char) err.read());
 		                  errorBuffer += c;
 		               }
+		               
+		               errorBuffer = errorBuffer.replace("\tInfo    : Fichier de licence absent ou invalide => Max objets : 80, Max regles occurrence : 300.) :"+System.getProperty("line.separator"), "");
 		               
 		               if(errorBuffer.length() > 0) {
 		            	   errorOccured = true;
@@ -2883,7 +3430,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 	}
 	
 	public void setIconsUpToDate() {
-		
+
 		//First we have to check if there is a bdc file for the current knowledge base
 		File bdcFile = new File(currentFile.substring(0, currentFile.length() - 2) + "bdc");
 		if(!bdcFile.exists())
@@ -2915,9 +3462,15 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		Vector<Element> varianteGraphiqueDefautVect = xl.findElementWithSubBalise(root, 2, knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("VARIANTE_GRAPHIQUE_DEFAUT"), knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE"));
 		
 		//We are testing if there is a file associated. If yes we will retrieve the associated type
-		for(Element e : varianteGraphiqueDefautVect)
-			if(e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) != null)
-				typeIconPathTable.put(((Element)e.getParent()).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("NOM")), view.getBuffer().getDirectory() + "icons\\" + e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) + ".ico");
+		if (isOSWindows()){
+			for(Element e : varianteGraphiqueDefautVect)
+				if(e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) != null)
+					typeIconPathTable.put(((Element)e.getParent()).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("NOM")), view.getBuffer().getDirectory() + "icons\\" + e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) + ".ico");
+		} else {
+			for(Element e : varianteGraphiqueDefautVect)
+				if(e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) != null)
+					typeIconPathTable.put(((Element)e.getParent()).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("NOM")), view.getBuffer().getDirectory() + "icons/" + e.getChild(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("ICONE")).getChildText(knowledgeBase.getKnowledgeBaseLanguage().getBDCTranslation("FICHIER")) + ".ico");
+		}
 		
 		//If there is no such database just return
 		if(knowledgeBase == null)
@@ -2925,6 +3478,7 @@ public class VisualFigaro extends JPanel implements EBComponent, VisualFigaroAct
 		
 		//Otherwise update the knowledgeBase with the new hashtable
 		knowledgeBase.setTypeIconPathTable(typeIconPathTable);
+		
 	}
 		
 	

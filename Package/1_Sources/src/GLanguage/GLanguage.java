@@ -1,3 +1,12 @@
+/* **************************************************************
+ * Date			: 17 June 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		:
+ * Bug Id		: n°82
+ * Modification : Add a try catch blocks when loading a GXMLLoader object is impossible
+ * VF version	: 1.16 
+ * ***************************************************************/
+
 package GLanguage;
 
 import java.awt.Toolkit;
@@ -5,12 +14,14 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
 import GFilters.GFilterElementWithSubElementWithValue;
@@ -71,10 +82,16 @@ public class GLanguage {
 		
 		//We are going to load the syntaxemultilanguage.xml file in order to get the list of the available languages
 		GXMLLoader xl = new GXMLLoader(null);
-		Element syntaxeElement = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
-		for(Iterator<Element> languageIterator = syntaxeElement.getDescendants(new GFilterTagName("language")); languageIterator.hasNext();)
-			availableLanguages.add(languageIterator.next().getText());
-		
+		//try {
+			//Element syntaxeElement = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
+			Element syntaxeElement = xl.loadXmlFileJDOM(jEdit.getJEditHome() + "/VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
+			for(Iterator<Element> languageIterator = syntaxeElement.getDescendants(new GFilterTagName("language")); languageIterator.hasNext();)
+				availableLanguages.add(languageIterator.next().getText());
+		//}
+		//catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		//}
 		//Now we set the language to be the first of the availableLanguage vector
 		if(availableLanguages.size() <= 0)
 			return;
@@ -82,9 +99,12 @@ public class GLanguage {
 		language = availableLanguages.get(0);
 		languagePosition = 0;
 		
-		completionDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
-		bdcDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
-		figaroDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
+		//completionDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
+		//bdcDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
+		//figaroDocumentRoot = xl.loadXmlFileJDOM("./VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
+		completionDocumentRoot = xl.loadXmlFileJDOM(jEdit.getJEditHome() + "/VisualFigaro/" + "syntaxemultilangage.xml").getRootElement();
+		bdcDocumentRoot = xl.loadXmlFileJDOM(jEdit.getJEditHome() + "/VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
+		figaroDocumentRoot = xl.loadXmlFileJDOM(jEdit.getJEditHome() + "/VisualFigaro/" + "keywordsTranslationBDCFile.xml").getRootElement();
 	}
 	
 	/**

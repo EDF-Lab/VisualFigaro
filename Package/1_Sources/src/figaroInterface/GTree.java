@@ -33,7 +33,6 @@ import org.w3c.dom.Document;
 
 import GLanguage.GLanguage;
 import GXMLLoader.GXMLLoader;
-
 import figaroParser.*;
 
 //For the tree
@@ -288,6 +287,7 @@ public class GTree {
 		allCellsAssociations.clear();
 		this.allCellsAssociations = figParser.parseCode(s, this, allCells, allCellsAssociations, language);
 		//String fig = root.printFigaro(true, allCellsAssociations);
+
 		return "";
 	}
 	
@@ -298,6 +298,7 @@ public class GTree {
 	public ArrayList<GCell> numeroter() {
 		allCells = new ArrayList<GCell>();
 		root.numeroter(0, allCells);
+
 		return allCells;
 	}
 	

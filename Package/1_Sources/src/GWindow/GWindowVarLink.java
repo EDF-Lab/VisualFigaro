@@ -11,6 +11,13 @@
  * Bug Id       :                                           
  * Modification : Resize window 
  * VF version   : 1.3
+ * **************************************************************
+ * Date         : 01 July 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°23                                   
+ * Modification : Management of a new widget class, color chooser
+ * VF version   : 2.0
  * **************************************************************/
 
 package GWindow;
@@ -231,7 +238,7 @@ private static final long serialVersionUID = 1L;
 		
 		this.pack();
 		this.setTitle("Graphic Variant");
-		this.setSize(347,320);
+		this.setSize(550,320);
 				
 		//And finally we initialize the JMenuBar
 		menuBarInitialization();
@@ -290,8 +297,8 @@ private static final long serialVersionUID = 1L;
 		
 		//Set the labels
 		Vector<String> labels = new Vector<String>();
-		labels.add("Inherit From Type : ");
 		labels.add("Inherit Graphic Variant: ");
+		labels.add("Inherit From Type : ");
 		
 		//Set the types of the widgets included in the gridForm
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
@@ -300,12 +307,12 @@ private static final long serialVersionUID = 1L;
 		
 		//The parameters (the name of the types)
 		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
-		parameters.add(types);
 		Vector<Object> variantes = new Vector<Object>();
 		if(types.size() > 0)
 			for(String s : xmlLoader.findVariantesGraphiquesNames((String)types.get(0)))
 				variantes.add(s);
 		parameters.add(variantes);
+		parameters.add(types);
 			
 		//Create the gridform
 		inheritanceGridForm = new GWidgetGridForm(this, information, labels, 2, 2, widgetClasses, parameters);
@@ -378,7 +385,7 @@ private static final long serialVersionUID = 1L;
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
 		widgetClasses.add(WidgetClasses.COMBO);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.COMBO);
 		
 		//Give the arguments to the widgets.
@@ -422,19 +429,20 @@ private static final long serialVersionUID = 1L;
 				
 					//First we get the arguments of the widget
 					String selectedItem = (String)message.getArguments().get(0);
-					//int emiter = Integer.parseInt(message.getSender().getLastPartOfThePath());
+
 					int emiter = -1;
 					try {
 						emiter = Integer.parseInt(message.getSender().getLastPartOfThePath());
 					} catch (NumberFormatException e) {
 						return;
-					}	
-					if(emiter == 0) {
+					}
+					
+					if(emiter == 1) {
 						System.out.println("NOTIFYCHANGE : " + emiter + " : " + selectedItem);
 						
 						//Then we update the widget
 						Vector<Object> arguments = new Vector<Object>();
-						arguments.add(1);
+						arguments.add(0);
 						GMessage dummyMessage = new GMessage(information, Messages.REPLACEDEFAULTVALUES);
 						for(String varName : xmlLoader.findVariantesGraphiquesNames(selectedItem))
 							dummyMessage.addArgument(varName);
@@ -500,6 +508,12 @@ private static final long serialVersionUID = 1L;
 		
 		Vector<Element> elemVect = new Vector<Element>();
 		elemVect.add(e);
+		
+		//We load the element related to the inheritance Pannel
+		Vector<Element> inheritanceFields = new Vector<Element>();
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")).get(0));
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("HERITE_DU_TYPE")).get(0));
+		inheritanceGridForm.loadXML(inheritanceFields, false);
 		
 		//We load the elements related to the general panel
 		nameTextField.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")), false);

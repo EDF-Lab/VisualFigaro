@@ -132,6 +132,7 @@ public class GWindowDefaultVarNode extends GWindow {
 		
 		this.pack();
 		this.setTitle("Default Graphic Variant");
+		this.setSize(550,300);
 	}
 	
 	private void tabsInitialization() {
@@ -161,9 +162,9 @@ public class GWindowDefaultVarNode extends GWindow {
 		
 		//Set the type of widget we want in the grid widget
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		
 		//Give the arguments to the widgets.

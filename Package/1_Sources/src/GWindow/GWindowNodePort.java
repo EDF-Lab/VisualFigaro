@@ -1,3 +1,13 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 25 June 2015                                  
+ * Author       : L.RAFFAELLI/ALL4TEC                               
+ * Bug Id       : n°75                                          
+ * Modification : Add the port inheritance functions 
+ * VF Version   : 2.0               
+ * **************************************************************/
+
 package GWindow;
 
 import global.ControlTypes;
@@ -23,6 +33,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
 import Factories.GXMLElementFactory;
@@ -237,22 +248,22 @@ private static final long serialVersionUID = 1L;
 		
 		//Set the labels
 		Vector<String> labels = new Vector<String>();
+		labels.add("Inherit Port : ");
 		labels.add("Inherit From Class : ");
-		//labels.add("Inherit Graphic Variant : ");
 		
 		//Set the types of the widgets included in the gridForm
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
 		widgetClasses.add(WidgetClasses.COMBO);
 		widgetClasses.add(WidgetClasses.COMBO);
 		
-		//The parameters (the name of the types)
+		//The parameters (the name of the ports, then the name of the types)
 		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
-		parameters.add(types);
-		Vector<Object> variantes = new Vector<Object>();
+		Vector<Object> ports = new Vector<Object>();
 		if(types.size() > 0)
-			for(String s : xmlLoader.findVariantesGraphiquesNames((String)types.get(0)))
-				variantes.add(s);
-		parameters.add(variantes);
+			for(String s : xmlLoader.findPortsNames((String)types.get(0)))
+				ports.add(s);
+		parameters.add(ports);
+		parameters.add(types);
 			
 		//Create the gridform
 		inheritanceGridForm = new GWidgetGridForm(this, information, labels, 2, 2, widgetClasses, parameters);
@@ -278,7 +289,7 @@ private static final long serialVersionUID = 1L;
 		definitionPanel.add(connectionList, BorderLayout.CENTER);
 		
 		//Finally we add the icon management widget
-		Image image = loadIcon("./VisualFigaro/" + "test.ico");
+		Image image = loadIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "test.ico");
 		manageIcon = new GWidgetManageIcon(this, information, image);
 		definitionPanel.add(manageIcon, BorderLayout.SOUTH);
 	}
@@ -331,16 +342,21 @@ private static final long serialVersionUID = 1L;
 				
 				//First we retrieve the message if it is not null
 				if(message.getArguments().get(0) != null && inheritanceGridForm != null) {
-				
+					
 					//First we get the arguments of the widget
 					String selectedItem = (String)message.getArguments().get(0);
-					String emiter = message.getSender().getLastPartOfThePath();
-					if(emiter == "0") {
+					int emiter = -1;
+					try {
+						emiter = Integer.parseInt(message.getSender().getLastPartOfThePath());
+					} catch (NumberFormatException e) {
+						return;
+					}
+					if(emiter == 1) {
 						System.out.println("NOTIFYCHANGE : " + emiter + " : " + selectedItem);
 						
 						//Then we update the widget
 						Vector<Object> arguments = new Vector<Object>();
-						arguments.add(1);
+						arguments.add(0);
 						GMessage dummyMessage = new GMessage(information, Messages.REPLACEDEFAULTVALUES);
 						for(String portName : xmlLoader.findPortsNames(selectedItem))
 							dummyMessage.addArgument(portName);
@@ -363,6 +379,9 @@ private static final long serialVersionUID = 1L;
 		//Now we have to check which checkbox is selected and trigger the appropriate behavior
 		if(inheritanceItem.isSelected()) {
 			
+			//In case the inheritance panel is selected then we fill the appropriate fields in the xml
+			GXMLElementFactory.saveElements(root, inheritanceGridForm.saveXML());
+			
 		} else {
 			//If it is not inheritance which is selected then it is the user defined panel
 			
@@ -380,20 +399,29 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	public void loadXml(Element e) {
-		//If the element is null just exit
-		if(e == null)
-			return;
+		//If the element to load is null we just select the define panel as the default panel otherwise we use the specific part of the xml
+		if(e != null){
 		
-		//First we have to check which of the panel to select
-		if(e.getChild(information.getLanguage().getBDCTranslation("HERITE_DU_TYPE")) != null) {
-			//If there is an inherit node we have to select the inheritance panel
-			inheritanceItem.setSelected(true);
-			cardLayout.show(cardPanel, "inherit");
-		} else {
-			//If there is no inherit node we select the used defined panel
-			definitionItem.setSelected(true);
-			cardLayout.show(cardPanel, "defined");
+			//First we have to check which of the panel to select
+			if(e.getChild(information.getLanguage().getBDCTranslation("HERITE_DU_TYPE")) != null) {
+				//If there is an inherit node we have to select the inheritance panel
+				inheritanceItem.setSelected(true);
+				cardLayout.show(cardPanel, "inherit");
+			} else {
+				//If there is no inherit node we select the used defined panel
+				definitionItem.setSelected(true);
+				cardLayout.show(cardPanel, "defined");
+			}
 		}
+		
+		Vector<Element> elemVect = new Vector<Element>();
+		elemVect.add(e);
+		
+		//We load the element related to the inheritance Pannel
+		Vector<Element> inheritanceFields = new Vector<Element>();
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")).get(0));
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("HERITE_DU_TYPE")).get(0));
+		inheritanceGridForm.loadXML(inheritanceFields, false);
 		
 		//We load the elements related to the general panel
 		nameTextField.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")), false);

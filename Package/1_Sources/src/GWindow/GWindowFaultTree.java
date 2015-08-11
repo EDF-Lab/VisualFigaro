@@ -5,7 +5,14 @@
  * Author       : L.RAFFAELLI/ALL4TEC                              
  * Modification : Creation
  * VF version   : 1.16
- * **************************************************************/
+ * **************************************************************
+ * Date			: 17 June 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		:
+ * Bug Id		: n�80
+ * Modification : Add an option KB3 Format for generate FT
+ * VF version	: 1.16 
+ * ***************************************************************/
  
 package GWindow;
 
@@ -26,6 +33,7 @@ import javax.swing.border.Border;
 
 import jEditInterface.VisualFigaro;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
@@ -168,7 +176,7 @@ public class GWindowFaultTree extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -387,8 +395,12 @@ public class GWindowFaultTree extends GWindow {
 			unloop = "FAUX";
 		
 		//if there's no value in for the name of the fault tree file, we give the name of a temporary file
-		if (nameTextField.getText().isEmpty())
-			nameTextField.setText(System.getenv("TMP") + "\\faulttree_temp.xml");
+		if (nameTextField.getText().isEmpty()){
+			if (vfParent.isOSWindows())
+				nameTextField.setText(System.getenv("TMP") + "\\faulttree_temp.xml");
+			else 
+				nameTextField.setText(jEdit.getJEditHome() + "/VisualFigaro/faulttree_temp.xml");
+		}
 		
 		this.root = new Element("REQUESTS");
 		
@@ -410,12 +422,13 @@ public class GWindowFaultTree extends GWindow {
 		treatment.addContent(new Element("RESOLVE_CONST").setText("TRUE"));
 		treatment.addContent(new Element("RESOLVE_ATTR").setText("TRUE"));
 		treatment.addContent(new Element("INST_RULE").setText("TRUE"));
-		treatment.addContent(new Element("FILE_TREE_OPTIONS").setText("./VisualFigaro/figp_params.xml"));
+		treatment.addContent(new Element("FILE_TREE_OPTIONS").setText(jEdit.getJEditHome() + "/VisualFigaro/figp_params.xml"));
 		
 		this.root.addContent(treatment);
 		
 		this.root2 = new Element("GEN_TREE_OPTIONS");
 		
+		root2.addContent(new Element("FORMAT").setText("KB3"));
 		root2.addContent(new Element("SIMPLIFICATION").setText(simplification));
 		root2.addContent(new Element("COHERENCY").setText(coherency));
 		root2.addContent(new Element("UNLOOP").setText(unloop));
@@ -447,8 +460,8 @@ public class GWindowFaultTree extends GWindow {
 	public void saveXmlToFile() {
 		fillDocument();
 		
-		String fileName1 = "./VisualFigaro/figp_commands.xml";
-		String fileName2 = "./VisualFigaro/figp_params.xml";
+		String fileName1 = jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml";
+		String fileName2 = jEdit.getJEditHome() + "/VisualFigaro/figp_params.xml";
 		
 		try {
 			FileOutputStream fichier = new FileOutputStream(fileName1);

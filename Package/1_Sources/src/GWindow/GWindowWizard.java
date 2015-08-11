@@ -27,6 +27,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+import org.gjt.sp.jedit.jEdit;
 //import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
@@ -139,7 +141,7 @@ public class GWindowWizard extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -272,7 +274,11 @@ public class GWindowWizard extends GWindow {
 			}
 			
 			//Now that we know that the directory does exist then we check that no KB of the same name already exists
-			File kbDirectory = new File(pathTextField.getText() + "\\" + nameTextField.getText());
+			File kbDirectory;
+			if(vfParent.isOSWindows())
+				kbDirectory = new File(pathTextField.getText() + "\\" + nameTextField.getText());
+			else
+				kbDirectory = new File(pathTextField.getText() + "/" + nameTextField.getText());
 			
 			//If an existing kb with the same name already exists we have to warn the user and ask if he wants to create it or want to abort the creation
 			if(kbDirectory.exists()) {
@@ -303,8 +309,12 @@ public class GWindowWizard extends GWindow {
 			Vector<String> defaultFolders = new Vector<String>((new GXMLLoaderDefaultFiles()).getDefaultFiles(languageComboBox.getSelectedItem().toString(),"folder"));
 			for(String folderpath : defaultFolders) {
 				
-				String inputFolderPath = "./VisualFigaro/" + folderpath;
-				String outputFolderPath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + folderpath;
+				String inputFolderPath = jEdit.getJEditHome() + "/VisualFigaro/" + folderpath;
+				String outputFolderPath;
+				if(vfParent.isOSWindows())
+					outputFolderPath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + folderpath;
+				else
+					outputFolderPath = pathTextField.getText() + "/" + nameTextField.getText() + "/" + folderpath;
 				
 				File outputFolder=new File(outputFolderPath);
 				File inputFolder=new File(inputFolderPath);
@@ -333,9 +343,16 @@ public class GWindowWizard extends GWindow {
 				FileChannel inputFile = null;
 				FileChannel outputFile = null;
 				
-				String inputFilePath = "./VisualFigaro/" + filepath;
-				String outputFilePath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + filepath;
-				String outputDirectoryPath = outputFilePath.substring(0, outputFilePath.lastIndexOf("\\")) + "\\";
+				String inputFilePath = jEdit.getJEditHome() + "/VisualFigaro/" + filepath;
+				String outputFilePath;
+				String outputDirectoryPath;
+				if(vfParent.isOSWindows()){
+					outputFilePath = pathTextField.getText() + "\\" + nameTextField.getText() + "\\" + filepath;
+					outputDirectoryPath = outputFilePath.substring(0, outputFilePath.lastIndexOf("\\")) + "\\";
+				} else {
+					outputFilePath = pathTextField.getText() + "/" + nameTextField.getText() + "/" + filepath;
+					outputDirectoryPath = outputFilePath.substring(0, outputFilePath.lastIndexOf("/")) + "/";
+				}
 				
 				File outputDirectoryFile = new File(outputDirectoryPath);
 				if(!outputDirectoryFile.exists())
@@ -369,7 +386,12 @@ public class GWindowWizard extends GWindow {
 			}
 			
 			//The next step is to create the figaro file and fill it with the default text defined in the copiedFiles.xml file
-			String figaroFileName = kbDirectory.getAbsolutePath() + "\\" + nameTextField.getText() + ".fi";
+			String figaroFileName;
+			if(vfParent.isOSWindows())
+				figaroFileName = kbDirectory.getAbsolutePath() + "\\" + nameTextField.getText() + ".fi";
+			else
+				figaroFileName = kbDirectory.getAbsolutePath() + "/" + nameTextField.getText() + ".fi";
+				
 			File figaroFile = new File(figaroFileName);
 			FileWriter writer = null;
 			

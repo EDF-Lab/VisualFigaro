@@ -14,6 +14,13 @@
  * Bug Id       : n°70                                        
  * Modification : A new windowclass is called to let the user choose visualizations
  * VF version   : 1.15
+ * **************************************************************
+ * Date         : 01 July 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°23                                   
+ * Modification : Management of a new widget class, color chooser
+ * VF version   : 2.0
  * **************************************************************/
  
 package global;
@@ -40,4 +47,5 @@ public enum WidgetClasses {
 	EDITDEFAULTVAR,
 	LOADICON,
 	EXPRESSION, 
+	COLORCHOOSER, 
 };

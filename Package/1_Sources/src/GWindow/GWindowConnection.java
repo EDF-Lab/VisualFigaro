@@ -1,3 +1,13 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 24 June 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : n°73                                        
+ * Modification : Change of data structure to have the output interface name in an INTERFACE structure
+ * VF version   : 2.0
+ * **************************************************************/
+
 package GWindow;
 
 import java.awt.BorderLayout;
@@ -142,14 +152,14 @@ private static final long serialVersionUID = 1L;
 		listsPanel = new JPanel(new GridLayout(2,2,5,5));
 		
 		//Initialization of the OD list
-		nodeInterfacesFilledByLinkList = new GWidgetControledList(this, information, "Interface of the node filled by the link", null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, "noeud");
+		nodeInterfacesFilledByLinkList = new GWidgetControledList(this, information, "Interface of the node filled by the link", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, information.getTypeConcerned());
 		listsPanel.add(nodeInterfacesFilledByLinkList);
 		
 		//Initialization of the system types list
-		if(xmlLoader.findLinks().size() > 0)
-			linkInterfacesFilledByNodeList = new GWidgetControledList(this, information, "Interface of the link filled by the node", null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, xmlLoader.findLinks().get(0));
-		else
-			linkInterfacesFilledByNodeList = new GWidgetControledList(this, information, "Interface of the link filled by the node", null, ListTypes.SIMPLEARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, null);
+		//if(xmlLoader.findLinks().size() > 0)
+		//linkInterfacesFilledByNodeList = new GWidgetControledList(this, information, "Interface of the link filled by the node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, xmlLoader.findLinks().get(0));
+		//else
+		linkInterfacesFilledByNodeList = new GWidgetControledList(this, information, "Interface of the link filled by the node", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.TEXTRETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.INTERFACE, null);
 		listsPanel.add(linkInterfacesFilledByNodeList);
 	}
 	
@@ -169,11 +179,30 @@ private static final long serialVersionUID = 1L;
 			case NOTIFYCHANGE:
 				
 				//First we retrieve the message if it is not null
-				if(message.getArguments().get(0) != null && linkInterfacesFilledByNodeList != null) {
+				if(message.getArguments().get(0) != null && (linkInterfacesFilledByNodeList != null || nodeInterfacesFilledByLinkList != null)) {
 				
-					String receivedMessage = (String)message.getArguments().get(0);
-					//Finally we update the value of the other combo located in the inherit gridform
-					linkInterfacesFilledByNodeList.translateMessage(new GMessage(information, Messages.SETWINDOWARGUMENTS, receivedMessage));
+					//First we get the arguments of the widget
+					String selectedItem = (String)message.getArguments().get(0);
+					int emiter = -1;
+					try {
+						emiter = Integer.parseInt(message.getSender().getLastPartOfThePath());
+					} catch (NumberFormatException e) {
+						return;
+					}
+					
+					if(emiter == 1) {
+						System.out.println("NOTIFYCHANGE : " + emiter + " : " + selectedItem);
+						
+						//We create a message to update the controlled list with the new list of interfaces
+						message = new GMessage(information, Messages.SETWINDOWARGUMENTS, selectedItem);
+					
+						//Then we update them
+						//if(nodeInterfacesFilledByLinkList != null)
+						//	nodeInterfacesFilledByLinkList.translateMessage(message);
+					
+						linkInterfacesFilledByNodeList.translateMessage(message);
+					}
+					
 				}
 				break;
 				
@@ -206,7 +235,7 @@ private static final long serialVersionUID = 1L;
 		gridForm.loadXML(fieldsLoad, false);
 		
 		//Takes care of initializing the lists
-		nodeInterfacesFilledByLinkList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("REGLE_NOEUD_LIEN")), false);
-		linkInterfacesFilledByNodeList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("REGLE_LIEN_NOEUD")), false);
+		nodeInterfacesFilledByLinkList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("REGLE_NOEUD_LIEN")), true);
+		linkInterfacesFilledByNodeList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("REGLE_LIEN_NOEUD")), true);
 	}
 }

@@ -39,6 +39,13 @@
  * Evol Id      :                                      
  * Modification : Inhibit "Algorithms" tab display
  * VF version   : 1.14
+ * **************************************************************
+ * Date         : 23 June 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                             
+ * Bug Id       : n°83
+ * Evol Id      :                                      
+ * Modification : Correction of the previous modification in order to write the "Algorithms" part
+ * VF version   : 2.0
  * **************************************************************/
 
 package GWindow;
@@ -290,7 +297,7 @@ public class GWindowMain extends GWindow {
 		tabs.add("Models", thirdPanel);
 		
 		//And the initialization of the last, the fourth tab
-		//this.initializeFourthPanel();
+		this.initializeFourthPanel();
 		//tabs.add("Algorithms", fourthPanel);
 		
 		//Finally we add the tabs panel to the frame panel
@@ -431,11 +438,11 @@ public class GWindowMain extends GWindow {
 	
 	private void initializeFourthPanel() {
 		//First we initialize the panel
-		fourthPanel = new JPanel(new BorderLayout());
+		//fourthPanel = new JPanel(new BorderLayout());
 		
 		//And then we create and add the controlled list to the panel
 		algoList = new GWidgetControledList(this, information, "Algorithms", null, ListTypes.COMPLEXARRAY, NameRetrieverClasses.ALGORETRIEVER, ControlTypes.ADDDELEDIT, WindowClasses.ALGO, null);
-		fourthPanel.add(algoList, BorderLayout.CENTER);
+		//fourthPanel.add(algoList, BorderLayout.CENTER);
 	}
 	
 	public void translateMessage(GMessage message) {
@@ -515,7 +522,7 @@ public class GWindowMain extends GWindow {
 		GXMLElementFactory.saveElements(root, typeList.saveXML());
 		
 		//Save the algorithms list
-		//GXMLElementFactory.saveElements(root, algoList.saveXML());
+		GXMLElementFactory.saveElements(root, algoList.saveXML());
 		
 		return root;
 	}
@@ -555,7 +562,7 @@ public class GWindowMain extends GWindow {
 		externalTreatmentsModelsList.loadXML(GXMLElementFactory.refactorElements(listLoad, information.getLanguage().getBDCTranslation("MODELE_TRAITEMENT_EXTERNE")), false);
 		
 		//Takes care of initializing the lists on the fourth tab
-		//algoList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("LISTE_ALGO")), true);
+		algoList.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("LISTE_ALGO")), true);
 	}
 	
 	public static GWidgetControledList getItemList()

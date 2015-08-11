@@ -84,7 +84,7 @@ public class GWindowInterface extends GWindow {
 		panel.add(comboBox, BorderLayout.CENTER);
 		this.framePanel.add(panel, BorderLayout.CENTER);
 		
-		//Finally we initilize and put the ok/cancel widget and put it at the bottom of the top panel
+		//Finally we initialize and put the ok/cancel widget and put it at the bottom of the top panel
 		this.okCancelWidget = new GWidgetOKCancel(this, information);
 		this.framePanel.add(okCancelWidget, BorderLayout.SOUTH);
 		

@@ -9,6 +9,7 @@
 
 package GWindow;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
@@ -186,7 +187,7 @@ public class GWindowGenerateFig0 extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();
@@ -329,8 +330,12 @@ public class GWindowGenerateFig0 extends GWindow {
 			inst_Rule = "FAUX";
 		
 		//if there's no value in for the name of the figaro 0 file, we give the name of a temporary file
-		if (nameTextField.getText().isEmpty())
-			nameTextField.setText(System.getenv("TMP") + "\\fig0_temp.fi");
+		if (nameTextField.getText().isEmpty()){
+			if (vfParent.isOSWindows())
+				nameTextField.setText(System.getenv("TMP") + "\\fig0_temp.fi");
+			else
+				nameTextField.setText(jEdit.getJEditHome() + "/VisualFigaro/fig0_temp.fi");
+		}
 		
 		this.root = new Element("REQUESTS");
 		
@@ -372,7 +377,7 @@ public class GWindowGenerateFig0 extends GWindow {
 	public void saveXmlToFile() {
 		fillDocument();
 		
-		String fileName = "./VisualFigaro/figp_commands.xml";
+		String fileName = jEdit.getJEditHome() + "/VisualFigaro/figp_commands.xml";
 		
 		try {
 			FileOutputStream fichier = new FileOutputStream(fileName);

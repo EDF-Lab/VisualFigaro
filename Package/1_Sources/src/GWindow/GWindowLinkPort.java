@@ -7,6 +7,13 @@
  * Evol Id      : n°2                                    
  * Modification : Add "*" on lists containing elements
  * VF version   : 1.11
+ * **************************************************************
+ * Date         : 24 June 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : n°71
+ * Evol Id      :                                    
+ * Modification : Interfaces declaration order according to the schema
+ * VF version   : 2.0
  * **************************************************************/
 
 package GWindow;
@@ -201,11 +208,11 @@ public class GWindowLinkPort extends GWindow {
 		
 		parameters.add(types);
 		//Vector<Object> interfaces = new Vector<Object>();
-		interfaces.add("Interfaces of the link filled by the starting node");
-		interfaces.add("Interfaces of the link filled by the ending node");
-		interfaces.add("Interfaces of the ending node filled by the link");
-		interfaces.add("Interfaces of the ending node filled by the starting node");
 		interfaces.add("Interfaces of the starting node filled by the link");
+		interfaces.add("Interfaces of the link filled by the starting node");
+		interfaces.add("Interfaces of the ending node filled by the link");
+		interfaces.add("Interfaces of the link filled by the ending node");
+		interfaces.add("Interfaces of the ending node filled by the starting node");
 		interfaces.add("Interfaces of the starting node filled by the ending node");
 		parameters.add(interfaces);
 		
@@ -328,11 +335,11 @@ public class GWindowLinkPort extends GWindow {
 		GXMLElementFactory.saveElements(root, comboGridForm.saveXML());
 		
 		//Save elements from the lists
-		GXMLElementFactory.saveElements(root, interfacesLinkFilledByStartingNodeControledList.saveXML());
-		GXMLElementFactory.saveElements(root, interfacesLinkFilledByEndingNodeControledList.saveXML());
-		GXMLElementFactory.saveElements(root, interfacesEndingNodeFilledByLinkControledList.saveXML());
-		GXMLElementFactory.saveElements(root, interfacesEndingNodeFilledByStartingNodeControledList.saveXML());
 		GXMLElementFactory.saveElements(root, interfacesStartingNodeFilledByLinkControledList.saveXML());
+		GXMLElementFactory.saveElements(root, interfacesLinkFilledByStartingNodeControledList.saveXML());
+		GXMLElementFactory.saveElements(root, interfacesEndingNodeFilledByLinkControledList.saveXML());
+		GXMLElementFactory.saveElements(root, interfacesLinkFilledByEndingNodeControledList.saveXML());
+		GXMLElementFactory.saveElements(root, interfacesEndingNodeFilledByStartingNodeControledList.saveXML());
 		GXMLElementFactory.saveElements(root, interfacesStartingNodeFilledByEndingNodeControledList.saveXML());
 		
 		return root;
@@ -350,31 +357,32 @@ public class GWindowLinkPort extends GWindow {
 		//We load the xml into the lists
 		Vector<Element> bufferVect = new Vector<Element>();
 		bufferVect.add(e);
+		
+		interfacesStartingNodeFilledByLinkControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_DEPART_LIEN")), true);
+        System.err.println("NB ELEMENT 1 : "+interfacesStartingNodeFilledByLinkControledList.GetNumberOfElement());
+		
 		interfacesLinkFilledByStartingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_LIEN_DEPART")), true);
-        System.err.println("NB ELEMENT 1 : "+interfacesLinkFilledByStartingNodeControledList.GetNumberOfElement());
-        
-		interfacesLinkFilledByEndingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_LIEN_ARRIVEE")), true);
-        System.err.println("NB ELEMENT 2 : "+interfacesLinkFilledByEndingNodeControledList.GetNumberOfElement());
+        System.err.println("NB ELEMENT 2 : "+interfacesLinkFilledByStartingNodeControledList.GetNumberOfElement());
         
 		interfacesEndingNodeFilledByLinkControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_ARRIVEE_LIEN")), true);
         System.err.println("NB ELEMENT 3 : "+interfacesEndingNodeFilledByLinkControledList.GetNumberOfElement());
  
-		interfacesEndingNodeFilledByStartingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_ARRIVEE_DEPART")), true);
-        System.err.println("NB ELEMENT 4 : "+interfacesEndingNodeFilledByStartingNodeControledList.GetNumberOfElement());	
+        interfacesLinkFilledByEndingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_LIEN_ARRIVEE")), true);
+        System.err.println("NB ELEMENT 4 : "+interfacesLinkFilledByEndingNodeControledList.GetNumberOfElement());
         
-		interfacesStartingNodeFilledByLinkControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_DEPART_LIEN")), true);
-        System.err.println("NB ELEMENT 5 : "+interfacesStartingNodeFilledByLinkControledList.GetNumberOfElement());
+        interfacesEndingNodeFilledByStartingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_ARRIVEE_DEPART")), true);
+        System.err.println("NB ELEMENT 5 : "+interfacesEndingNodeFilledByStartingNodeControledList.GetNumberOfElement());	
         
 		interfacesStartingNodeFilledByEndingNodeControledList.loadXML(GXMLElementFactory.refactorElements(bufferVect, information.getLanguage().getBDCTranslation("REGLE_DEPART_ARRIVEE")), true);
         System.err.println("NB ELEMENT 6 : "+interfacesStartingNodeFilledByEndingNodeControledList.GetNumberOfElement());
         
         Vector<String> StrBuffer = new Vector<String>();
         Vector<GWidgetControledList> itemList = new Vector<GWidgetControledList>();
-        itemList.add(interfacesLinkFilledByStartingNodeControledList);
-        itemList.add(interfacesLinkFilledByEndingNodeControledList);
-        itemList.add(interfacesEndingNodeFilledByLinkControledList);
-        itemList.add(interfacesEndingNodeFilledByStartingNodeControledList);
         itemList.add(interfacesStartingNodeFilledByLinkControledList);
+        itemList.add(interfacesLinkFilledByStartingNodeControledList);
+        itemList.add(interfacesEndingNodeFilledByLinkControledList);
+        itemList.add(interfacesLinkFilledByEndingNodeControledList);
+        itemList.add(interfacesEndingNodeFilledByStartingNodeControledList);
         itemList.add(interfacesStartingNodeFilledByEndingNodeControledList);
         
         for (int i=0; i<6 ; i++)
@@ -396,12 +404,11 @@ public class GWindowLinkPort extends GWindow {
 		//Finally we add te gridform to the panel
 		comboPanel.add(comboGridForm, BorderLayout.NORTH);
 		
-		
-		cardPanel.add(interfacesLinkFilledByStartingNodeControledList, StrBuffer.get(0));
-		cardPanel.add(interfacesLinkFilledByEndingNodeControledList, StrBuffer.get(1));
+		cardPanel.add(interfacesStartingNodeFilledByLinkControledList, StrBuffer.get(0));
+		cardPanel.add(interfacesLinkFilledByStartingNodeControledList, StrBuffer.get(1));
 		cardPanel.add(interfacesEndingNodeFilledByLinkControledList, StrBuffer.get(2));
-		cardPanel.add(interfacesEndingNodeFilledByStartingNodeControledList, StrBuffer.get(3));
-		cardPanel.add(interfacesStartingNodeFilledByLinkControledList, StrBuffer.get(4));
+		cardPanel.add(interfacesLinkFilledByEndingNodeControledList, StrBuffer.get(3));
+		cardPanel.add(interfacesEndingNodeFilledByStartingNodeControledList, StrBuffer.get(4));
 		cardPanel.add(interfacesStartingNodeFilledByEndingNodeControledList, StrBuffer.get(5));
 
 	}

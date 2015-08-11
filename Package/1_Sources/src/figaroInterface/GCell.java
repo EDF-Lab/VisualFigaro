@@ -6,6 +6,12 @@
  * Bug Id       :                                         
  * Modification : Code cleanup to avoid warnings
  * VF version   : 1.7
+ * **************************************************************
+ * Date         : 5 August 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : n°76                                        
+ * Modification : Taking in account of the SYSTEM_OBJECT
+ * VF version   : 2.00
  * **************************************************************/
 
 package figaroInterface;
@@ -39,7 +45,6 @@ import java.util.HashMap;
 import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Map;
-
 import java.awt.Point;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -148,6 +153,7 @@ public class GCell extends DefaultMutableTreeNode{
 		Vector<String> tamponVect = new Vector<String>(0);
 		hierarchie = new HashMap<String, Vector<String>>();
 		tamponVect.add("CLASS");
+		tamponVect.add("OBJECT");
 		hierarchie.put("BDC", tamponVect.clone());
 		tamponVect.clear();
 		tamponVect.add("NAME");
@@ -170,6 +176,10 @@ public class GCell extends DefaultMutableTreeNode{
 		tamponVect.add("NAME");
 		tamponVect.add("ALTERNATIVE");
 		hierarchie.put("OCCURRENCE", tamponVect.clone());
+		tamponVect.clear();
+		tamponVect.add("NAME");
+		tamponVect.add("CLASS");
+		hierarchie.put("OBJECT", tamponVect.clone());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -199,6 +209,7 @@ public class GCell extends DefaultMutableTreeNode{
 		Vector<String> tamponVect = new Vector<String>(0);
 		hierarchie = new HashMap<String, Vector<String>>();
 		tamponVect.add("CLASS");
+		tamponVect.add("OBJECT");
 		hierarchie.put("BDC", tamponVect.clone());
 		tamponVect.clear();
 		tamponVect.add("NAME");
@@ -221,6 +232,10 @@ public class GCell extends DefaultMutableTreeNode{
 		tamponVect.add("NAME");
 		tamponVect.add("ALTERNATIVE");
 		hierarchie.put("OCCURRENCE", tamponVect.clone());
+		tamponVect.clear();
+		tamponVect.add("NAME");
+		tamponVect.add("CLASS");
+		hierarchie.put("OBJECT", tamponVect.clone());
 	}
 	
 	
@@ -434,6 +449,10 @@ public class GCell extends DefaultMutableTreeNode{
 		boolean present = true;
 		Vector<String> filsDevantEtrePresent = (Vector<String>)hierarchie.get(node.getNodeName());
 		Vector<Boolean> filsPresent;
+		
+		if(node.getNodeName() == "CLASS" && node.getChildNodes().getLength()<2)
+			filsDevantEtrePresent = null;
+		
 		if(filsDevantEtrePresent != null && !isVirtual) {
 			filsPresent = new Vector<Boolean>(filsDevantEtrePresent.size());
 			for(int i=0; i<filsDevantEtrePresent.size(); i++) {
@@ -446,7 +465,6 @@ public class GCell extends DefaultMutableTreeNode{
 				//present = false;
 				present = true;
 			}
-				
 				
 		}
 		else
@@ -622,7 +640,40 @@ public class GCell extends DefaultMutableTreeNode{
 				treatChildren = false;
 			}
 			
-			//Cas du noeud
+			//Cas du noeud OBJECT
+			if(value.get(0).toString() == "OBJECT") {
+				preBuffer += "\nOBJET_SYSTEME " + children.get(0).getChild(0).getValue(1);
+				String intermediateBuffer = "";
+				
+				if (children.size()>1) {
+					intermediateBuffer += ((children.get(1).getValue(0) == "CLASS" && !children.get(1).getChild(0).getValue(1).toString().equals("FIGARO")) ? " EST_UN " + children.get(1).getChild(0).getValue(1).toString() : "") + " ;\n";
+					buffer += preBuffer + intermediateBuffer;
+					
+					for(int i=0; i<preBuffer.length(); i++)
+						al.add(UID);
+					for(int i=0; i<intermediateBuffer.length(); i++)
+						al.add(children.get(1).getUID());
+					
+					for(int i=((children.get(1).getValue(0) == "CLASS") ? 2 : 1); i<children.size();i++)
+						buffer += children.get(i).printFigaro(expanded, al);
+					
+					postBuffer = ";\n";
+				} else {
+					buffer += preBuffer;
+					
+					for(int i=0; i<preBuffer.length(); i++)
+						al.add(UID);
+					postBuffer = " ;\n";
+					
+				}
+				
+				buffer += postBuffer;
+				
+				for(int i=0; i<postBuffer.length(); i++)
+					al.add(UID);
+			
+				treatChildren = false;
+			}
 			
 			//Cas du noeud CONSTANT
 			if(value.get(0).toString() == "CONSTANT") {

@@ -1,3 +1,14 @@
+/* **************************************************************
+ *              File modifications log                           
+ * ************************************************************** 
+ * Date			: 11 August 2015
+ * Author		: L. RAFFAELLI/ALL4TEC
+ * Bug Id		: 
+ * Bug Id		: n�81
+ * Modification : Take the "NAME" field for english version
+ * VF version	: 2.0 
+ * ***************************************************************/
+
 package GWindow;
 
 import global.Messages;
@@ -165,7 +176,7 @@ private static final long serialVersionUID = 1L;
 	public void loadXml(Element e) {
 		
 		if(e.getChild(information.getLanguage().getBDCTranslation("NOM")) != null)
-			nameTextField.setText(e.getChildText("NOM"));
+			nameTextField.setText(e.getChildText(information.getLanguage().getBDCTranslation("NOM")));
 		
 		Vector<Element> fieldsLoad = new Vector<Element>();
 		fieldsLoad.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("RESOLUTION_CONSTANTES")).get(0));

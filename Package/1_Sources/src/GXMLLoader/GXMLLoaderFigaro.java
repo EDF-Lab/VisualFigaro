@@ -1,3 +1,13 @@
+/* **************************************************************
+ *              File modifications log                           
+ * **************************************************************
+ * Date         : 22 June 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : N°84 
+ * Modification : Taken in account of Figp evolution for managing GROUPS
+ * VF version   : 2.0
+ * **************************************************************/
+
 package GXMLLoader;
 
 import global.FilterTypes;
@@ -114,7 +124,7 @@ public class GXMLLoaderFigaro {
 		
 		//And translate them into strings
 		for(Iterator<Element> iter = elements.iterator(); iter.hasNext();)
-			result.add(iter.next().getText());
+			result.add(iter.next().getChildText("NAME"));
 		
 		return result;
 	}

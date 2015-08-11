@@ -326,7 +326,7 @@ public class GXMLLoader {
 		//First we retrieve all the types
 		Vector<Element> types = findTypes();
 		
-		//Then we will go trough the vector to find the elements which have a subElement called LINK
+		//Then we will go trough the vector to find the elements which have a subElement called NOEUD
 		for(Element element : types)
 			//If the element is not null we launch the process
 			if(element != null)
@@ -348,7 +348,7 @@ public class GXMLLoader {
 		//First we retrieve all the types
 		Vector<Element> types = findTypes();
 		
-		System.err.println("Cherchage de liens");
+		System.err.println("Recherche de liens");
 		
 		//Then we will go trough the vector to find the elements which have a subElement called LINK
 		for(Element element : types)

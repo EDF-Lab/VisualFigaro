@@ -12,6 +12,12 @@
  * Bug Id       :                                         
  * Modification : Code cleanup to avoid warnings
  * VF version   : 1.7
+ * **************************************************************
+ * Date         : 5 August 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : n°76  (CANCELED)                                      
+ * Modification : Taking in account of the SYSTEM_OBJECT for parsing
+ * VF version   : 2.00
  * **************************************************************/
 
 package figaroParser;
@@ -44,6 +50,8 @@ package figaroParser;
 import figaroInterface.*;
 
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import GLanguage.GLanguage;
 import GObjectInformation.GObjectInformation;
@@ -207,6 +215,163 @@ public class FigaroParser {
 		return this.allCellsAssociations;
 	}
 	
+	/* Code writed to parse the SYSTEM_OBJECT position with the CLASS.
+	 * Temporary removed until the find of SYSTEM_OBECT location becomes more robust
+	private ArrayList<Integer> parseCode(String s, GLanguage language) {
+		//Some variables
+		int indexDepart = 0, indexFin = 0;
+		int indexDepart1 = 0, indexFin1 = 0;
+		int indexDepart2 = 0, indexFin2 = 0;
+		int typeNumero = 0;
+		int charJump = 1;
+		boolean Continue = true, Continue2 = true;
+		int charJump1 = ("TYPE").length();
+		int charJump2 = ("OBJET_SYSTEME").length();
+		
+		String currentlanguage = new String(language.getLanguage().toString());
+		if (currentlanguage.equals("English")){
+		  charJump1 = ("CLASS").length();
+		  charJump2 = ("SYSTEM_OBJECT").length();
+		}
+		
+		//Tout d'abord on doit initialiser la taille de l'arraylist des commentaires a la bonne taille
+		commentairePosition = new ArrayList<Boolean>(s.length());
+		for(int i=0; i<s.length(); i++)
+			commentairePosition.add(false);
+		
+		allCellsAssociations = new ArrayList<Integer>(s.length());
+		for(int i=0; i<s.length(); i++)
+			allCellsAssociations.add(0);
+		
+		//On va ensuite faire appel a la fonction trouverCommentaire qui va permettre de definir quels caracteres prendre en compte dans le parsing
+		//et lesquels exclure car ils font partis des commentaires
+		trouverCommentaire(s);
+
+		//String test_string = language.getFigaroTranslation("TYPE");
+		
+		while (Continue){
+		
+			//Maintenant il va falloir trouver toutes les occurences du mot "TYPE" afin de determiner les blocs de type
+			indexDepart1 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + language.getFigaroTranslation("TYPE") + " ", indexDepart), 
+					s.indexOf(" " + language.getFigaroTranslation("TYPE") + " ", indexDepart)), 
+					s.indexOf("\t" + language.getFigaroTranslation("TYPE") + " ", indexDepart));
+		
+			if (currentlanguage.equals("English")){
+				indexDepart2 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + "SYSTEM_OBJECT" + " ", indexDepart), 
+						s.indexOf(" " + "SYSTEM_OBJECT" + " ", indexDepart)), 
+						s.indexOf("\t" + "SYSTEM_OBJECT" + " ", indexDepart));
+			} else {
+				indexDepart2 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + "OBJET_SYSTEME" + " ", indexDepart), 
+						s.indexOf(" " + "OBJET_SYSTEME" + " ", indexDepart)), 
+						s.indexOf("\t" + "OBJET_SYSTEME" + " ", indexDepart));
+			}
+		
+			indexDepart = tokuBetsuMin(indexDepart1, indexDepart2);
+		
+			if(indexDepart == indexDepart1) charJump = charJump1;
+			else charJump = charJump2;
+			
+			if (!(indexDepart>=0)) Continue = false; 
+			
+			if (Continue){
+			
+				//On teste si l'indice n'est pas dans un commentaire
+				if(commentairePosition.get(indexDepart)) {
+				
+					//On est dans le cas ou le type est dans un commentaire. On va donc passer au prochaine type
+					indexDepart+=charJump;
+				
+				} else {
+					//On est dans le cas ou le type est bien declare dans le corps du fichier
+			
+					//On se place juste apres la declaration pour commencer la recherche
+				
+					indexFin = indexDepart + charJump;
+					indexDepart+=1;
+					//On lance une premiere recherche
+				
+					//On va alors determiner le prochain type valide
+					Continue2 = true;
+					
+					while (Continue2){
+					
+						indexFin1 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + language.getFigaroTranslation("TYPE") + " ", indexFin), 
+								s.indexOf(" " + language.getFigaroTranslation("TYPE") + " ", indexFin)), 
+								s.indexOf("\t" + language.getFigaroTranslation("TYPE") + " ", indexFin));
+				
+						if (currentlanguage.equals("English")){
+							indexFin2 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + "SYSTEM_OBJECT" + " ", indexFin), 
+									s.indexOf(" " + "SYSTEM_OBJECT" + " ", indexFin)), 
+									s.indexOf("\t" + "SYSTEM_OBJECT" + " ", indexFin));
+						} else {
+							indexFin2 = tokuBetsuMin(tokuBetsuMin(s.indexOf("\n" + "OBJET_SYSTEME" + " ", indexFin), 
+									s.indexOf(" " + "OBJET_SYSTEME" + " ", indexFin)), 
+									s.indexOf("\t" + "OBJET_SYSTEME" + " ", indexFin));
+						}
+					
+						indexFin = tokuBetsuMin(indexFin1, indexFin2);
+						
+						if(indexDepart == indexDepart1)
+							charJump = charJump1;
+						else charJump = charJump2;
+					
+						if (!(indexFin>0)) Continue2 = false; 
+					
+						if (Continue2)
+						{
+							if(commentairePosition.get(indexFin)) {
+								indexFin += charJump;
+							} 	else {
+								break;
+							}
+						}
+					}
+				
+					indexFin=indexFin+1;
+				
+					//On retrouve le typeNumero ieme type dans l'arbre.
+					GCell cell = trouverIemeType(typeNumero);
+				
+					if(cell == null) {
+						System.err.println("The cell is null");
+						return null;
+					}
+
+					//System.err.println("Type num : " + typeNumero + " et les deux variables depart : " + indexDepart + " et l'index de fin : " + indexFin + " et la chaine : " + s.substring(indexDepart, indexDepart+20));
+				
+					if(indexFin > 0) {
+					
+						//System.out.println("Voici la fin : " + indexFin);
+					
+						if(indexFin > commentairePosition.size())
+							indexFin = commentairePosition.size();
+						
+						//On va maintenant remplir le arrayList
+						for(int i=indexDepart; i<indexFin; i++)
+							allCellsAssociations.set(i, cell.getUID());
+					
+						//System.err.println("Voila les deux : " + indexDepart + " : " + indexFin);
+					
+						indexDepart = (indexFin-1);
+					} else {
+						//On va maintenant remplir le arrayList
+						for(int i=indexDepart; i<commentairePosition.size(); i++)
+							allCellsAssociations.set(i, cell.getUID());
+					
+						break;
+					}
+				
+					//On passe au type suivant
+					typeNumero++;
+
+					//On passe a la recherche du prochain bloc
+				}
+			}		
+		}
+		
+		return this.allCellsAssociations;
+	}*/
+	
 	private GCell trouverIemeType(int pos) {
 		
 		int searchPos=0;
@@ -214,13 +379,25 @@ public class FigaroParser {
 		//On va recuperer le nombre d'enfants de la racine. Attention il s'agit de la deuxieme racine a cause du type #document
 		int nbChild = gtree.getRoot().getChild(0).getChildrenCount();
 		
+		//JOptionPane.showMessageDialog(null, this, "Recherche de : "+pos+" child : "+nbChild,1);
+		
 		//On va parcourir les types dans l'arbre. Il faut faire attention car il y a aussi un ordre_des_etapes
 		for(int i=0; i<nbChild; i++) { 
 
+			//if(gtree.getRoot().getChild(0).getChild(i).getValue(0).toString().equals("CLASS")|gtree.getRoot().getChild(0).getChild(i).getValue(0).toString().equals("OBJECT")) {
+			//replace the next IF with the previous IF to get "OBJECT" in the search
+			
 			if(gtree.getRoot().getChild(0).getChild(i).getValue(0).toString().equals("CLASS")) {
-				
-				if(searchPos == pos)
+			
+				if(searchPos == pos) {
+					/*if(gtree.getRoot().getChild(0).getChild(i).getValue(0).toString().equals("CLASS"))
+						JOptionPane.showMessageDialog(null, gtree.getRoot().getChild(0).getChild(i).toString(), "It's a CLASS : "+pos+" child : "+nbChild,1);
+					
+					if(gtree.getRoot().getChild(0).getChild(i).getValue(0).toString().equals("OBJECT"))
+						JOptionPane.showMessageDialog(null, gtree.getRoot().getChild(0).getChild(i).toString(), "It's an OBJECT : "+pos+" child : "+nbChild,1);*/
+					
 					return gtree.getRoot().getChild(0).getChild(i);
+				}
 				searchPos++;
 			}
 		}

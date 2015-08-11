@@ -11,10 +11,10 @@
  
 package GWindow;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
 import GMessage.GMessage;
-
 import jEditInterface.VisualFigaro;
 
 import java.awt.BorderLayout;
@@ -98,7 +98,7 @@ public class GWindowAbout extends GWindow {
 		logoPanel = new JPanel(new BorderLayout());
 		
 		//First we retrieve the EDF icon
-		ImageIcon imageIcon = new ImageIcon("./VisualFigaro/" + "logoEDF.gif");
+		ImageIcon imageIcon = new ImageIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "logoEDF.gif");
 		
 		//We add the logo to the logo panel
 		JLabel iconLabel = new JLabel();

@@ -31,6 +31,12 @@
  * Bug Id       : n°58 & 63                                        
  * Modification : Fix bug on missing <VG_LIEN> structure
  * VF version   : 1.9
+ * **************************************************************
+ * Date         : 21 July 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Evol Id      : n°23                                        
+ * Modification : Add the Gwidget Colorchooser
+ * VF version   : 2.0
  * **************************************************************/
 
 package GWindow;
@@ -170,7 +176,7 @@ public class GWindowDefaultVarLink extends GWindow {
 		
 		this.pack();
 		this.setTitle("Default Graphic Variant");
-		this.setSize(350,280);
+		this.setSize(550,300);
 	}
 	
 	private void tabsInitialization() {
@@ -198,7 +204,7 @@ public class GWindowDefaultVarLink extends GWindow {
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
 		widgetClasses.add(WidgetClasses.COMBO);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.COMBO);
 		
 		//Give the arguments to the widgets.

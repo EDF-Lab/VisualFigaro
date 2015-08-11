@@ -26,6 +26,13 @@
  * Modification : Reactivate owner test and put text focus outside
  *                the pos and owner condition
  * VF version   : 1.10
+ * **************************************************************
+ * Date         : 5 August 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : n°76                                        
+ * Modification : The <CLASS> field of an SYSTEM_OBJECT is no longer
+ * 				  a problem
+ * VF version   : 2.00
  * **************************************************************/
 
 package figaroInterface;
@@ -294,13 +301,13 @@ public class FigaroTree extends JPanel {
 		}
 			
 		//Then we store the path corresponding to the item the user has clicked
-
+		
 		//TreePath path = gtree.findPathToSelected(previousPosition = formatCaretPosition(view.getEditPane().getTextArea().getText(), view.getEditPane().getTextArea().getCaretPosition()));
 		TreePath path = gtree.findPathToSelected(previousPosition = view.getEditPane().getTextArea().getCaretPosition());
 	
 		//We mark the cells in order to update the tree later
 		gtree.setFigaroCell(previousPosition);
-				
+		
 		//Then the tree is updated in order to have the cell visible in the tree
 		tree.expandPath(path);
 		tree.setSelectionPath(path);
@@ -527,7 +534,7 @@ public class FigaroTree extends JPanel {
 		}
 		
         public Component getTreeCellRendererComponent(JTree tree, Object obj, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-			
+        	
 			if(((GCell)obj).isEquivalentToSelectedFigaro() > 0) {
 				setTextSelectionColor(Color.WHITE);
 				//200-((GCell)obj).isEquivalentToSelectedFigaro()*50
@@ -575,7 +582,7 @@ public class FigaroTree extends JPanel {
 			//System.out.println("Voici le nombre ligne dans l'arbre : " + tree.getRowCount() + " et la ligne selectionnee : " + tree.getRowForPath(tree.getSelectionPath()));
 			
 			if(((GCell)obj).getValue(0) != null) {
-				if(((String)((GCell)obj).getValue(0)).equals("CLASS")) {
+				if(((String)((GCell)obj).getValue(0)).equals("CLASS")&&((GCell)obj).getChildrenCount()>1) {
 					if(parent.getParent() == null)
 						System.out.println("Le parent DomEcho est null");
 					else

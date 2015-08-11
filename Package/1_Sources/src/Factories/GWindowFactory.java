@@ -45,6 +45,7 @@ import GWindow.GWindowReglesTypeIfThenElse;
 import GWindow.GWindowVarLink;
 import GWindow.GWindowVarNode;
 import GWindow.GWindowVisualizations;
+import GWindow.GWindowColorChooser;
 
 /**
  * This class is a factory used to create particular types of <code>GWindow</code> objects
@@ -81,6 +82,11 @@ public class GWindowFactory {
 					window.loadXml(new Element("ALGORITHME_OD"));
 				else
 					window.loadXml((Element)args[1]);
+				break;
+			
+			case COLORCHOOSER:
+				System.out.println("Creation d'une fenetre ColorChooser");
+				window = new GWindowColorChooser(p, info, (String)args[0]);
 				break;
 			
 			case DEPART:

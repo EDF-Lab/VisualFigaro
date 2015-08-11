@@ -1,10 +1,15 @@
 package GXSDOperations;
 
 
+import jEditInterface.VisualFigaro;
+
 import java.io.File;
 import java.util.Iterator;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
@@ -43,8 +48,13 @@ public class GXSDOperations {
 		if(!xlDefaultFiles.isAvailableLanguage(language))
 			return;
 		
+		String xsdFileName;
+		
+		if (System.getProperty("os.name").contains("Windows"))
 		//If it is available we have to retrieve the name of the xsd file
-		String xsdFileName = "./VisualFigaro/" + "\\" + xlDefaultFiles.getSchemaFilenameForLanguage(language);
+			xsdFileName = jEdit.getJEditHome() + "/VisualFigaro/" + "\\" + xlDefaultFiles.getSchemaFilenameForLanguage(language);
+		else
+			xsdFileName = jEdit.getJEditHome() + "/VisualFigaro/" + xlDefaultFiles.getSchemaFilenameForLanguage(language);
 		
 		//SAXBuilder instance creation
 		SAXBuilder sxb = new SAXBuilder();

@@ -8,6 +8,13 @@
  * Modification : External Treatments Models implementation 
  *                Use simple name acquisition scheme for code names
  * VF version   : 1.12c
+ * **************************************************************
+ * Date         : 01 July 2015                            
+ * Author       : L.RAFFAELLI/ALL4TEC                              
+ * Bug Id       : 
+ * Evol Id      : n°23                                   
+ * Modification : Management of a new widget class, color chooser
+ * VF version   : 2.0
  * **************************************************************/
 
 package Factories;
@@ -33,6 +40,7 @@ import GWidget.GWidgetListComplexArray;
 import GWidget.GWidgetListSimpleArray;
 import GWidget.GWidgetNodeLinkNeitherUpDownEdit;
 import GWidget.GWidgetTextField;
+import GWidget.GWidgetColorChooser;
 
 /**
  * This class is a factory used to create particular types of <code>GWidget</code> objects
@@ -77,6 +85,12 @@ public class GWidgetFactory {
 			
 			case NODELINKNEITHERUPDOWNEDIT:
 				return new GWidgetNodeLinkNeitherUpDownEdit(p, info);
+				
+			case COLORCHOOSER:
+				if(p == null)
+					return new GWidgetColorChooser();
+				else
+					return new GWidgetColorChooser(p, info);
 				
 			case CONTROL:
 				//GWidgetControl is only an interface

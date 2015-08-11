@@ -19,6 +19,13 @@
  * Modification : Get only file name for .sym (suppress path and ext)
  *                + Correction from new specification 30 March 2010
  * VF Version   : 1.5
+ * **************************************************************
+ * Date         : 25 June 2015                              
+ * Author       : L.RAFFAELLI/ALL4TEC                               
+ * Bug Id       : n°72                                      
+ * Modification : Add inheritance GV schemas definition
+ *                + Correction in the declaration order
+ * VF Version   : 2.0
  * **************************************************************/
 
 package GWindow;
@@ -51,6 +58,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTabbedPane;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Element;
 
 import com.ctreber.aclib.image.ico.BitmapDescriptor;
@@ -279,7 +287,7 @@ public class GWindowVarNode extends GWindow {
 		
 		this.pack();
 		this.setTitle("Graphic Variant");
-		this.setSize(347,320);
+		this.setSize(550,320);
 		
 		//And finally we initialize the JMenuBar
 		menuBarInitialization();
@@ -338,22 +346,22 @@ public class GWindowVarNode extends GWindow {
 		
 		//Set the labels
 		Vector<String> labels = new Vector<String>();
-		labels.add("Inherit From Type : ");
 		labels.add("Inherit Graphic Variant : ");
+		labels.add("Inherit From Type : ");
 		
 		//Set the types of the widgets included in the gridForm
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
 		widgetClasses.add(WidgetClasses.COMBO);
 		widgetClasses.add(WidgetClasses.COMBO);
 		
-		//The parameters (the name of the types)
+		//The parameters (the name of the variantes, then the name of the types)
 		Vector<Vector<Object>> parameters = new Vector<Vector<Object>>();
-		parameters.add(types);
 		Vector<Object> variantes = new Vector<Object>();
 		if(types.size() > 0)
 			for(String s : xmlLoader.findVariantesGraphiquesNames((String)types.get(0)))
 				variantes.add(s);
 		parameters.add(variantes);
+		parameters.add(types);
 			
 		//Create the gridform
 		inheritanceGridForm = new GWidgetGridForm(this, information, labels, 2, 2, widgetClasses, parameters);
@@ -426,9 +434,9 @@ public class GWindowVarNode extends GWindow {
 		
 		//Set the type of widget we want in the grid widget
 		Vector<WidgetClasses> widgetClasses = new Vector<WidgetClasses>();
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
-		widgetClasses.add(WidgetClasses.TEXTFIELD);
+		widgetClasses.add(WidgetClasses.COLORCHOOSER);
 		widgetClasses.add(WidgetClasses.TEXTFIELD);
 		
 		//Give the arguments to the widgets.
@@ -444,7 +452,7 @@ public class GWindowVarNode extends GWindow {
 		secondPanel.add(generalCharacteristicsGridForm, BorderLayout.NORTH);
 		
 		//We create the icon widget
-		Image image = loadIcon("./VisualFigaro/" + "test.ico");
+		Image image = loadIcon(jEdit.getJEditHome() + "/VisualFigaro/" + "test.ico");
 		loadIcon = new GWidgetLoadIcon(this, information, image);
 		
 		//Then we add this panel to the first panel
@@ -589,7 +597,7 @@ public class GWindowVarNode extends GWindow {
 				
 				//First we retrieve the message if it is not null
 				if(message.getArguments().get(0) != null && inheritanceGridForm != null) {
-				
+					
 					//First we get the arguments of the widget
 					String selectedItem = (String)message.getArguments().get(0);
 					int emiter = -1;
@@ -599,12 +607,12 @@ public class GWindowVarNode extends GWindow {
 						return;
 					}
 					
-					if(emiter == 0) {
+					if(emiter == 1) {
 						System.out.println("NOTIFYCHANGE : " + emiter + " : " + selectedItem);
 						
 						//Then we update the widget
 						Vector<Object> arguments = new Vector<Object>();
-						arguments.add(1);
+						arguments.add(0);
 						GMessage dummyMessage = new GMessage(information, Messages.REPLACEDEFAULTVALUES);
 						for(String varName : xmlLoader.findVariantesGraphiquesNames(selectedItem))
 							dummyMessage.addArgument(varName);
@@ -680,6 +688,12 @@ public class GWindowVarNode extends GWindow {
 		
 		Vector<Element> elemVect = new Vector<Element>();
 		elemVect.add(e);
+		
+		//We load the element related to the inheritance Pannel
+		Vector<Element> inheritanceFields = new Vector<Element>();
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")).get(0));
+		inheritanceFields.add(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("HERITE_DU_TYPE")).get(0));
+		inheritanceGridForm.loadXML(inheritanceFields, false);
 		
 		//We load the elements related to the general panel
 		nameTextField.loadXML(GXMLElementFactory.refactorElement(e, information.getLanguage().getBDCTranslation("NOM")), false);

@@ -30,4 +30,5 @@ public enum WindowClasses {
 	VISUALIZATION,
 	INTERFACE,
 	PORTLINK,
+	COLORCHOOSER
 };

@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Vector;
 
+import org.gjt.sp.jedit.jEdit;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -35,7 +36,7 @@ public class GXMLLoaderDefaultFiles {
 	public GXMLLoaderDefaultFiles() {
 		
 		GXMLLoader xl = new GXMLLoader(null);
-		document = xl.loadXmlFileJDOM("./VisualFigaro/" + "copiedFiles.xml");
+		document = xl.loadXmlFileJDOM(jEdit.getJEditHome() + "/VisualFigaro/" + "copiedFiles.xml");
 		root = document.getRootElement();
 	}
 	
