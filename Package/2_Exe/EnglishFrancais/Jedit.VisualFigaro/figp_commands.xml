@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <REQUESTS>
   <LOAD_BDC_FI>
-    <FILE_FI>D:\1 VisualFigaro\Sample knowledge bases for KB3\Miniplant1\Francais\Miniplant1.fi</FILE_FI>
+    <FILE_FI>C:\Users\Marc\Documents\_DD1\VisualFigaro bdc de test\Sample knowledge bases for KB3\Digraph\Francais\Digraph.fi</FILE_FI>
   </LOAD_BDC_FI>
   <LOAD_BDF_FI>
-    <FILE>D:\1 VisualFigaro\Sample knowledge bases for KB3\Miniplant1\Modèle test Miniplant fr.fi</FILE>
+    <FILE>C:\Users\Marc\Documents\_DD1\VisualFigaro bdc de test\Sample knowledge bases for KB3\Digraph\Francais\models\andgate.fi</FILE>
   </LOAD_BDF_FI>
   <RUN_TREATMENT>
     <TREATMENT>GENERER_FIG0</TREATMENT>
-    <FILE>C:\Users\bouissou\AppData\Local\Temp\fig0_temp.fi</FILE>
+    <FILE>C:\Users\Marc\AppData\Local\Temp\fig0_temp.fi</FILE>
     <FILE_MACRO>fiabsimu.h</FILE_MACRO>
     <RESOLVE_CONST>VRAI</RESOLVE_CONST>
     <RESOLVE_ATTR>VRAI</RESOLVE_ATTR>
     <INST_RULE>VRAI</INST_RULE>
+    <LIST_GROUPS>
+      <GROUP>SANS_NOM</GROUP>
+      <GROUP>groupe_commun</GROUP>
+    </LIST_GROUPS>
   </RUN_TREATMENT>
 </REQUESTS>
 
