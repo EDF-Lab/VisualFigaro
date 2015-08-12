@@ -65,9 +65,12 @@ ________________________________________________________________________________
 				<xs:element ref="CREATION_DATE" minOccurs="0"/>
 				<xs:element ref="MODIFICATION_DATE" minOccurs="0"/>
 				<xs:element ref="SIGNATURE" minOccurs="0"/>
+				<xs:element ref="PRECOMP_CST" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="NRG_LIST" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="FT_GENERATION_MODEL" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="SIMULATION_MODEL" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="FIG0_INST_MODEL" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="BDF_MODEL" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="EXTERNAL_PROCESSING_MODEL" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="KB_FILTERS_LIST" minOccurs="0"/>
 				<xs:element ref="MR_STEP" minOccurs="0"/>
@@ -76,6 +79,55 @@ ________________________________________________________________________________
 				<xs:element ref="PALETTE_CLASS_FAMILY" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="CLASS" maxOccurs="unbounded"/>
 				<xs:element ref="ALGO_LIST" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PRECOMP_CST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VALUE" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="TEXT" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="NAME" type="xs:string" use="required"/>
+			<xs:attribute name="CST_TYPE" type="xs:string" use="optional"/>
+			<xs:attribute name="DESCRIPTION" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NRG_LIST">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NRG" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NRG_RULE" minOccurs="0" maxOccurs="6">
+								<xs:complexType>
+									<xs:attribute name="RULE_TYPE" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="TOP_RULE"/>
+												<xs:enumeration value="EXT_RULE"/>
+												<xs:enumeration value="BE_RULE"/>
+												<xs:enumeration value="CCF_RULE"/>
+												<xs:enumeration value="HE_RULE"/>
+												<xs:enumeration value="GATE_RULE"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="PREFIX" type="xs:string" use="optional"/>
+									<xs:attribute name="SUFFIX" type="xs:string" use="optional"/>
+									<xs:attribute name="SEPARATOR" type="xs:string" use="optional"/>
+									<xs:attribute name="SED" type="xs:string" use="optional"/>
+									<xs:attribute name="SED_DESC" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="NAME" type="xs:string" use="required"/>
+						<xs:attribute name="DESCRIPTION" type="xs:string" use="optional"/>
+					</xs:complexType>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -92,24 +144,19 @@ ________________________________________________________________________________
 				</xs:element>
 				<xs:element ref="DESCRIPTION" minOccurs="0"/>
 				<xs:element ref="HELP" minOccurs="0"/>
-				<xs:element ref="CODES" minOccurs="0"/>
-				<xs:element ref="FT" minOccurs="0"/>
-				<xs:element ref="FIG0" minOccurs="0"/>
+				<xs:element name="CODES" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ALL_CODES" type="tkb3_bool"/>
+							<xs:element name="CODE_NAME" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FT" type="tkb3_bool" minOccurs="0"/>
+				<xs:element name="FIG0" type="tkb3_bool" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="CODES">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="ALL"/>
-				<xs:element ref="CODE_NAME" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="FT" type="tkb3_bool"/>
-	<xs:element name="FIG0" type="tkb3_bool"/>
-	<xs:element name="ALL" type="tkb3_bool"/>
-	<xs:element name="CODE_NAME" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_COMP" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_DOWNSTREAM" type="xs:string"/>
 	<xs:element name="OB_INTERFACE_UPSTREAM" type="xs:string"/>
@@ -216,9 +263,6 @@ ________________________________________________________________________________
 				<xs:element ref="FG_COLOR" minOccurs="0"/>
 				<xs:element ref="LINE_THICKNESS" minOccurs="0"/>
 				<xs:element ref="BG_COLOR" minOccurs="0"/>
-				<xs:element ref="LINK_THICKNESS" minOccurs="0"/>
-				<xs:element ref="ARROW_STYLE" minOccurs="0"/>
-				<xs:element ref="LINK_STYLE" minOccurs="0"/>
 				<xs:element ref="FILE" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -282,6 +326,15 @@ ________________________________________________________________________________
 				<xs:element ref="LOOPS_SUPPRESSION"/>
 				<xs:element ref="NEGATIONS_SUPPRESSION"/>
 				<xs:element ref="PROCESSING_RULES_GROUPS"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BDF_MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NAME"/>
+				<xs:element ref="DESCRIPTION" minOccurs="0"/>
+				<xs:element ref="HELP" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -389,6 +442,7 @@ ________________________________________________________________________________
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="EQUATION_NAME" type="xs:NCName"/>
+										<xs:element name="IF_CPP" type="xs:string" minOccurs="0"/>
 										<xs:element name="SYSTEM_NAME" type="xs:NCName"/>
 										<xs:element name="IF" type="xs:string"/>
 										<xs:element name="FORMULA" type="xs:string"/>
@@ -427,6 +481,7 @@ ________________________________________________________________________________
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="RULE_NAME" type="xs:NCName" minOccurs="0"/>
+				<xs:element name="IF_CPP" type="xs:string" minOccurs="0"/>
 				<xs:element name="GIVEN" type="xs:string" minOccurs="0"/>
 				<xs:element name="IF" type="xs:string" minOccurs="0"/>
 				<xs:element name="THEN" type="xs:string" minOccurs="0"/>
@@ -604,6 +659,7 @@ ________________________________________________________________________________
 			<xs:restriction base="xs:string">
 				<xs:enumeration value="DASH"/>
 				<xs:enumeration value="DASH_DOT"/>
+				<xs:enumeration value="DOT"/>
 				<xs:enumeration value="SOLID"/>
 			</xs:restriction>
 		</xs:simpleType>
@@ -798,5 +854,3 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 -->
 </xs:schema>
-
-
