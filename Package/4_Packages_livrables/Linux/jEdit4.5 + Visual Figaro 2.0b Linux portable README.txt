@@ -1,0 +1,6 @@
+Le zip jEdit4.5 + Visual Figaro 2.0b Linux.zip contient une installation Linux portable. 
+MAIS il faut installer figp, fig0debug, YAMS à part.
+
+Pour figp, il suffit de copier l'exécutable dans /bin
+Pour lancer Jedit, taper : 
+java -jar jedit.jar 
