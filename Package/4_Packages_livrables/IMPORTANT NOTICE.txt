@@ -1,0 +1,2 @@
+In order to avoid problems in some environments, use only names and paths without any blank or special character.
+The README_Figaro_tools.txt file in the zip gives the version of Visual Figaro.
