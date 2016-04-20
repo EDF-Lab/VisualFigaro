@@ -1,2 +1,4 @@
+The name of the file jEdit4.5_VisualFigaro.zip must not be changed, as it is the "target" of a download mechanism by the OpenModelica installer.
+
 In order to avoid problems in some environments, use only names and paths without any blank or special character.
 The README_Figaro_tools.txt file in the zip gives the version of Visual Figaro.
