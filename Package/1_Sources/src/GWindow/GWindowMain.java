@@ -66,6 +66,7 @@ import java.util.Date;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -473,6 +474,7 @@ public class GWindowMain extends GWindow {
 		   xsdfilename = "bdceng.xsd";
 
 	    this.root.setAttribute("noNamespaceSchemaLocation", xsdfilename, Namespace.getNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance"));
+	    this.root.setAttribute("AUTOH", "FALSE");
 		//Save elements from the fieldsPanel. The main vector is cut in more small pieces in order to fill the root element in the right order.
 		Vector<Element> generalCharacteristicsGridFormVector = new Vector<Element>(generalCharacteristicsGridForm.saveXML());
 		
