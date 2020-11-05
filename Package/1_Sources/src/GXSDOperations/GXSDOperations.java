@@ -78,6 +78,8 @@ public class GXSDOperations {
 	@SuppressWarnings("unchecked")
 	public static Element getElement(String attr, String value) {
 
+		Element retVal = null;
+		
 		if(document == null)
 			System.err.println("VisualFigaro : GXSDOperations : XSD not found");
 
@@ -85,10 +87,17 @@ public class GXSDOperations {
 		GFilterParametrized filter = new GFilterParametrized(attr, value);
 		Iterator<Element> iter = document.getRootElement().getDescendants(filter);
 		
-		if( iter.hasNext() )
-			return iter.next();
+		// There can be other objects with the same name. We are looking for an element.
+		while( iter.hasNext() )
+		{
+			Element current = iter.next();
+			if( current.getName() == "element")
+			{
+				retVal = current;
+			}
+		}
 		
-		return null;
+		return retVal;
 	}
 	
 	/**
